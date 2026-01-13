@@ -515,7 +515,7 @@ export function PropertyQuoteForm({
   const { t } = useTranslation();
 
   return (
-    <Card className="w-full shadow-2xl bg-card text-card-foreground">
+    <Card className="w-full shadow-xl rounded-3xl bg-card text-card-foreground">
       <CardContent className="p-8">
         <div className="space-y-6">
           <div className="space-y-2 text-center">
