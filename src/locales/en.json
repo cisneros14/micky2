@@ -1,0 +1,555 @@
+{
+    "ctaBanner": {
+        "title": "Get your instant offer!",
+        "description": "Fill out the form and receive a personalized quote for your property in less than 24 hours. No commitments, no hidden costs.",
+        "benefits": [
+            "Free professional evaluation",
+            "Response in 24 hours or less",
+            "No obligation to sell"
+        ],
+        "tip": "💡 Tip: Include photos of your property for a more accurate quote"
+    },
+    "propertyQuoteForm": {
+        "addressPlaceholder": "Property address * (select from suggestions)",
+        "propertyNumberPlaceholder": "Number, Floor (optional)",
+        "propertyTypePlaceholder": "Property type *",
+        "type": {
+            "casa": "House",
+            "departamento": "Apartment",
+            "condominio": "Condo",
+            "terreno": "Land",
+            "lote": "Lot",
+            "oficina": "Office",
+            "local": "Commercial space",
+            "bodega": "Warehouse"
+        },
+        "phonePlaceholder": "Phone *",
+        "namePlaceholder": "Full name *",
+        "emailPlaceholder": "Email *",
+        "notesPlaceholder": "Additional comments (optional)",
+        "photosLabel": "Do you have photos?",
+        "radioYes": "Yes",
+        "radioNo": "No",
+        "uploadPrompt": "Click to upload photos",
+        "uploadLimit": "(Maximum 10 photos)",
+        "removePhoto": "Remove photo",
+        "submitButton": "Get my free offer",
+        "submitting": "Sending quote..."
+    },
+
+    "navbar": {
+        "logoAlt": "Easy Closers Logo",
+        "changeLanguage": "Change language",
+        "changeTo": {
+            "en": "Cambiar a Inglés",
+            "es": "Cambiar a Español"
+        },
+        "gettingStarted": "States",
+        "gettingStartedDescription": "States we operate in.",
+        "components": {
+            "title": "Example",
+            "list": [
+                {
+                    "title": "Alert Dialog",
+                    "href": "#",
+                    "description": "A modal dialog that interrupts the user with important content and expects a response."
+                },
+                {
+                    "title": "Hover Card",
+                    "href": "#",
+                    "description": "For sighted users to preview content available behind a link."
+                },
+                {
+                    "title": "Progress",
+                    "href": "#",
+                    "description": "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar."
+                },
+                {
+                    "title": "Scroll-area",
+                    "href": "#",
+                    "description": "Visually or semantically separates content."
+                },
+                {
+                    "title": "Tabs",
+                    "href": "#",
+                    "description": "A set of layered sections of content—known as tab panels—that are displayed one at a time."
+                },
+                {
+                    "title": "Tooltip",
+                    "href": "#",
+                    "description": "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it."
+                }
+            ]
+        },
+        "listItem": {
+            "introduction": {
+                "title": "California",
+                "description": "Los Ángeles, San Diego, Orange County, Riverside"
+            },
+            "installation": {
+                "title": "Texas",
+                "description": "Houston, Dallas, San Antonio, Austin"
+            },
+            "typography": {
+                "title": "Florida",
+                "description": "Miami, Orlando, Tampa, Jacksonville"
+            }
+        },
+        "home": "Home",
+        "process": "Process",
+        "about": "About",
+        "contact": "Contact Us"
+    },
+    "home": {
+        "title": "We Buy Houses For Cash, As-Is & Now",
+        "tabs": {
+            "email": "By Email",
+            "phone": "By Phone"
+        },
+        "placeholders": {
+            "email": "Enter your email",
+            "phone": "Enter your phone"
+        },
+        "info": {
+            "title": "Key Information",
+            "description": "We've helped thousands of homeowners sell quickly, hassle-free, and for the best cash price.",
+            "metric1": "60,000+",
+            "metric2": "25+ years"
+        },
+        "language": {
+            "en": "English",
+            "es": "Español"
+        },
+        "contactPrompt": "Selling has never been so fast, clear and secure.",
+        "contactButtons": {
+            "whatsapp": "WhatsApp",
+            "phone": "Phone",
+            "email": "Email"
+        },
+        "contactSubtitle": "Leave us your contact and we will get back to you as soon as possible",
+        "footer": {
+            "copyright": "© Easy Closers. All rights reserved"
+        }
+    },
+    "hero": {
+        "title": "Need to Sell Your Property Fast?",
+        "subtitle": "No agents. No repairs. No commissions. We purchase your property or asset in a simple, fast, and hassle-free way, handling the entire process directly with you.",
+        "trustedBuyers": "The most honest way to sell your home.",
+        "rating": "4.7-star rating",
+        "reviews": "Over 700 reviews on Yelp, BBB, and Google",
+        "benefits": [
+            {
+                "title": "Over 25 years of experience",
+                "description": "We've helped thousands of homeowners sell fast"
+            },
+            {
+                "title": "Up to $20,000 upfront",
+                "description": "Get money before closing with complete confidence"
+            }
+        ],
+        "features": [
+            {
+                "title": "Hassle-free",
+                "subtitle": "Flexible closing",
+                "description": "Close in as little as 7 days or up to 60 days based on your needs."
+            },
+            {
+                "title": "As-is",
+                "subtitle": "No repairs",
+                "description": "Sell your house without remodeling, cleaning, or showings."
+            }
+        ],
+        "featureDialogs": {
+            "flexible": {
+                "title": "Flexible Closing Without Complications",
+                "description": "We offer maximum flexibility so you can close the sale of your home when it's most convenient for you.",
+                "details": [
+                    "Close in as little as 7 days if needed",
+                    "Up to 60 days if you need more time",
+                    "No penalties for date changes",
+                    "Completely transparent process",
+                    "Support throughout the entire process"
+                ],
+                "benefits": [
+                    "Total control over timing",
+                    "No pressure to decide quickly",
+                    "Time to organize your move",
+                    "Process adapted to your needs"
+                ]
+            },
+            "asis": {
+                "title": "We Buy Your House As-Is",
+                "description": "You don't need to make repairs, clean, or fix anything. We buy your house in any condition.",
+                "details": [
+                    "Houses in any state of preservation",
+                    "No need for prior repairs",
+                    "We don't require cleaning or remodeling",
+                    "Fair assessment of real value",
+                    "Direct purchase without intermediaries"
+                ],
+                "benefits": [
+                    "Savings on repair costs",
+                    "No more time wasted on fixes",
+                    "Immediate sale without preparation",
+                    "Completely as-is process"
+                ]
+            }
+        }
+    },
+    "whySell": {
+        "title": "Why sell with Easy Closers?",
+        "weOffer": {
+            "title": "What we offer",
+            "benefits": [
+                "No commissions or fees",
+                "Competitive off-market offers",
+                "We buy houses in any condition",
+                "No need for cleaning or repairs",
+                "Fast or flexible closing based on your situation"
+            ]
+        },
+        "traditional": {
+            "title": "Traditional sale",
+            "drawbacks": [
+                "Up to 6% in commissions and additional costs",
+                "Low offers and deal uncertainty",
+                "Obligation to make repairs and remodel",
+                "Showings, open houses, and lack of privacy",
+                "Sales process that takes months"
+            ]
+        }
+    },
+    "sellFast": {
+        "title": "Need to sell your house fast?",
+        "description": "Selling your house can be time-consuming, frustrating, and complicated. At Easy Closers, we're here to help."
+    },
+    "comparison": {
+        "title": "Comparison: Traditional sale vs Easy Closers",
+        "headers": {
+            "aspect": "Aspect",
+            "traditional": "Traditional sale",
+            "easyClosers": "Easy Closers"
+        },
+        "items": [
+            {
+                "aspect": "Agent commissions",
+                "traditional": "Up to 6%",
+                "easyClosers": "0% (no commissions)"
+            },
+            {
+                "aspect": "Required repairs",
+                "traditional": "Required before selling",
+                "easyClosers": "Not required"
+            },
+            {
+                "aspect": "Property showings",
+                "traditional": "Multiple showings",
+                "easyClosers": "Not needed"
+            },
+            {
+                "aspect": "Average closing time",
+                "traditional": "60-90 days",
+                "easyClosers": "7 to 60 days"
+            },
+            {
+                "aspect": "Cash advance",
+                "traditional": "Not available",
+                "easyClosers": "Up to $20,000"
+            }
+        ]
+    },
+    "testimonials": {
+        "title": "What our clients say",
+        "description": "Don't just take our word for it, hear from our satisfied clients",
+        "items": [
+            {
+                "name": "Elias Montgomery",
+                "position": "Founder at NovaSphere",
+                "quote": "This team exceeded our expectations. Highly recommended!"
+            },
+            {
+                "name": "Luciano Ortega",
+                "position": "CTO at Quantify Labs",
+                "quote": "Efficient, professional, and innovative at every step."
+            },
+            {
+                "name": "Armand Dupont",
+                "position": "Marketing Lead at Creatix",
+                "quote": "They brought our vision to life with precision and creativity."
+            },
+            {
+                "name": "Silas Vega",
+                "position": "Manager at Invertix",
+                "quote": "Truly impressive service and attention to detail."
+            }
+        ]
+    },
+    "contactForm": {
+        "tagline": "Contact us",
+        "title": "Talk to our friendly team",
+        "description": "We'd love to hear from you. Please fill out this form or send us an email.",
+        "dialog": {
+            "labelbtn": "Contact us",
+            "title": "Contact us",
+            "description": "Have questions? We're here to help."
+        },
+        "form": {
+            "title": "Contact us",
+            "description": "Fill out the form below and we'll get back to you soon.",
+            "submitted": "Your message has been sent. We'll get back to you shortly.",
+            "name": {
+                "label": "Name",
+                "placeholder": "Your full name"
+            },
+            "email": {
+                "label": "Email",
+                "placeholder": "your@email.com"
+            },
+            "message": {
+                "label": "Message",
+                "placeholder": "Write your message here..."
+            },
+            "cancel": "Cancel",
+            "submit": "Submit"
+        }
+    },
+    "contactPage": {
+        "tagline": "Contact Us",
+        "title": "Chat to our friendly team",
+        "description": "We'd love to hear from you. Please fill out this form or shoot us an email.",
+        "email": {
+            "title": "Email",
+            "description": "Our friendly team is here to help."
+        },
+        "whatsapp": {
+            "title": "WhatsApp",
+            "description": "Chat with us on WhatsApp for quick responses.",
+            "action": "Start new chat"
+        },
+        "office": {
+            "title": "Office",
+            "description": "Come say hello at our office HQ.",
+            "address": "100 Smith Street Collingwood\nVIC 3066 AU"
+        },
+        "phone": {
+            "title": "Phone",
+            "description": "Mon-Fri from 8am to 5pm."
+        },
+        "form": {
+            "firstName": "First Name",
+            "firstNamePlaceholder": "First name",
+            "email": "Email",
+            "emailPlaceholder": "Email",
+            "message": "Message",
+            "messagePlaceholder": "Message",
+            "agreeTerms": "You agree to our",
+            "termsAndConditions": "terms and conditions",
+            "submit": "Submit"
+        }
+    },
+    "footer": {
+        "logoAlt": "Easy Closers Logo",
+        "copyright": "Easy Closers",
+        "rights": "All rights reserved.",
+        "social": {
+            "facebook": "Facebook",
+            "instagram": "Instagram",
+            "youtube": "YouTube",
+            "linkedin": "LinkedIn"
+        },
+        "links": [
+            {
+                "title": "Home",
+                "href": "/"
+            },
+            {
+                "title": "How It Works",
+                "href": "/process"
+            },
+            {
+                "title": "About Us",
+                "href": "/about"
+            },
+            {
+                "title": "Testimonials",
+                "href": "/testimonials"
+            },
+            {
+                "title": "FAQ",
+                "href": "/faq"
+            },
+            {
+                "title": "Contact Us",
+                "href": "/contact"
+            }
+        ],
+        "newsletter": {
+            "title": "Subscribe to our newsletter",
+            "description": "Subscribe and get a quick property evaluation with no obligation.",
+            "placeholder": "Your email",
+            "button": "GET MY OFFER"
+        }
+    },
+    "about": {
+        "title": "About Us",
+        "subtitle": "Over 25 years of buying homes for cash, hassle-free",
+        "description": "At Easy Closers, we’ve been helping homeowners across the United States sell their homes fast, stress-free, and for top cash offers since 1999. No repairs, no cleaning, and no showings required—just a simple and transparent process. We handle everything, from necessary repairs to closing, so you can move forward without hassle. Over the years, we’ve closed thousands of transactions with integrity, transparency, and compassion. We buy houses for cash in any condition and can present you with an offer within 24 hours, ensuring a quick and smooth sale from start to finish.",
+        "values": {
+            "title": "Our Values",
+            "integrity": "Integrity",
+            "integrityDesc": "Always honest — no lowball offers or last-minute surprises.",
+            "speed": "Speed",
+            "speedDesc": "Close in 7 days or on your timeline — your choice.",
+            "fairness": "Fairness",
+            "fairnessDesc": "Fair offers based on real value, not your desperation."
+        }
+    },
+    "heroAbout": {
+        "badge": "Over 25 years of experience",
+        "title": "About Us",
+        "description": "By offering quick and fair home purchases, we give owners the freedom to move forward without delays, while supporting the growth and vitality of the communities we serve.",
+        "cta": "Learn more about us",
+        "watch": "See our story",
+        "imageAlt": "Easy Closers experienced team"
+    },
+    "process": {
+        "processHero": {
+            "badge": "Over 25 Years of Experience",
+            "title": "Sell Fast, Stress-Free",
+            "description": "From the offer to the closing, our process is designed to make you feel supported, informed, and hassle-free. At Easy Closers, we give you a fair cash offer within 24–48 hours, regardless of the property’s condition. No agents, no commissions, and the flexibility to close whenever it’s most convenient for you.",
+            "cta": "Get Started Now",
+            "watch": "See How It Works"
+        }
+    },
+    "faq": {
+        "title": "Frequently Asked Questions",
+        "q1": {
+            "question": "How does the selling process work with Easy Closers?",
+            "answer": "After an initial call, one of our experts will visit your property to assess its cash value. We’ll give you a clear, fair offer on the spot, no pressure. If you accept, we can close in as little as 7 days or on your timeline."
+        },
+        "q2": {
+            "question": "Where do you buy homes?",
+            "answer": "We currently buy homes in most major metropolitan areas across the U.S. We started in California (Los Angeles, San Diego, San Francisco) and have expanded to Texas, Florida, Arizona, and Nevada. Contact us even if you're outside these areas—we may still be able to help."
+        },
+        "q3": {
+            "question": "Do you really buy houses in any condition?",
+            "answer": "Yes, we buy homes in any condition—damaged, vacant, outdated, or in need of repairs. No cleaning, repairs, or showings required. We buy the house as-is."
+        },
+        "q4": {
+            "question": "How long does the closing take?",
+            "answer": "We can close in as little as 7 days if needed, or up to 60 days if you need more time. The choice is yours. Our goal is to make your transition as smooth as possible."
+        },
+        "q5": {
+            "question": "Can I get money before closing?",
+            "answer": "Yes, we offer up to $20,000 in cash upfront to help with moving expenses. It's secure, no-interest money to support you during the transition."
+        },
+        "q6": {
+            "question": "Why choose Easy Closers over a real estate agent?",
+            "answer": "With an agent, you pay up to 6% in commissions, need repairs, showings, and risk the deal falling through. With us, there are no commissions, no repairs, no showings, and we close with certainty."
+        },
+        "q7": {
+            "question": "Is this way of selling safe?",
+            "answer": "Yes. We have over 25 years of experience and an A+ rating with the BBB. We’ve helped thousands of homeowners sell fast and stress-free. Check our reviews on Google, Yelp, and BBB."
+        },
+        "q8": {
+            "question": "Can I cancel if I change my mind?",
+            "answer": "Yes, you have time to reconsider. There's no pressure. You can cancel without cost during the review period, which varies by state."
+        },
+        "q9": {
+            "question": "What about taxes or property liens?",
+            "answer": "We handle mortgage payoffs, back taxes, and other liens. You receive the net cash proceeds with no remaining obligations."
+        },
+        "q10": {
+            "question": "Can I sell land or commercial properties?",
+            "answer": "Yes, we also buy land, commercial properties, and multi-family homes. Contact us with details and we’ll give you a fair offer within 24 hours."
+        }
+    },
+    "timeline": {
+        "steps": [
+            {
+                "title": "Tell Us About Your Property",
+                "step": "Step 1",
+                "period": "Call or fill out the form",
+                "description": "You provide basic information about your home. Condition or situation doesn’t matter.",
+                "technologies": [
+                    "No Obligation",
+                    "Fast",
+                    "Easy"
+                ]
+            },
+            {
+                "title": "Get a Cash Offer",
+                "step": "Step 2",
+                "period": "Within 24-48 hours",
+                "description": "We review your case and make you a fair cash offer for your home as-is. No repairs, no commissions.",
+                "technologies": [
+                    "Cash",
+                    "No Agents",
+                    "Fair Offer"
+                ]
+            },
+            {
+                "title": "Close on Your Timeline",
+                "step": "Step 3",
+                "period": "In 7 days or when you choose",
+                "description": "You decide the closing date. We can close fast or give you time if needed. You could even receive up to $20,000 upfront.",
+                "technologies": [
+                    "Flexible",
+                    "No Pressure",
+                    "Cash Advance Available"
+                ]
+            }
+        ]
+    },
+    "stats": {
+        "title": "Our Track Record Speaks for Itself",
+        "description": "Over 25 years helping homeowners sell fast, stress-free, and for top cash offers.",
+        "items": [
+            {
+                "value": "25+",
+                "label": "Years of Experience",
+                "description": "Operating since 1999 with integrity and proven results.",
+                "color": "text-[var(--color1)]"
+            },
+            {
+                "value": "7,000+",
+                "label": "Homes Purchased",
+                "description": "We’ve closed thousands of transactions across the U.S.",
+                "color": "text-emerald-600"
+            },
+            {
+                "value": "7-60",
+                "label": "Days to Close",
+                "description": "Close in as little as 7 days or on your timeline.",
+                "color": "text-blue-600"
+            },
+            {
+                "value": "$20K",
+                "label": "Cash Advance",
+                "description": "Get up to $20,000 upfront before closing.",
+                "color": "text-amber-500"
+            }
+        ]
+    },
+    "cta": {
+        "getFreeQuote": "Get free quote"
+    },
+    "featureCard": {
+        "mainFeatures": "Main Features",
+        "benefits": "Benefits"
+    },
+    "team": {
+        "hiring": "Our Team!",
+        "title": "Meet the Easy Closers Experts",
+        "description": "More than just coworkers, we are a group of people passionate about helping others. With experience, dedication, and a personal touch, we work together to offer you honest treatment and real support every step of the way. We believe every client is part of our story, and that’s why we strive to provide solutions that truly make a difference.",
+        "buttons": {
+            "openPositions": "View Opportunities",
+            "aboutUs": "Learn More About Us"
+        },
+        "dialog": {
+            "experience": "Experience:",
+            "education": "Education:",
+            "expertise": "Expertise:"
+        }
+    }
+}

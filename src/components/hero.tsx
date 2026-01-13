@@ -1,0 +1,155 @@
+"use client";
+
+import { Badge } from "@/components/ui/badge";
+import { DollarSign, Calendar, Home, Package } from "lucide-react";
+import { PropertyQuoteForm } from "./property-quote-form";
+import { useTranslation } from "@/components/TranslationsProvider";
+
+export default function Hero() {
+  const { t } = useTranslation();
+  return (
+    <section className="relative min-h-screen bg-primary px-4 py-24">
+      <div className="container mx-auto ">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 pt-12">
+          {/* Left Content */}
+          <div className="flex flex-col justify-center space-y-8 text-primary-foreground">
+            <Badge className="w-fit bg-secondary hover:bg-secondary/90 text-secondary-foreground border-0 px-4 py-2">
+              <span className="mr-2">✓</span>
+              DRE License #02045945
+            </Badge>
+
+            <div className="space-y-4">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-primary-foreground text-balance">
+                {t("hero.title")}
+              </h1>
+              <p className="text-xl text-primary-foreground/90 text-pretty max-w-[600px]">
+                {t("hero.description")}
+              </p>
+            </div>
+
+            <div className="grid gap-6 sm:grid-cols-2">
+              <div className="flex gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
+                  <DollarSign className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg">$0 Commissions</h3>
+                  <p className="text-sm text-primary-foreground/80">
+                    Keep more money in your pocket
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
+                  <Calendar className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg">Close in 7 Days</h3>
+                  <p className="text-sm text-primary-foreground/80">
+                    Or choose your own timeline
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
+                  <Home className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg">Sell As-Is</h3>
+                  <p className="text-sm text-primary-foreground/80">
+                    No repairs or renovations needed
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
+                  <Package className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg">Leave Everything</h3>
+                  <p className="text-sm text-primary-foreground/80">
+                    Take what you want, leave the rest
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Form Card */}
+          <div className="flex items-center">
+            {/* <Card className="w-full p-8 shadow-2xl bg-card text-card-foreground">
+              <div className="space-y-6">
+                <div className="space-y-2 text-center">
+                  <h2 className="text-3xl font-bold text-primary">
+                    Get Your Cash Offer
+                  </h2>
+                  <p className="text-muted-foreground">
+                    Fill out the form below for a no-obligation offer within 24
+                    hours
+                  </p>
+                </div>
+
+                <form className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="address">
+                      Property Address{" "}
+                      <span className="text-destructive">*</span>
+                    </Label>
+                    <Input
+                      id="address"
+                      placeholder="Enter your property address"
+                      required
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">
+                      Phone Number <span className="text-destructive">*</span>
+                    </Label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      placeholder="(555) 123-4567"
+                      required
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="email">
+                      Email Address <span className="text-destructive">*</span>
+                    </Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="your@email.com"
+                      required
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="situation">
+                      Tell us about your situation (Optional)
+                    </Label>
+                    <Textarea
+                      id="situation"
+                      placeholder="e.g., Inherited property, facing foreclosure, need quick sale..."
+                      rows={4}
+                    />
+                  </div>
+
+                  <Button className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground h-12 text-base font-semibold">
+                    ➤ Get My Fair Cash Offer
+                  </Button>
+                </form>
+              </div>
+            </Card> */}
+            <PropertyQuoteForm />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
