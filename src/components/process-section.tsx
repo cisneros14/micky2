@@ -40,7 +40,7 @@ export function ProcessSection() {
     {
       number: 3,
       icon: Handshake,
-      iconBg: "bg-accent/10",
+      iconBg: "bg-purple-100",
       title: "Choose Your Close Date",
       description:
         "Close in as little as 14 days or take your time. You're in control of the timeline that works for you.",
@@ -59,14 +59,14 @@ export function ProcessSection() {
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-primary mb-4 text-balance">
             The "Easy" 3-Step Process 
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
+          <p className="text-lg  max-w-2xl mx-auto text-pretty">
             Selling your home doesn&apos;t have to be complicated. We&apos;ve
             streamlined the process into 3 simple steps.
           </p>
         </div>
 
         {/* Steps */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12 relative">
+        <div className="grid md:grid-cols-3 gap-15 mb-12 relative">
           {steps.map((step, index) => {
             const IconComponent = step.icon;
             const BadgeIcon = step.badge.icon;
@@ -113,9 +113,9 @@ export function ProcessSection() {
 
                 {/* Arrow (hidden on mobile and after last item) */}
                 {index < steps.length - 1 && (
-                  <div className="hidden md:flex absolute top-1/2 -right-8 transform -translate-y-1/2 z-10">
+                  <div className="hidden md:flex absolute top-1/2 -right-12 transform -translate-y-1/2 z-10">
                     <ArrowRight
-                      className="w-16 h-16 text-secondary"
+                      className="w-10 h-10 text-secondary"
                       strokeWidth={2.5}
                     />
                   </div>

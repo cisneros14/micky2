@@ -78,7 +78,7 @@ export default function WhyChooseSection() {
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-primary text-balance">
                 Why Choose Easy Closers?
               </h2>
-              <p className="text-lg text-muted-foreground text-pretty leading-relaxed">
+              <p className="text-lg text-pretty leading-relaxed">
                 We&apos;re a licensed, local company that&apos;s helped hundreds
                 of homeowners in Cerritos and surrounding areas sell their
                 properties quickly and fairly.
@@ -90,9 +90,9 @@ export default function WhyChooseSection() {
               {stats.map((stat, index) => (
                 <Card
                   key={index}
-                  className="bg-muted/50 border-border p-4 md:p-6 hover:bg-muted/80 transition-colors"
+                  className="bg-muted/50 shadow-none border-border p-4 md:p-6 hover:bg-muted/80 transition-colors"
                 >
-                  <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
+                  <div className="text-3xl md:text-3xl font-bold text-primary">
                     {stat.value}
                   </div>
                   <div className="text-sm md:text-base text-muted-foreground">
@@ -103,11 +103,11 @@ export default function WhyChooseSection() {
             </div>
 
             {/* Trust badges */}
-            <div className="space-y-3">
+            <div className="space-y-5">
               {trustBadges.map((badge, index) => (
                 <div key={index} className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Check className="w-5 h-5 text-secondary-foreground" />
+                  <div className="w-8 h-8 rounded-full bg-secondary/10 border border-secondary/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Check className="w-4 h-4 text-secondary" />
                   </div>
                   <div>
                     <div className="font-semibold text-foreground text-lg">

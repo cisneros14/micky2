@@ -18,56 +18,56 @@ const situations = [
     title: "Probate & Inheritance",
     description:
       "Inherited a property? We simplify the process and help you sell quickly without the typical probate headaches.",
-    color: "bg-chart-1",
+    color: "chart-1",
   },
   {
     icon: AlertTriangle,
     title: "Facing Foreclosure",
     description:
       "Stop foreclosure and protect your credit. We can close quickly and help you move forward with peace of mind.",
-    color: "bg-chart-2",
+    color: "chart-2",
   },
   {
     icon: Bed,
     title: "Tired Landlords",
     description:
       "Done dealing with tenants and repairs? Sell your rental property as-is and walk away from the stress.",
-    color: "bg-chart-3",
+    color: "chart-3",
   },
   {
     icon: Wrench,
     title: "Major Repairs Needed",
     description:
       "House needs work? No problem. We buy properties in any condition - no repairs or updates required.",
-    color: "bg-chart-4",
+    color: "chart-4",
   },
   {
     icon: Heart,
     title: "Divorce Settlement",
     description:
       "Need to sell fast due to divorce? We offer quick, fair solutions during difficult times.",
-    color: "bg-chart-5",
+    color: "chart-5",
   },
   {
     icon: Plane,
     title: "Job Relocation",
     description:
       "Moving for work? We can close on your timeline and help you transition smoothly to your new location.",
-    color: "bg-chart-1",
+    color: "chart-1",
   },
   {
     icon: HandCoins,
     title: "Financial Distress",
     description:
       "Behind on payments? We provide respectful, confidential solutions to help you get back on your feet.",
-    color: "bg-chart-2",
+    color: "chart-2",
   },
   {
     icon: ArrowDown,
     title: "Downsizing",
     description:
       "Ready for a smaller place? Skip the staging and showings - we'll buy your home as-is.",
-    color: "bg-chart-3",
+    color: "chart-3",
   },
 ];
 
@@ -95,9 +95,9 @@ export default function SituationsSection() {
                 <CardContent className="p-3 md:p-6 space-y-4">
                   {/* Icon */}
                   <div
-                    className={`w-12 h-12 rounded-full bg-[var(--primary)]/20 border-[var(--primary)]/70 border flex items-center justify-center`}
+                    className={`w-12 h-12 rounded-full bg-${situation.color}/20 border-${situation.color}/70 border flex items-center justify-center`}
                   >
-                    <Icon className="w-7 h-7 text-[var(--primary)]/70" />
+                    <Icon className={`w-7 h-7 text-${situation.color}/70`} />
                   </div>
 
                   {/* Title */}
@@ -132,3 +132,8 @@ export default function SituationsSection() {
     </section>
   );
 }
+
+// Safelist for dynamic classes
+// bg-chart-1/20 bg-chart-2/20 bg-chart-3/20 bg-chart-4/20 bg-chart-5/20
+// border-chart-1/70 border-chart-2/70 border-chart-3/70 border-chart-4/70 border-chart-5/70
+// text-chart-1/70 text-chart-2/70 text-chart-3/70 text-chart-4/70 text-chart-5/70

@@ -17,7 +17,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { useTranslation } from "@/components/TranslationsProvider";
+
 import {
   Send,
   Phone,
@@ -31,7 +31,6 @@ import {
 import { PropertyQuoteModal } from "./property-quote-modal";
 
 export default function PrincipalFormContact() {
-  const { t } = useTranslation();
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const [recaptchaError, setRecaptchaError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -176,7 +175,7 @@ export default function PrincipalFormContact() {
 
       if (contactData.success) {
         console.log("✅ Formulario enviado exitosamente");
-        alert(t("contactForm.form.submitted"));
+        alert("Your message has been sent. We'll get back to you shortly.");
         // Resetear el formulario
         setFormData({ name: "", email: "", message: "" });
         setRecaptchaToken(null);
@@ -215,10 +214,11 @@ export default function PrincipalFormContact() {
           <div className="space-y-8">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-primary text-balance">
-                {t("contactPage.title")}
+                Chat to our friendly team
               </h2>
-              <p className="text-lg text-muted-foreground text-pretty">
-                {t("contactPage.description")}
+              <p className="text-lg text-pretty">
+                We'd love to hear from you. Please fill out this form or shoot
+                us an email.
               </p>
             </div>
 
@@ -229,11 +229,9 @@ export default function PrincipalFormContact() {
                   <Mail className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg">
-                    {t("contactPage.email.title")}
-                  </h3>
+                  <h3 className="font-semibold text-lg">Email</h3>
                   <p className="text-muted-foreground">
-                    {t("contactPage.email.description")}
+                    Our friendly team is here to help.
                   </p>
                   <a
                     href="mailto:hello@easyclosers.com"
@@ -250,11 +248,9 @@ export default function PrincipalFormContact() {
                   <Phone className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg">
-                    {t("contactPage.phone.title")}
-                  </h3>
+                  <h3 className="font-semibold text-lg">Phone</h3>
                   <p className="text-muted-foreground">
-                    {t("contactPage.phone.description")}
+                    Mon-Fri from 8am to 5pm.
                   </p>
                   <a
                     href="tel:+15551234567"
@@ -271,14 +267,12 @@ export default function PrincipalFormContact() {
                   <MapPin className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg">
-                    {t("contactPage.office.title")}
-                  </h3>
+                  <h3 className="font-semibold text-lg">Office</h3>
                   <p className="text-muted-foreground">
-                    {t("contactPage.office.description")}
+                    Come say hello at our office HQ.
                   </p>
                   <p className="text-muted-foreground mt-1 whitespace-pre-line">
-                    {t("contactPage.office.address")}
+                    100 Smith Street Collingwood VIC 3066 AU
                   </p>
                 </div>
               </div>
@@ -286,39 +280,35 @@ export default function PrincipalFormContact() {
 
             {/* Social Media */}
             <div className="pt-8 border-t">
-              <h3 className="font-semibold text-lg mb-4">
-                {t("footer.social.followUs") || "Follow Us"}
-              </h3>
+              <h3 className="font-semibold text-lg mb-4">Follow Us</h3>
               <div className="flex space-x-4">
                 <a
                   href="#"
                   className="p-3 bg-muted hover:bg-primary hover:text-white rounded-full transition-colors"
                 >
                   <Facebook className="w-5 h-5" />
-                  <span className="sr-only">{t("footer.social.facebook")}</span>
+                  <span className="sr-only">Facebook</span>
                 </a>
                 <a
                   href="#"
                   className="p-3 bg-muted hover:bg-primary hover:text-white rounded-full transition-colors"
                 >
                   <Instagram className="w-5 h-5" />
-                  <span className="sr-only">
-                    {t("footer.social.instagram")}
-                  </span>
+                  <span className="sr-only">Instagram</span>
                 </a>
                 <a
                   href="#"
                   className="p-3 bg-muted hover:bg-primary hover:text-white rounded-full transition-colors"
                 >
                   <Linkedin className="w-5 h-5" />
-                  <span className="sr-only">{t("footer.social.linkedin")}</span>
+                  <span className="sr-only">LinkedIn</span>
                 </a>
                 <a
                   href="#"
                   className="p-3 bg-muted hover:bg-primary hover:text-white rounded-full transition-colors"
                 >
                   <Youtube className="w-5 h-5" />
-                  <span className="sr-only">{t("footer.social.youtube")}</span>
+                  <span className="sr-only">YouTube</span>
                 </a>
               </div>
             </div>
@@ -333,7 +323,7 @@ export default function PrincipalFormContact() {
                   htmlFor="name"
                   className="text-sm font-semibold text-foreground block pl-2"
                 >
-                  {t("contactForm.form.name.label")}
+                  Name
                   <span className="text-destructive ml-1">*</span>
                 </Label>
                 <Input
@@ -341,7 +331,7 @@ export default function PrincipalFormContact() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder={t("contactForm.form.name.placeholder")}
+                  placeholder="Your full name"
                   required
                   className="md:h-12 p-4 md:p-4 text-base bg-muted/50 border-input rounded-lg 
                                              focus:bg-background focus:ring-2 focus:ring-primary/20 
@@ -355,7 +345,7 @@ export default function PrincipalFormContact() {
                   htmlFor="email"
                   className="text-sm font-semibold text-foreground block pl-2"
                 >
-                  {t("contactForm.form.email.label")}
+                  Email
                   <span className="text-destructive ml-1">*</span>
                 </Label>
                 <Input
@@ -364,7 +354,7 @@ export default function PrincipalFormContact() {
                   type="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder={t("contactForm.form.email.placeholder")}
+                  placeholder="your@email.com"
                   required
                   className="md:h-12 p-4 md:p-4 text-base bg-muted/50 border-input rounded-lg 
                                              focus:bg-background focus:ring-2 focus:ring-primary/20 
@@ -378,7 +368,7 @@ export default function PrincipalFormContact() {
                   htmlFor="message"
                   className="text-sm font-semibold text-foreground block pl-2 "
                 >
-                  {t("contactForm.form.message.label")}
+                  Message
                   <span className="text-destructive ml-1">*</span>
                 </Label>
                 <Textarea
@@ -386,7 +376,7 @@ export default function PrincipalFormContact() {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder={t("contactForm.form.message.placeholder")}
+                  placeholder="Write your message here..."
                   rows={4}
                   required
                   className="min-h-[120px] p-4 text-base bg-muted/50 border-input rounded-lg 
@@ -413,9 +403,7 @@ export default function PrincipalFormContact() {
                   className="flex-1 w-full h-auto py-3 text-lg font-semibold shadow-md"
                 >
                   <Send className="w-4 h-4 mr-2" />
-                  {isSubmitting
-                    ? t("contactForm.form.submitting") || "Enviando..."
-                    : t("contactForm.form.submit")}
+                  {isSubmitting ? "Sending..." : "Submit"}
                 </Button>
               </div>
             </form>

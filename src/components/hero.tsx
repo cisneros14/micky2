@@ -3,27 +3,26 @@
 import { Badge } from "@/components/ui/badge";
 import { DollarSign, Calendar, Home, Package } from "lucide-react";
 import { PropertyQuoteForm } from "./property-quote-form";
-import { useTranslation } from "@/components/TranslationsProvider";
+
+import { Logo } from "./logo";
 
 export default function Hero() {
-  const { t } = useTranslation();
   return (
     <section className="relative min-h-screen bg-primary px-4 py-24">
       <div className="container mx-auto ">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 pt-12">
           {/* Left Content */}
-          <div className="flex flex-col justify-center space-y-8 text-primary-foreground">
-            <Badge className="w-fit bg-secondary hover:bg-secondary/90 text-secondary-foreground border-0 px-4 py-2">
-              <span className="mr-2">✓</span>
-              DRE License #02045945
-            </Badge>
+          <div className="flex flex-col justify-start pt-20 space-y-8 text-primary-foreground">
+            <Logo className="w-50 bg-white rounded-3xl p-5" />
 
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-primary-foreground text-balance">
-                {t("hero.title")}
+                Need to Sell Your Property Fast?
               </h1>
               <p className="text-xl text-primary-foreground/90 text-pretty max-w-[600px]">
-                {t("hero.description")}
+                No agents. No repairs. No commissions. We purchase your property
+                or asset in a simple, fast, and hassle-free way, handling the
+                entire process directly with you.
               </p>
             </div>
 

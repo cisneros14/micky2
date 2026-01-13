@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import type React from "react";
-import { useTranslation } from "@/components/TranslationsProvider";
+
 import { Textarea } from "@/components/ui/textarea";
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
@@ -512,7 +512,6 @@ export function PropertyQuoteForm({
       setIsSubmitting(false);
     }
   };
-  const { t } = useTranslation();
 
   return (
     <Card className="w-full shadow-xl rounded-3xl bg-card text-card-foreground">
@@ -535,10 +534,7 @@ export function PropertyQuoteForm({
                     onChange={(address) =>
                       handleInputChange("address", address)
                     }
-                    placeholder={t(
-                      "propertyQuoteForm.addressPlaceholder",
-                      "Dirección de la propiedad * (selecciona de las sugerencias)"
-                    )}
+                    placeholder="Property address * (select from suggestions)"
                     className="mt-1 bg-gray-50"
                   />
                 </div>
@@ -547,10 +543,7 @@ export function PropertyQuoteForm({
                     <MapPinHouse className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input
                       id="propertyNumber"
-                      placeholder={t(
-                        "propertyQuoteForm.propertyNumberPlaceholder",
-                        "Número, Piso (opcional)"
-                      )}
+                      placeholder="Number, Floor (optional)"
                       value={formData.propertyNumber}
                       onChange={(e) =>
                         handleInputChange("propertyNumber", e.target.value)
@@ -572,41 +565,17 @@ export function PropertyQuoteForm({
                       }
                     >
                       <SelectTrigger className="mt-1 w-full pl-10 !h-13">
-                        <SelectValue
-                          placeholder={t(
-                            "propertyQuoteForm.propertyTypePlaceholder",
-                            "Tipo de propiedad *"
-                          )}
-                        />
+                        <SelectValue placeholder="Property type *" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="casa">
-                          {t("propertyQuoteForm.type.casa", "Casa")}
-                        </SelectItem>
-                        <SelectItem value="departamento">
-                          {t(
-                            "propertyQuoteForm.type.departamento",
-                            "Departamento"
-                          )}
-                        </SelectItem>
-                        <SelectItem value="condominio">
-                          {t("propertyQuoteForm.type.condominio", "Condominio")}
-                        </SelectItem>
-                        <SelectItem value="terreno">
-                          {t("propertyQuoteForm.type.terreno", "Terreno")}
-                        </SelectItem>
-                        <SelectItem value="lote">
-                          {t("propertyQuoteForm.type.lote", "Lote")}
-                        </SelectItem>
-                        <SelectItem value="oficina">
-                          {t("propertyQuoteForm.type.oficina", "Oficina")}
-                        </SelectItem>
-                        <SelectItem value="local">
-                          {t("propertyQuoteForm.type.local", "Local comercial")}
-                        </SelectItem>
-                        <SelectItem value="bodega">
-                          {t("propertyQuoteForm.type.bodega", "Bodega")}
-                        </SelectItem>
+                        <SelectItem value="casa">House</SelectItem>
+                        <SelectItem value="departamento">Apartment</SelectItem>
+                        <SelectItem value="condominio">Condo</SelectItem>
+                        <SelectItem value="terreno">Land</SelectItem>
+                        <SelectItem value="lote">Lot</SelectItem>
+                        <SelectItem value="oficina">Office</SelectItem>
+                        <SelectItem value="local">Commercial space</SelectItem>
+                        <SelectItem value="bodega">Warehouse</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -617,10 +586,7 @@ export function PropertyQuoteForm({
                     <Input
                       id="phone"
                       type="tel"
-                      placeholder={t(
-                        "propertyQuoteForm.phonePlaceholder",
-                        "Teléfono *"
-                      )}
+                      placeholder="Phone *"
                       value={formData.phone}
                       onChange={(e) =>
                         handleInputChange("phone", e.target.value)
@@ -636,10 +602,7 @@ export function PropertyQuoteForm({
                   <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="name"
-                    placeholder={t(
-                      "propertyQuoteForm.namePlaceholder",
-                      "Nombre completo *"
-                    )}
+                    placeholder="Full name *"
                     value={formData.name}
                     onChange={(e) => handleInputChange("name", e.target.value)}
                     className="mt-1 bg-gray-50 pl-10 h-13"
@@ -653,10 +616,7 @@ export function PropertyQuoteForm({
                   <Input
                     id="email"
                     type="email"
-                    placeholder={t(
-                      "propertyQuoteForm.emailPlaceholder",
-                      "Email *"
-                    )}
+                    placeholder="Email *"
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
                     className="pl-10 h-13 bg-gray-50"
@@ -668,10 +628,7 @@ export function PropertyQuoteForm({
                 <MessageSquare className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                 <Textarea
                   id="notes"
-                  placeholder={t(
-                    "propertyQuoteForm.notesPlaceholder",
-                    "Comentarios adicionales (opcional)"
-                  )}
+                  placeholder="Additional comments (optional)"
                   value={formData.notes}
                   onChange={(e) => handleInputChange("notes", e.target.value)}
                   className="mt-1 bg-gray-50 resize-none pl-10"
@@ -697,17 +654,11 @@ export function PropertyQuoteForm({
                 {isSubmitting ? (
                   <div className="flex items-center gap-2">
                     <div className="animate-spin rounded-full h-4 w-4 border-2 border-accent-foreground border-t-transparent" />
-                    {t(
-                      "propertyQuoteForm.submitting",
-                      "Enviando cotización..."
-                    )}
+                    "Sending quote..."
                   </div>
                 ) : (
                   <div className="flex items-center gap-2">
-                    {t(
-                      "propertyQuoteForm.submitButton",
-                      "Obtener mi oferta gratis"
-                    )}
+                    "Get my free offer"
                     <Send className="h-5 w-5" />
                   </div>
                 )}

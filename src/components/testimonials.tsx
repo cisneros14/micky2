@@ -68,7 +68,7 @@ const Testimonials = () => (
       <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center text-primary text-balance px-6">
         Success Stories
       </h2>
-      <p className="mt-4 text-center text-lg text-muted-foreground text-pretty max-w-2xl mx-auto px-6">
+      <p className="mt-4 text-center text-lg text-pretty max-w-2xl mx-auto px-6">
         Real stories from people who use and love our product every day
       </p>
       <div className="mt-14 relative">

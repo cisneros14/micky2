@@ -125,7 +125,7 @@ export function ComparisonTable() {
           <h2 className="mb-4 text-3xl md:text-4xl font-bold tracking-tight text-primary text-balance">
             Compare Your Options
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
+          <p className="text-lg max-w-2xl mx-auto text-pretty">
             See how selling to Easy Closers stacks up against a traditional
             listing.
           </p>

@@ -1,12 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useTranslation } from "@/components/TranslationsProvider";
+
 import { ArrowRight } from "lucide-react";
 
 export function CTASection() {
-  const { t } = useTranslation();
-
   return (
     <section className="py-24 bg-primary text-primary-foreground">
       <div className="container px-4 md:px-6">
@@ -29,7 +27,7 @@ export function CTASection() {
                 ?.scrollIntoView({ behavior: "smooth" });
             }}
           >
-            {t("cta.getFreeQuote") || "Get My Free Offer"}
+            Get My Free Offer
             <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
         </div>

@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { Logo } from "./logo";
 
 const footerSections = [
   {
@@ -164,13 +165,7 @@ const Footer = () => {
           <div className="py-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-x-8 gap-y-10 px-6 xl:px-0">
             <div className="col-span-full xl:col-span-2">
               {/* Logo */}
-              <Image
-              src="/logo.jpg"
-              alt="Logo"
-              width={124}
-              height={32}
-              
-              />
+              <Logo className="w-32 bg-white p-3 rounded-2xl"/>
 
               <p className="mt-4 text-muted-foreground">
                 Design amazing digital experiences that create more happy in the
