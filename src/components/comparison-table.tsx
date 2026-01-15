@@ -8,10 +8,10 @@ import {
   Package,
   Wrench,
   Eye,
-  Gift,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { ActionButton } from "./action-button";
+import { PropertyQuoteModal } from "./property-quote-modal";
 
 interface ComparisonFeature {
   icon: React.ReactNode;
@@ -76,7 +76,7 @@ const features: ComparisonFeature[] = [
     icon: <Calendar className="h-5 w-5" />,
     label: "Closing Timeline",
     easyclosers: {
-      value: "14 Days",
+      value: "7 Days",
       detail: "Or your timeline",
       positive: true,
     },
@@ -122,7 +122,7 @@ export function ComparisonTable() {
       <div className="mx-auto max-w-6xl">
         {/* Header */}
         <div className="mb-12 text-center">
-          <h2 className="mb-4 text-3xl md:text-4xl font-bold tracking-tight text-primary text-balance">
+          <h2 className="mb-4 text-3xl md:text-6xl font-bold tracking-tight text-primary text-balance">
             Compare Your Options
           </h2>
           <p className="text-lg max-w-2xl mx-auto text-pretty">
@@ -136,7 +136,7 @@ export function ComparisonTable() {
           {/* Header Row */}
           <div className="bg-background hidden lg:block" />
 
-          <div className="bg-primary/10 rounded-t-3xl p-8 flex flex-col items-center text-center border-b border-border ">
+          <div className="bg-blue-500/10 rounded-t-3xl p-8 flex flex-col items-center text-center border-b border-border ">
             <div className="mb-4 flex items-center justify-center">
               <Image
                 src="/logoSolo.png"
@@ -169,14 +169,14 @@ export function ComparisonTable() {
             <div key={index} className="contents">
               {/* Feature Label (Desktop) */}
               <div className="hidden lg:flex bg-background p-6 items-center gap-3 border-b border-border font-medium text-foreground">
-                <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                <div className="p-2 rounded-lg bg-blue-500/10 text-primary">
                   {feature.icon}
                 </div>
                 <span>{feature.label}</span>
               </div>
 
               {/* Easy Closers Column */}
-              <div className="bg-primary/10 p-6 flex flex-col items-center justify-center text-center border-b border-border  relative">
+              <div className="bg-blue-500/10 p-6 flex flex-col items-center justify-center text-center border-b border-border  relative">
                 {/* Mobile Label */}
                 <div className="lg:hidden absolute top-4 left-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                   {feature.label}
@@ -184,7 +184,7 @@ export function ComparisonTable() {
 
                 <div className="mb-2">
                   {feature.easyclosers.positive ? (
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-500/20 text-green-600">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-500/50 border border-green-600 text-green-800">
                       <Check className="h-5 w-5" strokeWidth={3} />
                     </div>
                   ) : (
@@ -209,7 +209,7 @@ export function ComparisonTable() {
                       <Check className="h-5 w-5" strokeWidth={3} />
                     </div>
                   ) : (
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-red-500/20 text-red-600">
+                    <div className="flex h-8 w-8 items-center justify-center border border-red-600 rounded-full bg-red-500/40 text-red-800">
                       <X className="h-5 w-5" strokeWidth={3} />
                     </div>
                   )}
@@ -226,14 +226,16 @@ export function ComparisonTable() {
 
           {/* CTA Row */}
           <div className="bg-background hidden lg:block" />
-          <div className="bg-primary/10 p-8 flex items-center justify-center rounded-b-3xl">
-            <Button
-              size="lg"
-              className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold h-12 text-base shadow-lg"
-            >
-              <Gift className="w-4 h-4 mr-2" />
-              Get My Cash Offer
-            </Button>
+          <div className="bg-blue-500/10 p-8 flex items-center justify-center rounded-b-3xl">
+            <PropertyQuoteModal>
+              <ActionButton
+                size="lg"
+                variant="secondary"
+                className="px-5 pr-18"
+              >
+                Get my fair cash offer
+              </ActionButton>
+            </PropertyQuoteModal>
           </div>
           <div className="bg-background p-8 flex items-center justify-center ">
             <p className="text-sm text-muted-foreground italic">

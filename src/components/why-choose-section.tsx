@@ -1,7 +1,8 @@
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Check, Phone } from "lucide-react";
+import { Check } from "lucide-react";
 import Image from "next/image";
+import { ActionButton } from "./action-button";
+import { PropertyQuoteModal } from "./property-quote-modal";
 
 export default function WhyChooseSection() {
   const stats = [
@@ -14,7 +15,7 @@ export default function WhyChooseSection() {
       label: "Average Offer Time",
     },
     {
-      value: "14 Days",
+      value: "7 Days",
       label: "Fast Closing Available",
     },
     {
@@ -29,7 +30,7 @@ export default function WhyChooseSection() {
       description: "DRE License #02045945",
     },
     {
-      title: "Local Cerritos Company",
+      title: "Local So-Cal Company",
       description: "We know the area and care about our community",
     },
     {
@@ -55,14 +56,14 @@ export default function WhyChooseSection() {
             </div>
 
             {/* Floating stat card */}
-            <Card className="absolute bottom-4 left-4 md:bottom-8 md:left-8 bg-card p-4 md:p-6 shadow-xl flex items-center gap-4">
-              <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
+            <Card className="absolute bottom-4 left-4 md:bottom-8 md:left-8 bg-card p-3 md:p-4 shadow-xl flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
                 <span className="text-secondary-foreground text-xl md:text-2xl font-bold">
                   $
                 </span>
               </div>
               <div>
-                <div className="text-2xl md:text-3xl font-bold text-primary">
+                <div className="text-2xl md:text-3xl font-bold text-primary text-center">
                   $2M+
                 </div>
                 <div className="text-sm text-muted-foreground">
@@ -122,13 +123,15 @@ export default function WhyChooseSection() {
             </div>
 
             {/* CTA Button */}
-            <Button
-              size="lg"
-              className="bg-secondary hover:bg-secondary/90 text-secondary-foreground text-lg font-semibold px-8 py-6 rounded-lg shadow-lg hover:shadow-xl transition-all w-full md:w-auto"
-            >
-              <Phone className="w-5 h-5 mr-2" />
-              Get Your Free Offer Now
-            </Button>
+            <PropertyQuoteModal>
+              <ActionButton
+                size="lg"
+                variant="secondary"
+                className="px-5 pr-18"
+              >
+                Get my fair cash offer
+              </ActionButton>
+            </PropertyQuoteModal>
           </div>
         </div>
       </div>

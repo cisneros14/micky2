@@ -1,15 +1,15 @@
 import {
   Clock,
-  CheckCircle,
+  CheckCircle2,
   Calendar,
   Edit,
   DollarSign,
   Handshake,
   ArrowRight,
-  Rocket,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { ActionButton } from "./action-button";
+import { PropertyQuoteModal } from "./property-quote-modal";
 
 export function ProcessSection() {
   const steps = [
@@ -33,7 +33,7 @@ export function ProcessSection() {
       description:
         "Receive a no-obligation cash offer within 24 hours. Fair, transparent pricing with no hidden fees.",
       badge: {
-        icon: CheckCircle,
+        icon: CheckCircle2,
         text: "No obligation to accept",
       },
     },
@@ -43,7 +43,7 @@ export function ProcessSection() {
       iconBg: "bg-purple-100",
       title: "Choose Your Close Date",
       description:
-        "Close in as little as 14 days or take your time. You're in control of the timeline that works for you.",
+        "Close in as little as 7 days or take your time. You're in control of the timeline that works for you.",
       badge: {
         icon: Calendar,
         text: "Your timeline, your choice",
@@ -56,8 +56,8 @@ export function ProcessSection() {
       <div className="container mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-primary mb-4 text-balance">
-            The "Easy" 3-Step Process 
+          <h2 className="text-3xl md:text-6xl font-bold tracking-tight text-primary mb-4 text-balance">
+            The "Easy" 3-Step Process
           </h2>
           <p className="text-lg  max-w-2xl mx-auto text-pretty">
             Selling your home doesn&apos;t have to be complicated. We&apos;ve
@@ -66,7 +66,7 @@ export function ProcessSection() {
         </div>
 
         {/* Steps */}
-        <div className="grid md:grid-cols-3 gap-15 mb-12 relative">
+        <div className="grid md:grid-cols-3 gap-6 md:gap-12 mb-12 relative">
           {steps.map((step, index) => {
             const IconComponent = step.icon;
             const BadgeIcon = step.badge.icon;
@@ -113,7 +113,7 @@ export function ProcessSection() {
 
                 {/* Arrow (hidden on mobile and after last item) */}
                 {index < steps.length - 1 && (
-                  <div className="hidden md:flex absolute top-1/2 -right-12 transform -translate-y-1/2 z-10">
+                  <div className="hidden md:flex absolute top-1/2 -right-11 transform -translate-y-1/2 z-10">
                     <ArrowRight
                       className="w-10 h-10 text-secondary"
                       strokeWidth={2.5}
@@ -127,13 +127,11 @@ export function ProcessSection() {
 
         {/* CTA Button */}
         <div className="text-center">
-          <Button
-            size="lg"
-            className="bg-secondary hover:bg-secondary/90 text-secondary-foreground px-8 py-6 text-lg font-semibold rounded-lg shadow-lg"
-          >
-            <Rocket className="w-5 h-5 mr-2" />
-            Start Your Easy Sale Today
-          </Button>
+          <PropertyQuoteModal>
+            <ActionButton size="lg" variant="secondary" className="px-5 pr-18">
+              Get my fair cash offer
+            </ActionButton>
+          </PropertyQuoteModal>
           <p className="text-muted-foreground text-sm mt-4">
             Get your cash offer in 24 hours or less
           </p>

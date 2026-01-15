@@ -36,6 +36,7 @@ import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from "use-places-autocomplete";
+import { ActionButton } from "./action-button";
 
 declare global {
   interface Window {
@@ -514,10 +515,9 @@ export function PropertyQuoteForm({
   };
 
   return (
-    <Card className="w-full shadow-xl rounded-3xl bg-card text-card-foreground">
-      <CardContent className="p-8">
+      <div className="">
         <div className="space-y-6">
-          <div className="space-y-2 text-center">
+          <div className="space-y-2 text-center mb-3">
             <h2 className="text-3xl font-bold text-primary">
               Get Your Cash Offer
             </h2>
@@ -528,7 +528,7 @@ export function PropertyQuoteForm({
           <form onSubmit={handleSubmit} className="space-y-5 relative h-fit">
             <div className="space-y-4 md:space-y-5">
               <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
-                <div className="sm:mr-2 flex-[2]">
+                <div className="w-full">
                   <AddressAutocomplete
                     value={formData.address}
                     onChange={(address) =>
@@ -538,49 +538,23 @@ export function PropertyQuoteForm({
                     className="mt-1 bg-gray-50"
                   />
                 </div>
-                <div className="flex-1">
-                  <div className="relative">
-                    <MapPinHouse className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <Input
-                      id="propertyNumber"
-                      placeholder="Number, Floor (optional)"
-                      value={formData.propertyNumber}
-                      onChange={(e) =>
-                        handleInputChange("propertyNumber", e.target.value)
-                      }
-                      className="mt-1 bg-gray-50 pl-10 h-13 "
-                    />
-                  </div>
+              </div>
+              <div>
+                <div className="relative">
+                  <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    id="name"
+                    placeholder="Full name *"
+                    value={formData.name}
+                    onChange={(e) => handleInputChange("name", e.target.value)}
+                    className="mt-1 bg-gray-50 pl-10 h-13"
+                    required
+                  />
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
-                <div className="flex-1">
-                  <div className="bg-gray-50 w-full rounded-md relative">
-                    <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground z-10" />
-                    <Select
-                      required
-                      value={formData.propertyType}
-                      onValueChange={(value) =>
-                        handleInputChange("propertyType", value)
-                      }
-                    >
-                      <SelectTrigger className="mt-1 w-full pl-10 !h-13">
-                        <SelectValue placeholder="Property type *" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="casa">House</SelectItem>
-                        <SelectItem value="departamento">Apartment</SelectItem>
-                        <SelectItem value="condominio">Condo</SelectItem>
-                        <SelectItem value="terreno">Land</SelectItem>
-                        <SelectItem value="lote">Lot</SelectItem>
-                        <SelectItem value="oficina">Office</SelectItem>
-                        <SelectItem value="local">Commercial space</SelectItem>
-                        <SelectItem value="bodega">Warehouse</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-                <div className="flex-1">
+                
+                <div className="w-full">
                   <div className="relative mt-1">
                     <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input
@@ -597,19 +571,8 @@ export function PropertyQuoteForm({
                   </div>
                 </div>
               </div>
-              <div>
-                <div className="relative">
-                  <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    id="name"
-                    placeholder="Full name *"
-                    value={formData.name}
-                    onChange={(e) => handleInputChange("name", e.target.value)}
-                    className="mt-1 bg-gray-50 pl-10 h-13"
-                    required
-                  />
-                </div>
-              </div>
+              
+
               <div>
                 <div className="relative mt-1">
                   <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -628,12 +591,13 @@ export function PropertyQuoteForm({
                 <MessageSquare className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                 <Textarea
                   id="notes"
-                  placeholder="Additional comments (optional)"
+                  placeholder="Tell us about your situation (Optional)"
                   value={formData.notes}
                   onChange={(e) => handleInputChange("notes", e.target.value)}
                   className="mt-1 bg-gray-50 resize-none pl-10"
                   rows={3}
                 />
+                <p className="text-sm text-center mt-5 text-muted-foreground">Your information is 100% secure and confidential</p>
               </div>
             </div>
 
@@ -645,29 +609,31 @@ export function PropertyQuoteForm({
               </Alert>
             )}
 
-            <div className="py-3 sticky bottom-0 left-0 right-0 w-full bg-white border-t border-muted">
-              <Button
+            <div className="flex justify-center my-2">
+              <div ref={recaptchaRef}></div>
+            </div>
+
+            <div className="py-3 w-full bg-white border-t border-muted">
+              <ActionButton
                 type="submit"
-                className="w-full border !px-8 !py-6 text-lg bg-green-700 hover:bg-green-800 text-white font-semibold transition-all duration-300 disabled:opacity-50"
+                variant="secondary"
+                className="w-full disabled:opacity-50"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (
                   <div className="flex items-center gap-2">
                     <div className="animate-spin rounded-full h-4 w-4 border-2 border-accent-foreground border-t-transparent" />
-                    "Sending quote..."
+                    Sending quote...
                   </div>
                 ) : (
                   <div className="flex items-center gap-2">
-                    "Get my free offer"
-                    <Send className="h-5 w-5" />
+                    Get My Fair Cash Offer
                   </div>
                 )}
-              </Button>
+              </ActionButton>
             </div>
 
-            <div className="flex justify-center my-2">
-              <div ref={recaptchaRef}></div>
-            </div>
+            
             {recaptchaError && (
               <div className="text-red-500 text-sm text-center mb-2">
                 {recaptchaError}
@@ -675,7 +641,6 @@ export function PropertyQuoteForm({
             )}
           </form>
         </div>
-      </CardContent>
-    </Card>
+      </div>
   );
 }

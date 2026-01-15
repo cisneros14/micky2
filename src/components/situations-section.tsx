@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Scale,
@@ -9,8 +8,9 @@ import {
   Plane,
   HandCoins,
   ArrowDown,
-  MessageCircle,
 } from "lucide-react";
+import { ActionButton } from "./action-button";
+import { PropertyQuoteModal } from "./property-quote-modal";
 
 const situations = [
   {
@@ -77,7 +77,7 @@ export default function SituationsSection() {
       <div className="container">
         {/* Header */}
         <div className="text-center mb-16 space-y-4">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-primary-foreground text-balance">
+          <h2 className="text-3xl md:text-6xl font-bold tracking-tight text-primary-foreground text-balance">
             We Help Homeowners in Any Situation
           </h2>
           <p className="text-lg text-primary-foreground/90 max-w-2xl mx-auto text-pretty">
@@ -117,13 +117,11 @@ export default function SituationsSection() {
 
         {/* CTA Section */}
         <div className="flex flex-col items-center gap-4">
-          <Button
-            size="lg"
-            className="bg-secondary hover:bg-secondary/90 text-secondary-foreground text-lg px-8 py-6 h-auto shadow-lg hover:shadow-xl transition-all duration-300"
-          >
-            <MessageCircle className="w-5 h-5 mr-2" />
-            Discuss Your Situation
-          </Button>
+          <PropertyQuoteModal>
+            <ActionButton size="lg" variant="secondary" className="px-5 pr-18">
+              Get my fair cash offer
+            </ActionButton>
+          </PropertyQuoteModal>
           <p className="text-primary-foreground/70 text-sm">
             Confidential consultation - no pressure, just solutions
           </p>

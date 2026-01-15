@@ -87,7 +87,7 @@ const generateStructuredData = () => {
           itemOffered: {
             "@type": "Service",
             name: "Fast House Sale",
-            description: "Sell your house in 7-14 days",
+            description: "Sell your house in 7 days or less",
           },
         },
       ],

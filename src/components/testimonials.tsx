@@ -65,7 +65,7 @@ const testimonials = [
 const Testimonials = () => (
   <section className="py-24 bg-muted/30">
     <div className="h-full w-full">
-      <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center text-primary text-balance px-6">
+      <h2 className="text-3xl md:text-6xl font-bold tracking-tight text-center text-primary text-balance px-6">
         Success Stories
       </h2>
       <p className="mt-4 text-center text-lg text-pretty max-w-2xl mx-auto px-6">

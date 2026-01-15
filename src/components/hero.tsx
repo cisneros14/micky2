@@ -5,31 +5,30 @@ import { DollarSign, Calendar, Home, Package } from "lucide-react";
 import { PropertyQuoteForm } from "./property-quote-form";
 
 import { Logo } from "./logo";
+import { Card } from "./ui/card";
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen bg-primary px-4 py-24">
       <div className="container mx-auto ">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 pt-12">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 md:pt-12">
           {/* Left Content */}
-          <div className="flex flex-col justify-start pt-20 space-y-8 text-primary-foreground">
-            <Logo className="w-50 bg-white rounded-3xl p-5" />
+          <div className="flex flex-col justify-start pt-8 md:pt-20 space-y-8 text-primary-foreground">
+            <Logo className="w-50 bg-white rounded-3xl p-5 hidden md:block" />
 
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-primary-foreground text-balance">
-                Need to Sell Your Property Fast?
+                The Easiest Way to Sell Your House
               </h1>
               <p className="text-xl text-primary-foreground/90 text-pretty max-w-[600px]">
-                No agents. No repairs. No commissions. We purchase your property
-                or asset in a simple, fast, and hassle-free way, handling the
-                entire process directly with you.
+                No repairs, no commissions, and no cleaning. Get a fair cash offer today and close on your timeline. Easy,simple and hassle-free
               </p>
             </div>
 
             <div className="grid gap-6 sm:grid-cols-2">
               <div className="flex gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
-                  <DollarSign className="h-6 w-6" />
+                  <DollarSign className="h-5 w-5" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg">$0 Commissions</h3>
@@ -41,7 +40,7 @@ export default function Hero() {
 
               <div className="flex gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
-                  <Calendar className="h-6 w-6" />
+                  <Calendar className="h-5 w-5" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg">Close in 7 Days</h3>
@@ -53,7 +52,7 @@ export default function Hero() {
 
               <div className="flex gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
-                  <Home className="h-6 w-6" />
+                  <Home className="h-5 w-5" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg">Sell As-Is</h3>
@@ -65,7 +64,7 @@ export default function Hero() {
 
               <div className="flex gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
-                  <Package className="h-6 w-6" />
+                  <Package className="h-5 w-5" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg">Leave Everything</h3>
@@ -145,7 +144,9 @@ export default function Hero() {
                 </form>
               </div>
             </Card> */}
-            <PropertyQuoteForm />
+            <Card className="w-full shadow-xl rounded-3xl bg-card text-card-foreground p-4 md:p-8">
+              <PropertyQuoteForm />
+            </Card>
           </div>
         </div>
       </div>

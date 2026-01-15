@@ -29,6 +29,7 @@ import {
   Youtube,
 } from "lucide-react";
 import { PropertyQuoteModal } from "./property-quote-modal";
+import { ActionButton } from "./action-button";
 
 export default function PrincipalFormContact() {
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
@@ -315,7 +316,7 @@ export default function PrincipalFormContact() {
           </div>
 
           {/* Right Column: Contact Form */}
-          <CardContent className="p-8 bg-card rounded-xl shadow-lg border">
+          <CardContent className="p-6 bg-card rounded-xl shadow-lg border">
             <form className="space-y-6" onSubmit={handleSubmit}>
               {/* Name Field */}
               <div className="space-y-2">
@@ -396,14 +397,16 @@ export default function PrincipalFormContact() {
               )}
 
               <div className="flex flex-col sm:flex-row gap-3 pt-4">
-                <PropertyQuoteModal className="flex-1 w-full" />
                 <Button
+
                   type="submit"
+                  variant="secondary"
                   disabled={isSubmitting}
-                  className="flex-1 w-full h-auto py-3 text-lg font-semibold shadow-md"
+                  className="flex-1 rounded-full bg-secondary w-full h-auto py-2 text-lg font-semibold shadow-md"
                 >
-                  <Send className="w-4 h-4 mr-2" />
+                  <div className="flex items-center">
                   {isSubmitting ? "Sending..." : "Submit"}
+                  </div>
                 </Button>
               </div>
             </form>

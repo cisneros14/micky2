@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-
 import { ArrowRight } from "lucide-react";
+import { PropertyQuoteModal } from "./property-quote-modal";
+import { ActionButton } from "./action-button";
 
 export function CTASection() {
   return (
@@ -10,26 +10,18 @@ export function CTASection() {
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-8 text-center">
           <div className="space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-primary-foreground mb-6 text-balance">
+            <h2 className="text-3xl md:text-6xl font-bold tracking-tight text-primary-foreground mb-6 text-balance">
               Ready to Sell Your House Fast?
             </h2>
             <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto text-pretty">
               Get a fair cash offer today. No fees, no repairs, no obligation.
             </p>
           </div>
-          <Button
-            size="lg"
-            variant="secondary"
-            className="px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
-            onClick={() => {
-              document
-                .getElementById("contact-form")
-                ?.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            Get My Free Offer
-            <ArrowRight className="ml-2 w-5 h-5" />
-          </Button>
+          <PropertyQuoteModal>
+            <ActionButton size="lg" variant="secondary" className="px-5 pr-18">
+              Get my fair cash offer
+            </ActionButton>
+          </PropertyQuoteModal>
         </div>
       </div>
     </section>
