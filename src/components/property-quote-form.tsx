@@ -63,7 +63,7 @@ function useGoogleMaps() {
 
     // Si ya hay un script cargándose
     const existingScript = document.querySelector(
-      'script[src*="maps.googleapis.com"]'
+      'script[src*="maps.googleapis.com"]',
     );
     if (existingScript) {
       const checkGoogleMaps = () => {
@@ -97,7 +97,7 @@ function useGoogleMaps() {
 
     script.onerror = () => {
       setError(
-        "Google Maps requiere facturación habilitada en Google Cloud Console"
+        "Google Maps requiere facturación habilitada en Google Cloud Console",
       );
     };
 
@@ -260,8 +260,8 @@ function AddressAutocomplete({
             !isValidAddress && displayValue.length > 0 && ready && isLoaded
               ? "border-orange-300 focus:border-orange-500 focus:ring-orange-500"
               : isValidAddress
-              ? "border-green-300 focus:border-green-500 focus:ring-green-500"
-              : ""
+                ? "border-green-300 focus:border-green-500 focus:ring-green-500"
+                : "",
           )}
           onFocus={() =>
             setShowSuggestions(displayValue.length > 2 && ready && isLoaded)
@@ -395,7 +395,7 @@ export function PropertyQuoteForm({
           }
           // Renderizar nuevo widget
           widgetIdRef.current = window.grecaptcha.render(recaptchaRef.current, {
-            sitekey: "6LfhXd4rAAAAAM1qMSDMmGpaBhkdkp6O7ViH4D0i",
+            sitekey: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
             callback: "onRecaptchaForm",
             "expired-callback": "onRecaptchaExpired",
           });
@@ -456,7 +456,7 @@ export function PropertyQuoteForm({
     const data = await res.json();
     if (!data.success) {
       setRecaptchaError(
-        "No pudimos verificar que eres humano. Intenta de nuevo."
+        "No pudimos verificar que eres humano. Intenta de nuevo.",
       );
       if ((window as any).grecaptcha && (window as any).grecaptcha.reset) {
         (window as any).grecaptcha.reset();
@@ -515,132 +515,127 @@ export function PropertyQuoteForm({
   };
 
   return (
-      <div className="">
-        <div className="space-y-6">
-          <div className="space-y-2 text-center mb-3">
-            <h2 className="text-3xl font-bold text-primary">
-              Get Your Cash Offer
-            </h2>
-            <p className="text-muted-foreground">
-              No repairs, no fees, no obligation.
-            </p>
-          </div>
-          <form onSubmit={handleSubmit} className="space-y-5 relative h-fit">
-            <div className="space-y-4 md:space-y-5">
-              <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
-                <div className="w-full">
-                  <AddressAutocomplete
-                    value={formData.address}
-                    onChange={(address) =>
-                      handleInputChange("address", address)
-                    }
-                    placeholder="Property address * (select from suggestions)"
-                    className="mt-1 bg-gray-50"
-                  />
-                </div>
+    <div className="">
+      <div className="space-y-6">
+        <div className="space-y-2 text-center mb-3">
+          <h2 className="text-3xl font-bold text-primary">
+            Get Your Cash Offer
+          </h2>
+          <p className="text-muted-foreground">
+            No repairs, no fees, no obligation.
+          </p>
+        </div>
+        <form onSubmit={handleSubmit} className="space-y-5 relative h-fit">
+          <div className="space-y-4 md:space-y-5">
+            <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
+              <div className="w-full">
+                <AddressAutocomplete
+                  value={formData.address}
+                  onChange={(address) => handleInputChange("address", address)}
+                  placeholder="Property address * (select from suggestions)"
+                  className="mt-1 bg-gray-50"
+                />
               </div>
-              <div>
-                <div className="relative">
-                  <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    id="name"
-                    placeholder="Full name *"
-                    value={formData.name}
-                    onChange={(e) => handleInputChange("name", e.target.value)}
-                    className="mt-1 bg-gray-50 pl-10 h-13"
-                    required
-                  />
-                </div>
+            </div>
+            <div>
+              <div className="relative">
+                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  id="name"
+                  placeholder="Full name *"
+                  value={formData.name}
+                  onChange={(e) => handleInputChange("name", e.target.value)}
+                  className="mt-1 bg-gray-50 pl-10 h-13"
+                  required
+                />
               </div>
-              <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
-                
-                <div className="w-full">
-                  <div className="relative mt-1">
-                    <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <Input
-                      id="phone"
-                      type="tel"
-                      placeholder="Phone *"
-                      value={formData.phone}
-                      onChange={(e) =>
-                        handleInputChange("phone", e.target.value)
-                      }
-                      className="pl-10 h-13 bg-gray-50"
-                      required
-                    />
-                  </div>
-                </div>
-              </div>
-              
-
-              <div>
+            </div>
+            <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
+              <div className="w-full">
                 <div className="relative mt-1">
-                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
-                    id="email"
-                    type="email"
-                    placeholder="Email *"
-                    value={formData.email}
-                    onChange={(e) => handleInputChange("email", e.target.value)}
+                    id="phone"
+                    type="tel"
+                    placeholder="Phone *"
+                    value={formData.phone}
+                    onChange={(e) => handleInputChange("phone", e.target.value)}
                     className="pl-10 h-13 bg-gray-50"
                     required
                   />
                 </div>
               </div>
-              <div className="relative">
-                <MessageSquare className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                <Textarea
-                  id="notes"
-                  placeholder="Tell us about your situation (Optional)"
-                  value={formData.notes}
-                  onChange={(e) => handleInputChange("notes", e.target.value)}
-                  className="mt-1 bg-gray-50 resize-none pl-10"
-                  rows={3}
+            </div>
+
+            <div>
+              <div className="relative mt-1">
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="Email *"
+                  value={formData.email}
+                  onChange={(e) => handleInputChange("email", e.target.value)}
+                  className="pl-10 h-13 bg-gray-50"
+                  required
                 />
-                <p className="text-sm text-center mt-5 text-muted-foreground">Your information is 100% secure and confidential</p>
               </div>
             </div>
-
-            {error && (
-              <Alert variant="destructive" className="mt-4">
-                <AlertCircle className="h-4 w-4" />
-                <AlertTitle>Campos incompletos</AlertTitle>
-                <AlertDescription>{error}</AlertDescription>
-              </Alert>
-            )}
-
-            <div className="flex justify-center my-2">
-              <div ref={recaptchaRef}></div>
+            <div className="relative">
+              <MessageSquare className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+              <Textarea
+                id="notes"
+                placeholder="Tell us about your situation (Optional)"
+                value={formData.notes}
+                onChange={(e) => handleInputChange("notes", e.target.value)}
+                className="mt-1 bg-gray-50 resize-none pl-10"
+                rows={3}
+              />
+              <p className="text-sm text-center mt-5 text-muted-foreground">
+                Your information is 100% secure and confidential
+              </p>
             </div>
+          </div>
 
-            <div className="py-3 w-full bg-white border-t border-muted">
-              <ActionButton
-                type="submit"
-                variant="secondary"
-                className="w-full disabled:opacity-50"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? (
-                  <div className="flex items-center gap-2">
-                    <div className="animate-spin rounded-full h-4 w-4 border-2 border-accent-foreground border-t-transparent" />
-                    Sending quote...
-                  </div>
-                ) : (
-                  <div className="flex items-center gap-2">
-                    Get My Fair Cash Offer
-                  </div>
-                )}
-              </ActionButton>
+          {error && (
+            <Alert variant="destructive" className="mt-4">
+              <AlertCircle className="h-4 w-4" />
+              <AlertTitle>Campos incompletos</AlertTitle>
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
+
+          <div className="flex justify-center my-2">
+            <div ref={recaptchaRef}></div>
+          </div>
+
+          <div className="py-3 w-full bg-white border-t border-muted">
+            <Button
+              type="submit"
+              variant="secondary"
+              className="w-full disabled:opacity-50 md:py-6"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <div className="flex items-center gap-2">
+                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-accent-foreground border-t-transparent" />
+                  Sending quote...
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  Get My Fair Cash Offer
+                </div>
+              )}
+            </Button>
+          </div>
+
+          {recaptchaError && (
+            <div className="text-red-500 text-sm text-center mb-2">
+              {recaptchaError}
             </div>
-
-            
-            {recaptchaError && (
-              <div className="text-red-500 text-sm text-center mb-2">
-                {recaptchaError}
-              </div>
-            )}
-          </form>
-        </div>
+          )}
+        </form>
       </div>
+    </div>
   );
 }

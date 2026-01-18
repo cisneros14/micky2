@@ -144,7 +144,7 @@ export default function Hero() {
                 </form>
               </div>
             </Card> */}
-            <Card className="w-full shadow-xl rounded-3xl bg-card text-card-foreground p-4 md:p-8">
+            <Card className="w-full shadow-xl rounded-3xl bg-card text-card-foreground p-4 md:p-14">
               <PropertyQuoteForm />
             </Card>
           </div>

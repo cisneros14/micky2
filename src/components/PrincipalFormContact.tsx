@@ -52,7 +52,7 @@ export default function PrincipalFormContact() {
       ) {
         try {
           widgetIdRef.current = window.grecaptcha.render(recaptchaRef.current, {
-            sitekey: "6LfhXd4rAAAAAM1qMSDMmGpaBhkdkp6O7ViH4D0i",
+            sitekey: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
             callback: "onRecaptchaContact",
             "expired-callback": "onRecaptchaContactExpired",
           });
@@ -104,7 +104,7 @@ export default function PrincipalFormContact() {
   }, []);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setFormData({
       ...formData,
@@ -144,7 +144,7 @@ export default function PrincipalFormContact() {
       if (!recaptchaData.success) {
         console.error("❌ reCAPTCHA falló");
         setRecaptchaError(
-          "No pudimos verificar que eres humano. Intenta de nuevo."
+          "No pudimos verificar que eres humano. Intenta de nuevo.",
         );
         if (
           widgetIdRef.current !== null &&
@@ -192,7 +192,7 @@ export default function PrincipalFormContact() {
         alert(
           `Error al enviar el formulario: ${
             contactData.error || "Error desconocido"
-          }`
+          }`,
         );
       }
     } catch (error) {
@@ -200,7 +200,7 @@ export default function PrincipalFormContact() {
       alert(
         `Error al enviar el formulario: ${
           error instanceof Error ? error.message : "Error desconocido"
-        }`
+        }`,
       );
     } finally {
       setIsSubmitting(false);
@@ -398,14 +398,13 @@ export default function PrincipalFormContact() {
 
               <div className="flex flex-col sm:flex-row gap-3 pt-4">
                 <Button
-
                   type="submit"
                   variant="secondary"
                   disabled={isSubmitting}
-                  className="flex-1 rounded-full bg-secondary w-full h-auto py-2 text-lg font-semibold shadow-md"
+                  className="flex-1 rounded-md bg-secondary w-full h-auto py-2 text-lg font-semibold shadow-md"
                 >
                   <div className="flex items-center">
-                  {isSubmitting ? "Sending..." : "Submit"}
+                    {isSubmitting ? "Sending..." : "Submit"}
                   </div>
                 </Button>
               </div>
