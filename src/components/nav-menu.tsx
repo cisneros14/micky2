@@ -12,7 +12,7 @@ import { ComponentProps } from "react";
 
 export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => (
   <NavigationMenu {...props}>
-    <NavigationMenuList className="bg-background p-2 rounded-full border space-x-0 data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-start">
+    <NavigationMenuList className="bg-background p-2 rounded-full md:border space-x-0 data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-start">
       <NavigationMenuItem>
         <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
           <Link href="#">Home</Link>

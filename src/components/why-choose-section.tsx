@@ -81,7 +81,7 @@ export default function WhyChooseSection() {
               </h2>
               <p className="text-lg text-pretty leading-relaxed">
                 We&apos;re a licensed, local company that&apos;s helped hundreds
-                of homeowners in Cerritos and surrounding areas sell their
+                of homeowners sell their
                 properties quickly and fairly.
               </p>
             </div>

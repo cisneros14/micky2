@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import {
   DribbbleIcon,
@@ -6,190 +8,68 @@ import {
   TwitterIcon,
 } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 import { Logo } from "./logo";
 
-const footerSections = [
+const footerLinks = [
   {
-    title: "Product",
-    links: [
-      {
-        title: "Overview",
-        href: "#",
-      },
-      {
-        title: "Features",
-        href: "#",
-      },
-      {
-        title: "Solutions",
-        href: "#",
-      },
-      {
-        title: "Tutorials",
-        href: "#",
-      },
-      {
-        title: "Pricing",
-        href: "#",
-      },
-      {
-        title: "Releases",
-        href: "#",
-      },
-    ],
+    title: "Overview",
+    href: "#",
   },
   {
-    title: "Company",
-    links: [
-      {
-        title: "About us",
-        href: "#",
-      },
-      {
-        title: "Careers",
-        href: "#",
-      },
-      {
-        title: "Press",
-        href: "#",
-      },
-      {
-        title: "News",
-        href: "#",
-      },
-      {
-        title: "Media kit",
-        href: "#",
-      },
-      {
-        title: "Contact",
-        href: "#",
-      },
-    ],
+    title: "Features",
+    href: "#",
   },
   {
-    title: "Resources",
-    links: [
-      {
-        title: "Blog",
-        href: "#",
-      },
-      {
-        title: "Newsletter",
-        href: "#",
-      },
-      {
-        title: "Events",
-        href: "#",
-      },
-      {
-        title: "Help centre",
-        href: "#",
-      },
-      {
-        title: "Tutorials",
-        href: "#",
-      },
-      {
-        title: "Support",
-        href: "#",
-      },
-    ],
+    title: "Pricing",
+    href: "#",
   },
   {
-    title: "Social",
-    links: [
-      {
-        title: "Twitter",
-        href: "#",
-      },
-      {
-        title: "LinkedIn",
-        href: "#",
-      },
-      {
-        title: "Facebook",
-        href: "#",
-      },
-      {
-        title: "GitHub",
-        href: "#",
-      },
-      {
-        title: "AngelList",
-        href: "#",
-      },
-      {
-        title: "Dribbble",
-        href: "#",
-      },
-    ],
+    title: "Careers",
+    href: "#",
   },
   {
-    title: "Legal",
-    links: [
-      {
-        title: "Terms",
-        href: "#",
-      },
-      {
-        title: "Privacy",
-        href: "#",
-      },
-      {
-        title: "Cookies",
-        href: "#",
-      },
-      {
-        title: "Licenses",
-        href: "#",
-      },
-      {
-        title: "Settings",
-        href: "#",
-      },
-      {
-        title: "Contact",
-        href: "#",
-      },
-    ],
+    title: "Help",
+    href: "#",
+  },
+  {
+    title: "Privacy",
+    href: "#",
   },
 ];
 
 const Footer = () => {
   return (
     <div className="flex flex-col">
+      <div className="grow bg-muted" />
       <footer className="border-t">
         <div className="max-w-(--breakpoint-xl) mx-auto">
-          <div className="py-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-x-8 gap-y-10 px-6 xl:px-0">
-            <div className="col-span-full xl:col-span-2">
+          <div className="py-12 flex flex-col sm:flex-row items-start justify-between gap-x-8 gap-y-10 px-6 xl:px-0">
+            <div>
               {/* Logo */}
-              <Logo className="w-32 bg-white p-3 rounded-2xl"/>
+              <Logo className="bg-white p-3 rounded-xl"/>
 
-              <p className="mt-4 text-muted-foreground">
-                Design amazing digital experiences that create more happy in the
-                world.
-              </p>
+              <ul className="mt-6 flex items-center gap-4 flex-wrap">
+                {footerLinks.map(({ title, href }) => (
+                  <li key={title}>
+                    <Link
+                      href={href}
+                      className="text-muted-foreground hover:text-foreground"
+                    >
+                      {title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            {footerSections.map(({ title, links }) => (
-              <div key={title}>
-                <h6 className="font-medium">{title}</h6>
-                <ul className="mt-6 space-y-4">
-                  {links.map(({ title, href }) => (
-                    <li key={title}>
-                      <Link
-                        href={href}
-                        className="text-muted-foreground hover:text-foreground"
-                      >
-                        {title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {/* Subscribe Newsletter */}
+            <div className="max-w-xs w-full">
+              <h6 className="font-medium">Stay up to date</h6>
+              <form className="mt-6 flex items-center gap-2">
+                <Input type="email" placeholder="Enter your email" />
+                <Button>Subscribe</Button>
+              </form>
+            </div>
           </div>
           <Separator />
           <div className="py-8 flex flex-col-reverse sm:flex-row items-center justify-between gap-x-2 gap-y-5 px-6 xl:px-0">

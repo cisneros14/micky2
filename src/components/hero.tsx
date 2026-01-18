@@ -21,7 +21,7 @@ export default function Hero() {
                 The Easiest Way to Sell Your House
               </h1>
               <p className="text-xl text-primary-foreground/90 text-pretty max-w-[600px]">
-                No repairs, no commissions, and no cleaning. Get a fair cash offer today and close on your timeline. Easy,simple and hassle-free
+                No repairs, no commissions, and no cleaning. Get a fair cash offer today and close on your timeline. Easy, simple and hassle-free
               </p>
             </div>
 
