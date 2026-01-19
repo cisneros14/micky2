@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Clock,
   CheckCircle2,
@@ -10,43 +12,52 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { ActionButton } from "./action-button";
 import { PropertyQuoteModal } from "./property-quote-modal";
+import { useTranslation } from "@/components/TranslationsProvider";
 
 export function ProcessSection() {
+  const { t } = useTranslation();
+
   const steps = [
     {
       number: 1,
       icon: Edit,
       iconBg: "bg-primary/10",
-      title: "Request Your Offer",
-      description:
+      title: t("process.steps.0.title", "Request Your Offer"),
+      description: t(
+        "process.steps.0.desc",
         "Fill out our simple 5-minute form or give us a call. Tell us about your property and your situation.",
+      ),
       badge: {
         icon: Clock,
-        text: "Takes only 5 minutes",
+        text: t("process.steps.0.badge", "Takes only 5 minutes"),
       },
     },
     {
       number: 2,
       icon: DollarSign,
       iconBg: "bg-secondary/10",
-      title: "Get a Fair Price",
-      description:
+      title: t("process.steps.1.title", "Get a Fair Price"),
+      description: t(
+        "process.steps.1.desc",
         "Receive a no-obligation cash offer within 24 hours. Fair, transparent pricing with no hidden fees.",
+      ),
       badge: {
         icon: CheckCircle2,
-        text: "No obligation to accept",
+        text: t("process.steps.1.badge", "No obligation to accept"),
       },
     },
     {
       number: 3,
       icon: Handshake,
       iconBg: "bg-purple-100",
-      title: "Choose Your Close Date",
-      description:
+      title: t("process.steps.2.title", "Choose Your Close Date"),
+      description: t(
+        "process.steps.2.desc",
         "Close in as little as 7 days or take your time. You're in control of the timeline that works for you.",
+      ),
       badge: {
         icon: Calendar,
-        text: "Your timeline, your choice",
+        text: t("process.steps.2.badge", "Your timeline, your choice"),
       },
     },
   ];
@@ -57,11 +68,13 @@ export function ProcessSection() {
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-6xl font-bold tracking-tight text-primary mb-4 text-balance">
-            The "Easy" 3-Step Process
+            {t("process.title", 'The "Easy" 3-Step Process')}
           </h2>
           <p className="text-lg  max-w-2xl mx-auto text-pretty">
-            Selling your home doesn&apos;t have to be complicated. We&apos;ve
-            streamlined the process into 3 simple steps.
+            {t(
+              "process.description",
+              "Selling your home doesn't have to be complicated. We've streamlined the process into 3 simple steps.",
+            )}
           </p>
         </div>
 
@@ -129,11 +142,11 @@ export function ProcessSection() {
         <div className="text-center">
           <PropertyQuoteModal>
             <ActionButton size="lg" variant="secondary" className="px-5 pr-18">
-              Get my fair cash offer
+              {t("process.cta", "Get my fair cash offer")}
             </ActionButton>
           </PropertyQuoteModal>
           <p className="text-muted-foreground text-sm mt-4">
-            Get your cash offer in 24 hours or less
+            {t("process.cta_sub", "Get your cash offer in 24 hours or less")}
           </p>
         </div>
       </div>

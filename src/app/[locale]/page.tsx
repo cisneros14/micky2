@@ -14,7 +14,6 @@ import Testimonials from "@/components/testimonials";
 export default function Home() {
   return (
     <div className="bg-[#f1f1f1]">
-      <Navbar />
       <Hero />
       <ProcessSection />
       <ComparisonTable />
@@ -23,8 +22,7 @@ export default function Home() {
       <Testimonials />
       <CTASection />
       <PrincipalFormContact />
-      <Footer />
-      <WhatsAppButton />
+
     </div>
   );
 }

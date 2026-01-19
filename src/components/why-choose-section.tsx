@@ -1,41 +1,52 @@
+"use client";
+
 import { Card } from "@/components/ui/card";
 import { Check } from "lucide-react";
 import Image from "next/image";
 import { ActionButton } from "./action-button";
 import { PropertyQuoteModal } from "./property-quote-modal";
+import { useTranslation } from "@/components/TranslationsProvider";
 
 export default function WhyChooseSection() {
+  const { t } = useTranslation();
+
   const stats = [
     {
-      value: "100+",
-      label: "Properties Purchased",
+      value: t("whyChoose.stats.0.value", "100+"),
+      label: t("whyChoose.stats.0.label", "Properties Purchased"),
     },
     {
-      value: "24hrs",
-      label: "Average Offer Time",
+      value: t("whyChoose.stats.1.value", "24hrs"),
+      label: t("whyChoose.stats.1.label", "Average Offer Time"),
     },
     {
-      value: "7 Days",
-      label: "Fast Closing Available",
+      value: t("whyChoose.stats.2.value", "7 Days"),
+      label: t("whyChoose.stats.2.label", "Fast Closing Available"),
     },
     {
-      value: "$0",
-      label: "In Commissions or Fees",
+      value: t("whyChoose.stats.3.value", "$0"),
+      label: t("whyChoose.stats.3.label", "In Commissions or Fees"),
     },
   ];
 
   const trustBadges = [
     {
-      title: "Fully Licensed & Insured",
-      description: "DRE License #02045945",
+      title: t("whyChoose.badges.0.title", "Fully Licensed & Insured"),
+      description: t("whyChoose.badges.0.description", "DRE License #02045945"),
     },
     {
-      title: "Local So-Cal Company",
-      description: "We know the area and care about our community",
+      title: t("whyChoose.badges.1.title", "Local So-Cal Company"),
+      description: t(
+        "whyChoose.badges.1.description",
+        "We know the area and care about our community",
+      ),
     },
     {
-      title: "Fair & Transparent",
-      description: "No hidden fees, no last-minute surprises",
+      title: t("whyChoose.badges.2.title", "Fair & Transparent"),
+      description: t(
+        "whyChoose.badges.2.description",
+        "No hidden fees, no last-minute surprises",
+      ),
     },
   ];
 
@@ -57,7 +68,7 @@ export default function WhyChooseSection() {
 
             {/* Floating stat card */}
             <Card className="absolute bottom-4 left-4 md:bottom-8 md:left-8 bg-card p-3 md:p-4 shadow-xl flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center shrink-0">
                 <span className="text-secondary-foreground text-xl md:text-2xl font-bold">
                   $
                 </span>
@@ -67,7 +78,7 @@ export default function WhyChooseSection() {
                   $2M+
                 </div>
                 <div className="text-sm text-muted-foreground">
-                  Paid to Homeowners
+                  {t("whyChoose.floating", "Paid to Homeowners")}
                 </div>
               </div>
             </Card>
@@ -77,12 +88,13 @@ export default function WhyChooseSection() {
           <div className="order-1 lg:order-2 space-y-8">
             <div className="space-y-4">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-primary text-balance">
-                Why Choose Easy Closers?
+                {t("whyChoose.title", "Why Choose Easy Closers?")}
               </h2>
               <p className="text-lg text-pretty leading-relaxed">
-                We&apos;re a licensed, local company that&apos;s helped hundreds
-                of homeowners sell their
-                properties quickly and fairly.
+                {t(
+                  "whyChoose.description",
+                  "We're a licensed, local company that's helped hundreds of homeowners sell their properties quickly and fairly.",
+                )}
               </p>
             </div>
 
@@ -107,7 +119,7 @@ export default function WhyChooseSection() {
             <div className="space-y-5">
               {trustBadges.map((badge, index) => (
                 <div key={index} className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-secondary/10 border border-secondary/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div className="w-8 h-8 rounded-full bg-secondary/10 border border-secondary/50 flex items-center justify-center shrink-0 mt-0.5">
                     <Check className="w-4 h-4 text-secondary" />
                   </div>
                   <div>
@@ -129,7 +141,7 @@ export default function WhyChooseSection() {
                 variant="secondary"
                 className="px-5 pr-18"
               >
-                Get my fair cash offer
+                {t("whyChoose.cta", "Get my fair cash offer")}
               </ActionButton>
             </PropertyQuoteModal>
           </div>

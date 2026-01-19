@@ -67,6 +67,13 @@
 }
 
 :root {
+    --color1: #00517d;
+  --color2: #004266;
+  --color3: #11b0ff;
+  --color4: #509B4E;
+  --textColor: #004970;
+
+
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -149,4 +156,74 @@
 }
 section {
   @apply py-24;
+}
+
+
+.subtitle {
+  @apply font-bold text-3xl tracking-tight leading-tight text-primary;
+}
+
+@media (max-width: 768px) {
+  .subtitle {
+    @apply text-2xl leading-snug;
+  }
+}
+
+.decorador {
+  width: 6rem;
+  /* w-24 */
+  height: 0.25rem;
+  /* h-1 */
+  margin-top: 0.6rem;
+  /* mt-8 */
+  margin-bottom: 0.6rem;
+  /* my-7 */
+  border-radius: 1.5rem;
+  /* rounded-full */
+  background: linear-gradient(to right, var(--primary), var(--primary-foreground));
+}
+
+/* Pantallas medianas (>=768px) */
+@media (min-width: 768px) {
+  .decorador {
+    width: 8rem;
+    /* md:w-32 */
+    margin-top: 1rem;
+    /* md:my-8 */
+    margin-bottom: 1rem;
+  }
+}
+
+/* Pantallas grandes (>=1024px) */
+@media (min-width: 1024px) {
+  .decorador {
+    width: 10rem;
+    /* lg:w-40 */
+    margin-top: 1rem;
+    /* lg:my-10 */
+    margin-bottom: 1rem;
+  }
+}
+
+
+.titleDash{
+  font-weight: var(--font-weight-bold);
+  font-size: clamp(1.1rem,3vw,1.5rem);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
+  color: var(--color1);
+}
+.title {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-6xl);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
+  color: var(--color1);
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: var(--text-3xl);
+    line-height: var(--leading-snug);
+  }
 }

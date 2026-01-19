@@ -37,6 +37,7 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from "use-places-autocomplete";
 import { ActionButton } from "./action-button";
+import { useTranslation } from "@/components/TranslationsProvider";
 
 declare global {
   interface Window {
@@ -147,6 +148,7 @@ function AddressAutocomplete({
   const [isValidAddress, setIsValidAddress] = useState(false);
   const [displayValue, setDisplayValue] = useState(value);
   const { isLoaded, error } = useGoogleMaps();
+  const { t } = useTranslation();
 
   const {
     ready,
@@ -196,12 +198,15 @@ function AddressAutocomplete({
         <Input
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          placeholder={`${placeholder} (Autocompletado no disponible)`}
+          placeholder={`${placeholder} (${t("quoteForm.errors.autocompleteUnavailable", "Autocompletado no disponible")})`}
           className={className}
         />
         <div
           className="absolute right-3 top-1/2 transform -translate-y-1/2 text-red-400"
-          title="Google Maps requiere facturación habilitada"
+          title={t(
+            "quoteForm.errors.googleMapsBilling",
+            "Google Maps requiere facturación habilitada",
+          )}
         >
           ⚠️
         </div>
@@ -297,8 +302,10 @@ function AddressAutocomplete({
         isLoaded &&
         !showSuggestions && (
           <div className="mt-1 text-xs text-orange-500">
-            Por favor, selecciona una dirección de las sugerencias para mayor
-            precisión
+            {t(
+              "quoteForm.errors.addressPrecision",
+              "Por favor, selecciona una dirección de las sugerencias para mayor precisión",
+            )}
           </div>
         )}
 
@@ -336,6 +343,7 @@ function AddressAutocomplete({
 export function PropertyQuoteForm({
   onFormSubmitSuccess,
 }: PropertyQuoteFormProps) {
+  const { t } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState<FormData>({
@@ -362,7 +370,12 @@ export function PropertyQuoteForm({
     };
     window.onRecaptchaExpired = function () {
       setRecaptchaToken(null);
-      setRecaptchaError("El reto reCAPTCHA expiró. Intenta de nuevo.");
+      setRecaptchaError(
+        t(
+          "quoteForm.errors.recaptchaExpired",
+          "El reto reCAPTCHA expiró. Intenta de nuevo.",
+        ),
+      );
     };
 
     const loadRecaptcha = () => {
@@ -443,7 +456,12 @@ export function PropertyQuoteForm({
     setRecaptchaError(null);
 
     if (!recaptchaToken) {
-      setRecaptchaError("Por favor, resuelve el reCAPTCHA para continuar.");
+      setRecaptchaError(
+        t(
+          "quoteForm.errors.recaptcha",
+          "Por favor, resuelve el reCAPTCHA para continuar.",
+        ),
+      );
       return;
     }
 
@@ -456,7 +474,10 @@ export function PropertyQuoteForm({
     const data = await res.json();
     if (!data.success) {
       setRecaptchaError(
-        "No pudimos verificar que eres humano. Intenta de nuevo.",
+        t(
+          "quoteForm.errors.humanVerification",
+          "No pudimos verificar que eres humano. Intenta de nuevo.",
+        ),
       );
       if ((window as any).grecaptcha && (window as any).grecaptcha.reset) {
         (window as any).grecaptcha.reset();
@@ -491,7 +512,12 @@ export function PropertyQuoteForm({
         throw new Error("Error al enviar la cotización");
       }
 
-      toast.success("¡Gracias! Hemos recibido tu solicitud de cotización.");
+      toast.success(
+        t(
+          "quoteForm.success",
+          "¡Gracias! Hemos recibido tu solicitud de cotización.",
+        ),
+      );
       onFormSubmitSuccess?.();
 
       // Limpiar formulario
@@ -507,8 +533,18 @@ export function PropertyQuoteForm({
       });
     } catch (error) {
       console.error("Error:", error);
-      setError("Error al enviar la cotización. Inténtalo de nuevo.");
-      toast.error("Error al enviar la cotización. Inténtalo de nuevo.");
+      setError(
+        t(
+          "quoteForm.errors.submission",
+          "Error al enviar la cotización. Inténtalo de nuevo.",
+        ),
+      );
+      toast.error(
+        t(
+          "quoteForm.errors.submission",
+          "Error al enviar la cotización. Inténtalo de nuevo.",
+        ),
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -518,11 +554,9 @@ export function PropertyQuoteForm({
     <div className="">
       <div className="space-y-6">
         <div className="space-y-2 text-center mb-3">
-          <h2 className="text-3xl font-bold text-primary">
-            Get Your Cash Offer
-          </h2>
+          
           <p className="text-muted-foreground">
-            No repairs, no fees, no obligation.
+            {t("quoteForm.subtitle", "No repairs, no fees, no obligation.")}
           </p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-5 relative h-fit">
@@ -532,7 +566,10 @@ export function PropertyQuoteForm({
                 <AddressAutocomplete
                   value={formData.address}
                   onChange={(address) => handleInputChange("address", address)}
-                  placeholder="Property address * (select from suggestions)"
+                  placeholder={t(
+                    "quoteForm.fields.address",
+                    "Property address * (select from suggestions)",
+                  )}
                   className="mt-1 bg-gray-50"
                 />
               </div>
@@ -542,7 +579,7 @@ export function PropertyQuoteForm({
                 <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="name"
-                  placeholder="Full name *"
+                  placeholder={t("quoteForm.fields.name", "Full name *")}
                   value={formData.name}
                   onChange={(e) => handleInputChange("name", e.target.value)}
                   className="mt-1 bg-gray-50 pl-10 h-13"
@@ -557,7 +594,7 @@ export function PropertyQuoteForm({
                   <Input
                     id="phone"
                     type="tel"
-                    placeholder="Phone *"
+                    placeholder={t("quoteForm.fields.phone", "Phone *")}
                     value={formData.phone}
                     onChange={(e) => handleInputChange("phone", e.target.value)}
                     className="pl-10 h-13 bg-gray-50"
@@ -573,7 +610,7 @@ export function PropertyQuoteForm({
                 <Input
                   id="email"
                   type="email"
-                  placeholder="Email *"
+                  placeholder={t("quoteForm.fields.email", "Email *")}
                   value={formData.email}
                   onChange={(e) => handleInputChange("email", e.target.value)}
                   className="pl-10 h-13 bg-gray-50"
@@ -585,14 +622,20 @@ export function PropertyQuoteForm({
               <MessageSquare className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
               <Textarea
                 id="notes"
-                placeholder="Tell us about your situation (Optional)"
+                placeholder={t(
+                  "quoteForm.fields.notes",
+                  "Tell us about your situation (Optional)",
+                )}
                 value={formData.notes}
                 onChange={(e) => handleInputChange("notes", e.target.value)}
                 className="mt-1 bg-gray-50 resize-none pl-10"
                 rows={3}
               />
               <p className="text-sm text-center mt-5 text-muted-foreground">
-                Your information is 100% secure and confidential
+                {t(
+                  "quoteForm.security",
+                  "Your information is 100% secure and confidential",
+                )}
               </p>
             </div>
           </div>
@@ -600,7 +643,9 @@ export function PropertyQuoteForm({
           {error && (
             <Alert variant="destructive" className="mt-4">
               <AlertCircle className="h-4 w-4" />
-              <AlertTitle>Campos incompletos</AlertTitle>
+              <AlertTitle>
+                {t("quoteForm.errors.incomplete", "Campos incompletos")}
+              </AlertTitle>
               <AlertDescription>{error}</AlertDescription>
             </Alert>
           )}
@@ -619,11 +664,11 @@ export function PropertyQuoteForm({
               {isSubmitting ? (
                 <div className="flex items-center gap-2">
                   <div className="animate-spin rounded-full h-4 w-4 border-2 border-accent-foreground border-t-transparent" />
-                  Sending quote...
+                  {t("quoteForm.button.loading", "Sending quote...")}
                 </div>
               ) : (
                 <div className="flex items-center gap-2">
-                  Get My Fair Cash Offer
+                  {t("quoteForm.button.submit", "Get My Fair Cash Offer")}
                 </div>
               )}
             </Button>

@@ -1,13 +1,16 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
 import { DollarSign, Calendar, Home, Package } from "lucide-react";
 import { PropertyQuoteForm } from "./property-quote-form";
 
 import { Logo } from "./logo";
 import { Card } from "./ui/card";
 
+import { useTranslation } from "@/components/TranslationsProvider";
+
 export default function Hero() {
+  const { t } = useTranslation();
+
   return (
     <section className="relative min-h-screen bg-primary px-4 py-24">
       <div className="container mx-auto ">
@@ -18,10 +21,13 @@ export default function Hero() {
 
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-primary-foreground text-balance">
-                The Easiest Way to Sell Your House
+                {t("hero.title", "The Easiest Way to Sell Your House")}
               </h1>
               <p className="text-xl text-primary-foreground/90 text-pretty max-w-[600px]">
-                No repairs, no commissions, and no cleaning. Get a fair cash offer today and close on your timeline. Easy, simple and hassle-free
+                {t(
+                  "hero.description",
+                  "No repairs, no commissions, and no cleaning. Get a fair cash offer today and close on your timeline. Easy, simple and hassle-free",
+                )}
               </p>
             </div>
 
@@ -31,9 +37,14 @@ export default function Hero() {
                   <DollarSign className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg">$0 Commissions</h3>
+                  <h3 className="font-semibold text-lg">
+                    {t("hero.features.commissions.title", "$0 Commissions")}
+                  </h3>
                   <p className="text-sm text-primary-foreground/80">
-                    Keep more money in your pocket
+                    {t(
+                      "hero.features.commissions.desc",
+                      "Keep more money in your pocket",
+                    )}
                   </p>
                 </div>
               </div>
@@ -43,9 +54,14 @@ export default function Hero() {
                   <Calendar className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg">Close in 7 Days</h3>
+                  <h3 className="font-semibold text-lg">
+                    {t("hero.features.timeline.title", "Close in 7 Days")}
+                  </h3>
                   <p className="text-sm text-primary-foreground/80">
-                    Or choose your own timeline
+                    {t(
+                      "hero.features.timeline.desc",
+                      "Or choose your own timeline",
+                    )}
                   </p>
                 </div>
               </div>
@@ -55,9 +71,14 @@ export default function Hero() {
                   <Home className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg">Sell As-Is</h3>
+                  <h3 className="font-semibold text-lg">
+                    {t("hero.features.asis.title", "Sell As-Is")}
+                  </h3>
                   <p className="text-sm text-primary-foreground/80">
-                    No repairs or renovations needed
+                    {t(
+                      "hero.features.asis.desc",
+                      "No repairs or renovations needed",
+                    )}
                   </p>
                 </div>
               </div>
@@ -67,9 +88,14 @@ export default function Hero() {
                   <Package className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg">Leave Everything</h3>
+                  <h3 className="font-semibold text-lg">
+                    {t("hero.features.leave.title", "Leave Everything")}
+                  </h3>
                   <p className="text-sm text-primary-foreground/80">
-                    Take what you want, leave the rest
+                    {t(
+                      "hero.features.leave.desc",
+                      "Take what you want, leave the rest",
+                    )}
                   </p>
                 </div>
               </div>
@@ -145,6 +171,7 @@ export default function Hero() {
               </div>
             </Card> */}
             <Card className="w-full shadow-xl rounded-3xl bg-card text-card-foreground p-4 md:p-14">
+              <h2 className="subtitle text-center">{t("quoteForm.title", "Get Your Cash Offer")}</h2>
               <PropertyQuoteForm />
             </Card>
           </div>

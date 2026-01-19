@@ -1,6 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { TranslationsProvider } from "@/components/TranslationsProvider";
+import { notFound } from "next/navigation";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,89 +18,6 @@ const geistMono = Geist_Mono({
 });
 
 // Structured Data para SEO
-const generateStructuredData = () => {
-  const baseData = {
-    "@context": "https://schema.org",
-    "@type": "RealEstateAgent",
-    name: "Easy Closers",
-    alternateName: "Easy Closers",
-    description:
-      "We buy houses for cash, as-is, and fast. No repairs, no commissions, no hassle. Get a fair offer in 24-48 hours.",
-    url: "https://easyclosers.com",
-    logo: "https://easyclosers.com/logo.png",
-    image: "https://easyclosers.com/banner6.jpg",
-    telephone: "+1-800-EASY-CLOSERS",
-    email: "info@easyclosers.com",
-    address: {
-      "@type": "PostalAddress",
-      addressCountry: "US",
-      addressRegion: "California",
-      addressLocality: "Los Angeles",
-      postalCode: "90210",
-    },
-    areaServed: [
-      {
-        "@type": "State",
-        name: "California",
-        description: "Los Angeles, San Diego, Orange County, Riverside",
-      },
-      {
-        "@type": "State",
-        name: "Texas",
-        description: "Houston, Dallas, San Antonio, Austin",
-      },
-      {
-        "@type": "State",
-        name: "Florida",
-        description: "Miami, Orlando, Tampa, Jacksonville",
-      },
-    ],
-    foundingDate: "1999",
-    numberOfEmployees: "50+",
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.7",
-      reviewCount: "700+",
-      bestRating: "5",
-      worstRating: "1",
-    },
-    serviceType: "Cash Home Buying",
-    priceRange: "$$",
-    paymentAccepted: ["Cash", "Bank Transfer"],
-    currenciesAccepted: "USD",
-    openingHours: "Mo-Fr 08:00-17:00",
-    sameAs: [
-      "https://www.facebook.com/easyclosers",
-      "https://www.instagram.com/easyclosers",
-      "https://www.youtube.com/easyclosers",
-      "https://www.linkedin.com/company/easyclosers",
-    ],
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: "Home Buying Services",
-      itemListElement: [
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Cash Home Purchase",
-            description: "We buy houses for cash, as-is, no repairs needed",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Fast House Sale",
-            description: "Sell your house in 7 days or less",
-          },
-        },
-      ],
-    },
-  };
-
-  return baseData;
-};
 
 export const metadata: Metadata = {
   title: "Easy Closers - We Buy Houses For Cash | No Repairs, No Commissions",
@@ -171,20 +93,62 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({
+// Function to load messages dynamically - Optimizada con cache
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const messageCache = new Map<string, any>();
+
+async function loadMessages(locale: string) {
+  try {
+    // Verificar cache primero
+    if (messageCache.has(locale)) {
+      return messageCache.get(locale);
+    }
+
+    const messages = await import(`@/locales/${locale}.json`);
+    const result = messages.default;
+
+    // Guardar en cache
+    messageCache.set(locale, result);
+
+    return result;
+  } catch (error) {
+    console.error(`Could not load messages for locale ${locale}:`, error);
+    // Fallback to default locale if the requested locale file is not found
+    const defaultMessages = await import(`@/locales/en.json`);
+    return defaultMessages.default;
+  }
+}
+
+export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }>) {
+  const { locale } = await params;
+
+  // Validate locale
+  if (!["en", "es"].includes(locale)) {
+    notFound();
+  }
+
+  const messages = await loadMessages(locale);
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <head>
         <link rel="icon" href="fav.png" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <TranslationsProvider messages={messages}>
+          <Navbar />
+          {children}
+          <Footer />
+          <WhatsAppButton />
+        </TranslationsProvider>
       </body>
     </html>
   );

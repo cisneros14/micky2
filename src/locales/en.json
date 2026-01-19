@@ -1,0 +1,390 @@
+{
+  "about": {
+    "subtitle": "Our Philosophy",
+    "description": [
+      "At Easy Closers, we have been helping homeowners across the United States sell their properties quickly, stress-free, and for the best possible cash offer since 1999.",
+      "There’s no need to make repairs, clean, or host showings—we provide a simple and transparent process.",
+      "We handle everything, from necessary repairs to closing, so you can move forward without complications.",
+      "Over the years, we’ve completed thousands of transactions with integrity, transparency, and commitment.",
+      "We buy houses in any condition and can provide a cash offer in less than 24 hours, ensuring a fast and seamless sale from start to finish."
+    ],
+    "values": {
+      "integrity": "Integrity",
+      "integrityDesc": "Always honest, no misleading offers or surprises at closing.",
+      "speed": "Speed",
+      "speedDesc": "Close in 7 days or we adjust the schedule to your needs.",
+      "fairness": "Fairness",
+      "fairnessDesc": "Fair offers based on real value, not on your desperation."
+    }
+  },
+  "heroAbout": {
+    "badge": "Over 25 years of experience",
+    "title": "About Us",
+    "description": "By providing fast and fair home purchases, we empower homeowners to move forward without delay, while supporting the growth and vitality of the communities we serve.",
+    "cta": "Get your offer",
+    "watch": "Watch testimonials",
+    "imageAlt": "Fast home sale"
+  },
+  "stats": {
+    "title": "Our track record speaks for itself",
+    "description": "Over 25 years helping homeowners sell fast, stress-free, and for the best cash price.",
+    "items": [
+      {
+        "value": "25+",
+        "label": "Years of experience",
+        "description": "Operating since 1999 with integrity and proven results.",
+        "color": "text-blue-600"
+      },
+      {
+        "value": "7,000+",
+        "label": "Houses bought",
+        "description": "We have closed thousands of transactions across the United States.",
+        "color": "text-green-600"
+      },
+      {
+        "value": "7-60",
+        "label": "Days to close",
+        "description": "Close in just 7 days or we adjust the schedule to your needs.",
+        "color": "text-yellow-600"
+      },
+      {
+        "value": "$20K",
+        "label": "Advance available",
+        "description": "Receive up to $20,000 upfront before closing.",
+        "color": "text-purple-600"
+      }
+    ]
+  },
+  "navbar": {
+    "cta": "Get your cash offer"
+  },
+  "nav": {
+    "home": "Home",
+    "blog": "Blog",
+    "about": "About",
+    "contact": "Contact Us"
+  },
+  "hero": {
+    "title": "The Easiest Way to Sell Your House",
+    "description": "No repairs, no commissions, and no cleaning. Get a fair cash offer today and close on your timeline. Easy, simple and hassle-free",
+    "features": {
+      "commissions": {
+        "title": "$0 Commissions",
+        "desc": "Keep more money in your pocket"
+      },
+      "timeline": {
+        "title": "Close in 7 Days",
+        "desc": "Or choose your own timeline"
+      },
+      "asis": {
+        "title": "Sell As-Is",
+        "desc": "No repairs or renovations needed"
+      },
+      "leave": {
+        "title": "Leave Everything",
+        "desc": "Take what you want, leave the rest"
+      }
+    }
+  },
+  "process": {
+    "title": "The \"Easy\" 3-Step Process",
+    "description": "Selling your home doesn't have to be complicated. We've streamlined the process into 3 simple steps.",
+    "steps": [
+      {
+        "title": "Request Your Offer",
+        "desc": "Fill out our simple 5-minute form or give us a call. Tell us about your property and your situation.",
+        "badge": "Takes only 5 minutes"
+      },
+      {
+        "title": "Get a Fair Price",
+        "desc": "Receive a no-obligation cash offer within 24 hours. Fair, transparent pricing with no hidden fees.",
+        "badge": "No obligation to accept"
+      },
+      {
+        "title": "Choose Your Close Date",
+        "desc": "Close in as little as 7 days or take your time. You're in control of the timeline that works for you.",
+        "badge": "Your timeline, your choice"
+      }
+    ],
+    "cta": "Get my fair cash offer",
+    "cta_sub": "Get your cash offer in 24 hours or less"
+  },
+  "comparison": {
+    "title": "Compare Your Options",
+    "description": "See how selling to Easy Closers stacks up against a traditional listing.",
+    "easyClosers": "Easy Closers",
+    "easyClosersSub": "The stress-free way",
+    "traditional": "Traditional Realtor",
+    "traditionalSub": "The old-fashioned way",
+    "features": {
+      "commissions": {
+        "label": "Commissions & Fees",
+        "easy": "$0",
+        "easySub": "Zero fees",
+        "trad": "6-8%",
+        "tradSub": "Of sale price"
+      },
+      "closing": {
+        "label": "Closing Costs",
+        "easy": "We Pay",
+        "easySub": "$0 to you",
+        "trad": "You Pay",
+        "tradSub": "2-4% typical"
+      },
+      "repairs": {
+        "label": "Repairs Needed",
+        "easy": "None",
+        "easySub": "Sell as-is",
+        "trad": "Required",
+        "tradSub": "Often costly"
+      },
+      "timeline": {
+        "label": "Closing Timeline",
+        "easy": "7 Days",
+        "easySub": "Or your timeline",
+        "trad": "3-6 Months",
+        "tradSub": "Average wait"
+      },
+      "showings": {
+        "label": "Showings & Open Houses",
+        "easy": "None",
+        "easySub": "No hassle",
+        "trad": "Required",
+        "tradSub": "Multiple times"
+      },
+      "belongings": {
+        "label": "Personal Belongings",
+        "easy": "Leave Them",
+        "easySub": "We handle it",
+        "trad": "Must Remove",
+        "tradSub": "Your expense"
+      }
+    },
+    "cta": "Get my fair cash offer",
+    "disclaimer": "* Traditional sales often involve uncertainties and delays."
+  },
+  "situations": {
+    "title": "We Help Homeowners in Any Situation",
+    "description": "No matter why you need to sell, we can provide a solution that works for you.",
+    "items": [
+      {
+        "title": "Probate & Inheritance",
+        "description": "Inherited a property? We simplify the process and help you sell quickly without the typical probate headaches."
+      },
+      {
+        "title": "Facing Foreclosure",
+        "description": "Stop foreclosure and protect your credit. We can close quickly and help you move forward with peace of mind."
+      },
+      {
+        "title": "Tired Landlords",
+        "description": "Done dealing with tenants and repairs? Sell your rental property as-is and walk away from the stress."
+      },
+      {
+        "title": "Major Repairs Needed",
+        "description": "House needs work? No problem. We buy properties in any condition - no repairs or updates required."
+      },
+      {
+        "title": "Divorce Settlement",
+        "description": "Need to sell fast due to divorce? We offer quick, fair solutions during difficult times."
+      },
+      {
+        "title": "Job Relocation",
+        "description": "Moving for work? We can close on your timeline and help you transition smoothly to your new location."
+      },
+      {
+        "title": "Financial Distress",
+        "description": "Behind on payments? We provide respectful, confidential solutions to help you get back on your feet."
+      },
+      {
+        "title": "Downsizing",
+        "description": "Ready for a smaller place? Skip the staging and showings - we'll buy your home as-is."
+      }
+    ],
+    "cta": "Get my fair cash offer",
+    "caption": "Confidential consultation - no pressure, just solutions"
+  },
+  "whyChoose": {
+    "title": "Why Choose Easy Closers?",
+    "description": "We're a licensed, local company that's helped hundreds of homeowners sell their properties quickly and fairly.",
+    "floating": "Paid to Homeowners",
+    "stats": [
+      { "value": "100+", "label": "Properties Purchased" },
+      { "value": "24hrs", "label": "Average Offer Time" },
+      { "value": "7 Days", "label": "Fast Closing Available" },
+      { "value": "$0", "label": "In Commissions or Fees" }
+    ],
+    "badges": [
+      {
+        "title": "Fully Licensed & Insured",
+        "description": "DRE License #02045945"
+      },
+      {
+        "title": "Local So-Cal Company",
+        "description": "We know the area and care about our community"
+      },
+      {
+        "title": "Fair & Transparent",
+        "description": "No hidden fees, no last-minute surprises"
+      }
+    ],
+    "cta": "Get my fair cash offer"
+  },
+  "testimonials": {
+    "title": "Success Stories",
+    "description": "Real stories from people who use and love our product every day",
+    "items": [
+      {
+        "name": "John Doe",
+        "role": "Software Engineer",
+        "company": "TechCorp",
+        "text": "This product has completely transformed the way we work. The efficiency and ease of use are unmatched!"
+      },
+      {
+        "name": "Sophia Lee",
+        "role": "Data Analyst",
+        "company": "InsightTech",
+        "text": "This tool has saved me hours of work! The analytics and reporting features are incredibly powerful."
+      },
+      {
+        "name": "Michael Johnson",
+        "role": "UX Designer",
+        "company": "DesignPro",
+        "text": "An amazing tool that simplifies complex tasks. Highly recommended for professionals in the industry."
+      },
+      {
+        "name": "Emily Davis",
+        "role": "Marketing Specialist",
+        "company": "BrandBoost",
+        "text": "I've seen a significant improvement in our team's productivity since we started using this service."
+      },
+      {
+        "name": "Daniel Martinez",
+        "role": "Full-Stack Developer",
+        "company": "CodeCrafters",
+        "text": "The best investment we've made! The support team is also super responsive and helpful."
+      },
+      {
+        "name": "Jane Smith",
+        "role": "Product Manager",
+        "company": "InnovateX",
+        "text": "The user experience is top-notch! The interface is clean, intuitive, and easy to navigate."
+      }
+    ]
+  },
+  "ctaSection": {
+    "title": "Ready to Sell Your House Fast?",
+    "description": "Get a fair cash offer today. No fees, no repairs, no obligation.",
+    "cta": "Get my fair cash offer"
+  },
+  "ctaBanner": {
+    "title": "Get your instant offer!",
+    "description": "Fill out the form and receive a personalized quote for your property in less than 24 hours. No strings attached, no hidden costs.",
+    "benefits": [
+      "Free professional evaluation",
+      "Response in 24 hours or less",
+      "No obligation to sell"
+    ],
+    "tip": "Tip: We can close in as little as 7 days!"
+  },
+  "contact": {
+    "title": "Get Your No-Obligation Offer",
+    "description": "Have questions? Ready to sell? Fill out the form below or contact us directly. We're here to help.",
+    "info": {
+      "title": "Contact Information",
+      "subtitle": "Reach out to us through any of these channels.",
+      "phone": {
+        "label": "Call Us",
+        "sub": "Mon-Fri 9am-6pm PST"
+      },
+      "email": {
+        "label": "Email Us"
+      },
+      "office": {
+        "label": "Office"
+      },
+      "trust": {
+        "title": "Trusted & Verified",
+        "desc": "Licensed Real Estate Professionals"
+      }
+    },
+    "form": {
+      "labels": {
+        "name": "Full Name",
+        "phone": "Phone Number",
+        "email": "Email Address",
+        "address": "Property Address",
+        "message": "Message (Optional)"
+      },
+      "placeholders": {
+        "name": "John Doe",
+        "phone": "(555) 123-4567",
+        "email": "john@example.com",
+        "address": "123 Main St, Riverside, CA",
+        "message": "Tell us about your property and situation..."
+      },
+      "button": {
+        "loading": "Sending Request...",
+        "submit": "Get My Fair Cash Offer"
+      },
+      "disclaimer": "By submitting this form, you agree to our Privacy Policy and Terms of Service."
+    },
+    "success": {
+      "title": "Quote Request Received!",
+      "description": "We'll be in touch regarding your property shortly."
+    },
+    "error": {
+      "title": "Error",
+      "description": "There was a problem submitting your request. Please try again."
+    }
+  },
+  "footer": {
+    "about": {
+      "description": "We provide homeowners with a fast, fair, and hassle-free way to sell their property. No commissions, no repairs, just results."
+    },
+    "links": {
+      "title": "Quick Links",
+      "items": [
+        { "title": "About Us" },
+        { "title": "How It Works" },
+        { "title": "Compare" },
+        { "title": "Testimonials" },
+        { "title": "Contact" }
+      ]
+    },
+    "newsletter": {
+      "title": "Stay Updated",
+      "description": "Subscribe to our newsletter for the latest real estate market updates.",
+      "placeholder": "Enter your email",
+      "button": "Subscribe"
+    },
+    "copyright": "All rights reserved."
+  },
+  "quoteForm": {
+    "title": "Get Your Cash Offer",
+    "subtitle": "No repairs, no fees, no obligation.",
+    "fields": {
+      "address": "Property address * (select from suggestions)",
+      "name": "Full name *",
+      "phone": "Phone *",
+      "email": "Email *",
+      "notes": "Tell us about your situation (Optional)"
+    },
+    "security": "Your information is 100% secure and confidential",
+    "button": {
+      "submit": "Get My Fair Cash Offer",
+      "loading": "Sending quote..."
+    },
+    "errors": {
+      "incomplete": "Incomplete fields",
+      "recaptcha": "Please solve the reCAPTCHA to continue.",
+      "recaptchaExpired": "The reCAPTCHA challenge expired. Please try again.",
+      "humanVerification": "We could not verify that you are human. Please try again.",
+      "submission": "Error sending the quote. Please try again.",
+      "googleMapsBilling": "Google Maps requires billing enabled in Google Cloud Console",
+      "placesApiBilling": "Places API requires billing enabled",
+      "addressPrecision": "Please select an address from the suggestions for better accuracy",
+      "autocompleteUnavailable": "Autocomplete unavailable"
+    },
+    "success": "Thank you! We have received your quote request."
+  }
+}

@@ -1,415 +1,333 @@
 "use client";
 
-declare global {
-  interface Window {
-    grecaptcha: any;
-    onRecaptchaContact?: (token: string) => void;
-    onRecaptchaContactExpired?: () => void;
-    onRecaptchaLoadContact?: () => void;
-  }
-}
-
-import type React from "react";
-import { useRef, useState, useEffect } from "react";
-
-import { Card, CardContent } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
+import { useState, useRef, FormEvent, ChangeEvent } from "react";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-
-import {
-  Send,
-  Phone,
-  Mail,
-  MapPin,
-  Facebook,
-  Instagram,
-  Linkedin,
-  Youtube,
-} from "lucide-react";
-import { PropertyQuoteModal } from "./property-quote-modal";
-import { ActionButton } from "./action-button";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent } from "@/components/ui/card";
+import { useTranslation } from "@/components/TranslationsProvider";
+import ReCAPTCHA from "react-google-recaptcha";
+import { toast } from "sonner";
+import { Mail, MapPin, Phone, Send, Loader2, CheckCircle2 } from "lucide-react";
 
 export default function PrincipalFormContact() {
-  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
-  const [recaptchaError, setRecaptchaError] = useState<string | null>(null);
+  const { t } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
+    address: "",
     message: "",
   });
-  const recaptchaRef = useRef<HTMLDivElement>(null);
-  const widgetIdRef = useRef<number | null>(null);
 
-  useEffect(() => {
-    const renderWidget = () => {
-      if (
-        recaptchaRef.current &&
-        window.grecaptcha &&
-        window.grecaptcha.render
-      ) {
-        try {
-          widgetIdRef.current = window.grecaptcha.render(recaptchaRef.current, {
-            sitekey: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
-            callback: "onRecaptchaContact",
-            "expired-callback": "onRecaptchaContactExpired",
-          });
-        } catch (error) {
-          console.error("Error rendering reCAPTCHA:", error);
-        }
-      }
-    };
-
-    window.onRecaptchaLoadContact = renderWidget;
-
-    if (
-      typeof window !== "undefined" &&
-      !document.getElementById("recaptcha-script-contact")
-    ) {
-      const script = document.createElement("script");
-      script.id = "recaptcha-script-contact";
-      script.src =
-        "https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoadContact&render=explicit";
-      script.async = true;
-      script.defer = true;
-      document.body.appendChild(script);
-    } else if (window.grecaptcha && window.grecaptcha.render) {
-      renderWidget();
-    }
-
-    window.onRecaptchaContact = function (token: string) {
-      setRecaptchaToken(token);
-      setRecaptchaError(null);
-    };
-    window.onRecaptchaContactExpired = function () {
-      setRecaptchaToken(null);
-      setRecaptchaError("El reto reCAPTCHA expiró. Intenta de nuevo.");
-    };
-
-    return () => {
-      if (
-        widgetIdRef.current !== null &&
-        window.grecaptcha &&
-        window.grecaptcha.reset
-      ) {
-        try {
-          window.grecaptcha.reset(widgetIdRef.current);
-        } catch (error) {
-          console.error("Error resetting reCAPTCHA:", error);
-        }
-      }
-    };
-  }, []);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setRecaptchaError(null);
-
-    if (!recaptchaToken) {
-      setRecaptchaError("Por favor, resuelve el reCAPTCHA para continuar.");
-      return;
-    }
-
     setIsSubmitting(true);
 
     try {
-      console.log("🔍 Iniciando envío del formulario con datos:", {
-        name: formData.name,
-        email: formData.email,
-        hasToken: !!recaptchaToken,
-      });
+      const recaptchaToken = recaptchaRef.current?.getValue();
 
-      // Validar el token en el backend
-      const recaptchaRes = await fetch("/api/recaptcha", {
+      const response = await fetch("/api/send-email", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token: recaptchaToken }),
-      });
-
-      console.log("📡 Respuesta reCAPTCHA status:", recaptchaRes.status);
-      const recaptchaData = await recaptchaRes.json();
-      console.log("✅ reCAPTCHA validado:", recaptchaData);
-
-      if (!recaptchaData.success) {
-        console.error("❌ reCAPTCHA falló");
-        setRecaptchaError(
-          "No pudimos verificar que eres humano. Intenta de nuevo.",
-        );
-        if (
-          widgetIdRef.current !== null &&
-          window.grecaptcha &&
-          window.grecaptcha.reset
-        ) {
-          window.grecaptcha.reset(widgetIdRef.current);
-        }
-        setIsSubmitting(false);
-        return;
-      }
-
-      // Guardar el contacto en la base de datos
-      console.log("💾 Guardando contacto en base de datos...");
-      const contactRes = await fetch("/api/clientes/contacto", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
-          nombre: formData.name,
-          email: formData.email,
-          mensaje: formData.message,
-          fuente: "Formulario de Contacto",
+          ...formData,
+          recaptcha: recaptchaToken,
         }),
       });
 
-      console.log("📡 Respuesta contacto status:", contactRes.status);
-      const contactData = await contactRes.json();
-      console.log("📋 Datos guardados:", contactData);
+      const data = await response.json();
 
-      if (contactData.success) {
-        console.log("✅ Formulario enviado exitosamente");
-        alert("Your message has been sent. We'll get back to you shortly.");
-        // Resetear el formulario
-        setFormData({ name: "", email: "", message: "" });
-        setRecaptchaToken(null);
-        if (
-          widgetIdRef.current !== null &&
-          window.grecaptcha &&
-          window.grecaptcha.reset
-        ) {
-          window.grecaptcha.reset(widgetIdRef.current);
-        }
-      } else {
-        console.error("❌ Error en respuesta:", contactData);
-        alert(
-          `Error al enviar el formulario: ${
-            contactData.error || "Error desconocido"
-          }`,
-        );
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message");
       }
+
+      toast.success(t("contact.success.title", "Quote Request Received!"), {
+        description: t(
+          "contact.success.description",
+          "We'll be in touch regarding your property shortly.",
+        ),
+      });
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        address: "",
+        message: "",
+      });
+      recaptchaRef.current?.reset();
     } catch (error) {
-      console.error("❌ Error al enviar el formulario:", error);
-      alert(
-        `Error al enviar el formulario: ${
-          error instanceof Error ? error.message : "Error desconocido"
-        }`,
-      );
+      console.error("Error sending email:", error);
+      toast.error(t("contact.error.title", "Error"), {
+        description: t(
+          "contact.error.description",
+          "There was a problem submitting your request. Please try again.",
+        ),
+      });
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <section id="contact-form" className="py-24 bg-background">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left Column: Contact Information */}
-          <div className="space-y-8">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-primary text-balance">
-                Chat to our friendly team
-              </h2>
-              <p className="text-lg text-pretty">
-                We'd love to hear from you. Please fill out this form or shoot
-                us an email.
-              </p>
-            </div>
+    <section
+      id="contact"
+      className="py-12 md:py-24 bg-muted/30 relative overflow-hidden"
+    >
+      <div className="container mx-auto px-4 relative">
+        <div className="text-center mb-10 md:mb-16 space-y-4">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-primary text-balance">
+            {t("contact.title", "Get Your No-Obligation Offer")}
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
+            {t(
+              "contact.description",
+              "Have questions? Ready to sell? Fill out the form below or contact us directly. We're here to help.",
+            )}
+          </p>
+        </div>
 
-            <div className="space-y-6">
-              {/* Email */}
-              <div className="flex items-start space-x-4">
-                <div className="p-3 bg-primary/10 rounded-lg">
-                  <Mail className="w-6 h-6 text-primary" />
-                </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-12 max-w-6xl mx-auto w-full">
+          {/* Contact Info Cards */}
+          <div className="space-y-6 lg:col-span-1 w-full">
+            <Card className="border-none shadow-lg bg-primary text-primary-foreground overflow-hidden relative w-full">
+              <div className="absolute -right-10 -top-10 w-32 h-32 bg-secondary/20 rounded-full blur-2xl" />
+              <CardContent className="p-5 sm:p-6 md:p-8 space-y-8">
                 <div>
-                  <h3 className="font-semibold text-lg">Email</h3>
-                  <p className="text-muted-foreground">
-                    Our friendly team is here to help.
+                  <h3 className="text-xl font-bold mb-2 break-words">
+                    {t("contact.info.title", "Contact Information")}
+                  </h3>
+                  <p className="text-primary-foreground/80 break-words">
+                    {t(
+                      "contact.info.subtitle",
+                      "Reach out to us through any of these channels.",
+                    )}
                   </p>
-                  <a
-                    href="mailto:hello@easyclosers.com"
-                    className="text-primary hover:underline mt-1 block"
-                  >
-                    hello@easyclosers.com
-                  </a>
                 </div>
-              </div>
 
-              {/* Phone */}
-              <div className="flex items-start space-x-4">
-                <div className="p-3 bg-primary/10 rounded-lg">
-                  <Phone className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg">Phone</h3>
-                  <p className="text-muted-foreground">
-                    Mon-Fri from 8am to 5pm.
-                  </p>
-                  <a
-                    href="tel:+15551234567"
-                    className="text-primary hover:underline mt-1 block"
-                  >
-                    +1 (555) 123-4567
-                  </a>
-                </div>
-              </div>
+                <div className="space-y-6">
+                  <div className="flex items-start gap-3 sm:gap-4">
+                    <div className="p-2 sm:p-3 bg-white/10 rounded-lg shrink-0">
+                      <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="font-medium text-sm text-primary-foreground/60 mb-1 truncate">
+                        {t("contact.info.phone.label", "Call Us")}
+                      </p>
+                      <a
+                        href="tel:+18887884828"
+                        className="text-base sm:text-lg font-bold hover:text-secondary transition-colors block break-words"
+                      >
+                        (888) 788-4828
+                      </a>
+                      <p className="text-xs text-primary-foreground/60 mt-1 break-words">
+                        {t("contact.info.phone.sub", "Mon-Fri 9am-6pm PST")}
+                      </p>
+                    </div>
+                  </div>
 
-              {/* Office */}
-              <div className="flex items-start space-x-4">
-                <div className="p-3 bg-primary/10 rounded-lg">
-                  <MapPin className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg">Office</h3>
-                  <p className="text-muted-foreground">
-                    Come say hello at our office HQ.
-                  </p>
-                  <p className="text-muted-foreground mt-1 whitespace-pre-line">
-                    100 Smith Street Collingwood VIC 3066 AU
-                  </p>
-                </div>
-              </div>
-            </div>
+                  <div className="flex items-start gap-3 sm:gap-4">
+                    <div className="p-2 sm:p-3 bg-white/10 rounded-lg shrink-0">
+                      <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="font-medium text-sm text-primary-foreground/60 mb-1 truncate">
+                        {t("contact.info.email.label", "Email Us")}
+                      </p>
+                      <a
+                        href="mailto:info@easyclosers.com"
+                        className="text-base sm:text-lg font-bold hover:text-secondary transition-colors block break-all sm:break-words"
+                      >
+                        info@easyclosers.com
+                      </a>
+                    </div>
+                  </div>
 
-            {/* Social Media */}
-            <div className="pt-8 border-t">
-              <h3 className="font-semibold text-lg mb-4">Follow Us</h3>
-              <div className="flex space-x-4">
-                <a
-                  href="#"
-                  className="p-3 bg-muted hover:bg-primary hover:text-white rounded-full transition-colors"
-                >
-                  <Facebook className="w-5 h-5" />
-                  <span className="sr-only">Facebook</span>
-                </a>
-                <a
-                  href="#"
-                  className="p-3 bg-muted hover:bg-primary hover:text-white rounded-full transition-colors"
-                >
-                  <Instagram className="w-5 h-5" />
-                  <span className="sr-only">Instagram</span>
-                </a>
-                <a
-                  href="#"
-                  className="p-3 bg-muted hover:bg-primary hover:text-white rounded-full transition-colors"
-                >
-                  <Linkedin className="w-5 h-5" />
-                  <span className="sr-only">LinkedIn</span>
-                </a>
-                <a
-                  href="#"
-                  className="p-3 bg-muted hover:bg-primary hover:text-white rounded-full transition-colors"
-                >
-                  <Youtube className="w-5 h-5" />
-                  <span className="sr-only">YouTube</span>
-                </a>
-              </div>
-            </div>
+                  <div className="flex items-start gap-3 sm:gap-4">
+                    <div className="p-2 sm:p-3 bg-white/10 rounded-lg shrink-0">
+                      <MapPin className="w-5 h-5 sm:w-6 sm:h-6" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="font-medium text-sm text-primary-foreground/60 mb-1 truncate">
+                        {t("contact.info.office.label", "Office")}
+                      </p>
+                      <p className="font-medium text-sm sm:text-base break-words">
+                        18000 Studebaker Rd #700
+                        <br />
+                        Cerritos, CA 90703
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="shadow-md border-border w-full">
+              <CardContent className="p-5 sm:p-6 flex items-center gap-3 sm:gap-4">
+                <div className="p-2 sm:p-3 bg-green-100 text-green-600 rounded-full shrink-0">
+                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="font-bold text-foreground text-sm sm:text-base break-words">
+                    {t("contact.info.trust.title", "Trusted & Verified")}
+                  </p>
+                  <p className="text-xs sm:text-sm text-muted-foreground break-words">
+                    {t(
+                      "contact.info.trust.desc",
+                      "Licensed Real Estate Professionals",
+                    )}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
-          {/* Right Column: Contact Form */}
-          <CardContent className="p-6 bg-card rounded-xl shadow-lg border">
-            <form className="space-y-6" onSubmit={handleSubmit}>
-              {/* Name Field */}
-              <div className="space-y-2">
-                <Label
-                  htmlFor="name"
-                  className="text-sm font-semibold text-foreground block pl-2"
-                >
-                  Name
-                  <span className="text-destructive ml-1">*</span>
-                </Label>
-                <Input
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Your full name"
-                  required
-                  className="md:h-12 p-4 md:p-4 text-base bg-muted/50 border-input rounded-lg 
-                                             focus:bg-background focus:ring-2 focus:ring-primary/20 
-                                             transition-all duration-200 placeholder:text-muted-foreground"
-                />
-              </div>
-
-              {/* Email Field */}
-              <div className="space-y-2">
-                <Label
-                  htmlFor="email"
-                  className="text-sm font-semibold text-foreground block pl-2"
-                >
-                  Email
-                  <span className="text-destructive ml-1">*</span>
-                </Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="your@email.com"
-                  required
-                  className="md:h-12 p-4 md:p-4 text-base bg-muted/50 border-input rounded-lg 
-                                             focus:bg-background focus:ring-2 focus:ring-primary/20 
-                                             transition-all duration-200 placeholder:text-muted-foreground"
-                />
-              </div>
-
-              {/* Message Field */}
-              <div className="space-y-2">
-                <Label
-                  htmlFor="message"
-                  className="text-sm font-semibold text-foreground block pl-2 "
-                >
-                  Message
-                  <span className="text-destructive ml-1">*</span>
-                </Label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Write your message here..."
-                  rows={4}
-                  required
-                  className="min-h-[120px] p-4 text-base bg-muted/50 border-input rounded-lg 
-                                             focus:bg-background focus:ring-2 focus:ring-primary/20 
-                                             transition-all duration-200 resize-none placeholder:text-muted-foreground"
-                />
-              </div>
-
-              {/* reCAPTCHA */}
-              <div className="flex justify-center my-2">
-                <div ref={recaptchaRef}></div>
-              </div>
-              {recaptchaError && (
-                <div className="text-destructive text-sm text-center mb-2">
-                  {recaptchaError}
+          {/* Form */}
+          <Card className="lg:col-span-2 shadow-xl border-border w-full">
+            <CardContent className="p-4 sm:p-6 md:p-8">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">
+                      {t("contact.form.labels.name", "Full Name")}
+                    </Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder={t(
+                        "contact.form.placeholders.name",
+                        "John Doe",
+                      )}
+                      className="bg-muted/50"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">
+                      {t("contact.form.labels.phone", "Phone Number")}
+                    </Label>
+                    <Input
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder={t(
+                        "contact.form.placeholders.phone",
+                        "(555) 123-4567",
+                      )}
+                      className="bg-muted/50"
+                      required
+                    />
+                  </div>
                 </div>
-              )}
 
-              <div className="flex flex-col sm:flex-row gap-3 pt-4">
+                <div className="space-y-2">
+                  <Label htmlFor="email">
+                    {t("contact.form.labels.email", "Email Address")}
+                  </Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder={t(
+                      "contact.form.placeholders.email",
+                      "john@example.com",
+                    )}
+                    className="bg-muted/50"
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="address">
+                    {t("contact.form.labels.address", "Property Address")}
+                  </Label>
+                  <Input
+                    id="address"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleChange}
+                    placeholder={t(
+                      "contact.form.placeholders.address",
+                      "123 Main St, Riverside, CA",
+                    )}
+                    className="bg-muted/50"
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="message">
+                    {t("contact.form.labels.message", "Message (Optional)")}
+                  </Label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder={t(
+                      "contact.form.placeholders.message",
+                      "Tell us about your property and situation...",
+                    )}
+                    className="min-h-[120px] bg-muted/50 resize-y"
+                  />
+                </div>
+
+                {/* <div className="flex justify-center">
+                  <ReCAPTCHA
+                    ref={recaptchaRef}
+                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                    theme="light"
+                  />
+                </div> */}
+
                 <Button
                   type="submit"
-                  variant="secondary"
+                  className="w-full h-12 font-semibold bg-secondary hover:bg-secondary/90 text-secondary-foreground transition-all duration-300 shadow-md hover:shadow-lg"
                   disabled={isSubmitting}
-                  className="flex-1 rounded-md bg-secondary w-full h-auto py-2 text-lg font-semibold shadow-md"
                 >
-                  <div className="flex items-center">
-                    {isSubmitting ? "Sending..." : "Submit"}
-                  </div>
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      {t("contact.form.button.loading", "Sending Request...")}
+                    </>
+                  ) : (
+                    <>
+                      {t(
+                        "contact.form.button.submit",
+                        "Get My Fair Cash Offer",
+                      )}
+                      <Send className="ml-2 h-5 w-5" />
+                    </>
+                  )}
                 </Button>
-              </div>
-            </form>
-          </CardContent>
+                <p className="text-xs text-center text-muted-foreground mt-4">
+                  {t(
+                    "contact.form.disclaimer",
+                    "By submitting this form, you agree to our Privacy Policy and Terms of Service.",
+                  )}
+                </p>
+              </form>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>

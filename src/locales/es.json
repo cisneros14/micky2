@@ -1,0 +1,390 @@
+{
+  "about": {
+    "subtitle": "Nuestra Filosofía",
+    "description": [
+      "En Easy Closers, ayudamos a propietarios en todo Estados Unidos a vender sus viviendas de forma rápida, sin estrés y obteniendo la mejor oferta en efectivo desde 1999.",
+      "No necesitas hacer reparaciones, limpiar ni realizar exhibiciones: ofrecemos un proceso simple y transparente.",
+      "Nos encargamos de todo, desde las reparaciones necesarias hasta el cierre, para que avances sin complicaciones.",
+      "A lo largo de los años, hemos concretado miles de transacciones con integridad, transparencia y compromiso.",
+      "Compramos casas en cualquier condición y podemos darte una oferta en menos de 24 horas, asegurando una venta rápida y sin problemas de principio a fin."
+    ],
+    "values": {
+      "integrity": "Integridad",
+      "integrityDesc": "Siempre honestos, sin ofertas engañosas ni sorpresas en el cierre.",
+      "speed": "Velocidad",
+      "speedDesc": "Cierra en 7 días o ajustamos el calendario a tus necesidades.",
+      "fairness": "Justicia",
+      "fairnessDesc": "Ofertas justas basadas en el valor real, no en tu desesperación."
+    }
+  },
+  "heroAbout": {
+    "badge": "Más de 25 años de experiencia",
+    "title": "Sobre Nosotros",
+    "description": "Al ofrecer compras de viviendas rápidas y justas, brindamos a los propietarios la libertad de avanzar sin demoras, mientras apoyamos el crecimiento y la vitalidad de las comunidades a las que servimos.",
+    "cta": "Obtén tu oferta",
+    "watch": "Ver testimonios",
+    "imageAlt": "Venta rápida de casas"
+  },
+  "stats": {
+    "title": "Nuestra trayectoria habla por sí sola",
+    "description": "Más de 25 años ayudando a propietarios a vender rápido, sin estrés y por el mejor precio en efectivo.",
+    "items": [
+      {
+        "value": "25+",
+        "label": "Años de experiencia",
+        "description": "Operando desde 1999 con integridad y resultados comprobados.",
+        "color": "text-blue-600"
+      },
+      {
+        "value": "7,000+",
+        "label": "Casas compradas",
+        "description": "Hemos cerrado miles de transacciones en todo Estados Unidos.",
+        "color": "text-green-600"
+      },
+      {
+        "value": "7-60",
+        "label": "Días para cerrar",
+        "description": "Cierra en solo 7 días o ajustamos el calendario a tus necesidades.",
+        "color": "text-yellow-600"
+      },
+      {
+        "value": "$20K",
+        "label": "Adelanto disponible",
+        "description": "Recibe hasta $20,000 por adelantado antes del cierre.",
+        "color": "text-purple-600"
+      }
+    ]
+  },
+  "navbar": {
+    "cta": "Obtén mi oferta en efectivo"
+  },
+  "nav": {
+    "home": "Inicio",
+    "blog": "Blog",
+    "about": "Nosotros",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "title": "La Forma Más Fácil de Vender Tu Casa",
+    "description": "Sin reparaciones, sin comisiones y sin limpieza. Recibe una oferta justa en efectivo hoy y cierra en tu propio plazo. Fácil, simple y sin complicaciones.",
+    "features": {
+      "commissions": {
+        "title": "$0 Comisiones",
+        "desc": "Mantén más dinero en tu bolsillo"
+      },
+      "timeline": {
+        "title": "Cierra en 7 Días",
+        "desc": "O elige tu propia fecha"
+      },
+      "asis": {
+        "title": "Vende Tal Como Está",
+        "desc": "Sin reparaciones ni renovaciones necesarias"
+      },
+      "leave": {
+        "title": "Deja Todo",
+        "desc": "Lleva lo que quieras, deja el resto"
+      }
+    }
+  },
+  "process": {
+    "title": "El Proceso \"Fácil\" de 3 Pasos",
+    "description": "Vender tu casa no tiene que ser complicado. Hemos simplificado el proceso en 3 simples pasos.",
+    "steps": [
+      {
+        "title": "Solicita Tu Oferta",
+        "desc": "Llena nuestro sencillo formulario de 5 minutos o llámanos. Cuéntanos sobre tu propiedad y tu situación.",
+        "badge": "Solo toma 5 minutos"
+      },
+      {
+        "title": "Recibe un Precio Justo",
+        "desc": "Recibe una oferta en efectivo sin compromiso en 24 horas. Precios justos, transparentes y sin tarifas ocultas.",
+        "badge": "Sin obligación de aceptar"
+      },
+      {
+        "title": "Elige Tu Fecha de Cierre",
+        "desc": "Cierra en tan solo 7 días o tómate tu tiempo. Tú tienes el control de la fecha que mejor te funcione.",
+        "badge": "Tu tiempo, tu elección"
+      }
+    ],
+    "cta": "Obtén mi oferta justa en efectivo",
+    "cta_sub": "Recibe tu oferta en efectivo en 24 horas o menos"
+  },
+  "comparison": {
+    "title": "Compara Tus Opciones",
+    "description": "Mira cómo se compara vender a Easy Closers frente a una lista tradicional.",
+    "easyClosers": "Easy Closers",
+    "easyClosersSub": "La forma sin estrés",
+    "traditional": "Agente Tradicional",
+    "traditionalSub": "La forma antigua",
+    "features": {
+      "commissions": {
+        "label": "Comisiones y Tarifas",
+        "easy": "$0",
+        "easySub": "Cero tarifas",
+        "trad": "6-8%",
+        "tradSub": "Del precio de venta"
+      },
+      "closing": {
+        "label": "Costos de Cierre",
+        "easy": "Pagamos Nosotros",
+        "easySub": "$0 para ti",
+        "trad": "Pagas Tú",
+        "tradSub": "2-4% típico"
+      },
+      "repairs": {
+        "label": "Reparaciones Necesarias",
+        "easy": "Ninguna",
+        "easySub": "Vende tal como está",
+        "trad": "Requerido",
+        "tradSub": "A menudo costoso"
+      },
+      "timeline": {
+        "label": "Tiempo de Cierre",
+        "easy": "7 Días",
+        "easySub": "O tu fecha",
+        "trad": "3-6 Meses",
+        "tradSub": "Espera promedio"
+      },
+      "showings": {
+        "label": "Visitas y Open Houses",
+        "easy": "Ninguna",
+        "easySub": "Sin molestias",
+        "trad": "Requerido",
+        "tradSub": "Múltiples veces"
+      },
+      "belongings": {
+        "label": "Pertenencias Personales",
+        "easy": "Déjalas",
+        "easySub": "Nosotros nos encargamos",
+        "trad": "Debes Retirar",
+        "tradSub": "Tu gasto"
+      }
+    },
+    "cta": "Obtén mi oferta justa en efectivo",
+    "disclaimer": "* Las ventas tradicionales a menudo implican incertidumbres y retrasos."
+  },
+  "situations": {
+    "title": "Ayudamos a Propietarios en Cualquier Situación",
+    "description": "No importa por qué necesites vender, podemos ofrecer una solución que funcione para ti.",
+    "items": [
+      {
+        "title": "Sucesiones y Herencias",
+        "description": "¿Heredaste una propiedad? Simplificamos el proceso y te ayudamos a vender rápido sin los dolores de cabeza típicos de la sucesión."
+      },
+      {
+        "title": "Enfrentando Ejecución Hipotecaria",
+        "description": "Detén la ejecución y protege tu crédito. Podemos cerrar rápido y ayudarte a seguir adelante con tranquilidad."
+      },
+      {
+        "title": "Arrendadores Cansados",
+        "description": "¿Harto de lidiar con inquilinos y reparaciones? Vende tu propiedad de alquiler tal como está y olvídate del estrés."
+      },
+      {
+        "title": "Reparaciones Mayores Necesarias",
+        "description": "¿La casa necesita trabajo? No hay problema. Compramos propiedades en cualquier condición, sin reparaciones ni actualizaciones requeridas."
+      },
+      {
+        "title": "Acuerdo de Divorcio",
+        "description": "¿Necesitas vender rápido por divorcio? Ofrecemos soluciones rápidas y justas durante momentos difíciles."
+      },
+      {
+        "title": "Reubicación Laboral",
+        "description": "¿Te mudas por trabajo? Podemos cerrar en tu fecha y ayudarte a transicionar suavemente a tu nueva ubicación."
+      },
+      {
+        "title": "Dificultades Financieras",
+        "description": "¿Atrasado en pagos? Ofrecemos soluciones respetuosas y confidenciales para ayudarte a recuperarte."
+      },
+      {
+        "title": "Reducción de Espacio",
+        "description": "¿Listo para un lugar más pequeño? Salta la puesta en escena y las visitas: compraremos tu casa tal como está."
+      }
+    ],
+    "cta": "Obtén mi oferta justa en efectivo",
+    "caption": "Consulta confidencial: sin presión, solo soluciones"
+  },
+  "whyChoose": {
+    "title": "¿Por Qué Elegir Easy Closers?",
+    "description": "Somos una empresa local con licencia que ha ayudado a cientos de propietarios a vender sus propiedades de forma rápida y justa.",
+    "floating": "Pagado a Propietarios",
+    "stats": [
+      { "value": "100+", "label": "Propiedades Compradas" },
+      { "value": "24hrs", "label": "Tiempo Promedio de Oferta" },
+      { "value": "7 Días", "label": "Cierre Rápido Disponible" },
+      { "value": "$0", "label": "En Comisiones o Tarifas" }
+    ],
+    "badges": [
+      {
+        "title": "Totalmente Licenciado y Asegurado",
+        "description": "Licencia DRE #02045945"
+      },
+      {
+        "title": "Empresa Local del Sur de California",
+        "description": "Conocemos el área y nos importa nuestra comunidad"
+      },
+      {
+        "title": "Justo y Transparente",
+        "description": "Sin tarifas ocultas, sin sorpresas de último minuto"
+      }
+    ],
+    "cta": "Obtén mi oferta justa en efectivo"
+  },
+  "testimonials": {
+    "title": "Historias de Éxito",
+    "description": "Historias reales de personas que usan y aman nuestro servicio cada día",
+    "items": [
+      {
+        "name": "John Doe",
+        "role": "Ingeniero de Software",
+        "company": "TechCorp",
+        "text": "¡Este producto ha transformado completamente la forma en que trabajamos. La eficiencia y facilidad de uso son inigualables!"
+      },
+      {
+        "name": "Sophia Lee",
+        "role": "Analista de Datos",
+        "company": "InsightTech",
+        "text": "¡Esta herramienta me ha ahorrado horas de trabajo! Las funciones de análisis e informes son increíblemente potentes."
+      },
+      {
+        "name": "Michael Johnson",
+        "role": "Diseñador UX",
+        "company": "DesignPro",
+        "text": "Una herramienta increíble que simplifica tareas complejas. Muy recomendable para profesionales de la industria."
+      },
+      {
+        "name": "Emily Davis",
+        "role": "Especialista en Marketing",
+        "company": "BrandBoost",
+        "text": "He visto una mejora significativa en la productividad de nuestro equipo desde que comenzamos a usar este servicio."
+      },
+      {
+        "name": "Daniel Martinez",
+        "role": "Desarrollador Full-Stack",
+        "company": "CodeCrafters",
+        "text": "¡La mejor inversión que hemos hecho! El equipo de soporte también es súper receptivo y servicial."
+      },
+      {
+        "name": "Jane Smith",
+        "role": "Gerente de Producto",
+        "company": "InnovateX",
+        "text": "¡La experiencia de usuario es de primera categoría! La interfaz es limpia, intuitiva y fácil de navegar."
+      }
+    ]
+  },
+  "ctaSection": {
+    "title": "¿Listo para Vender Tu Casa Rápido?",
+    "description": "Obtén una oferta justa en efectivo hoy. Sin tarifas, sin reparaciones, sin compromiso.",
+    "cta": "Obtén mi oferta justa en efectivo"
+  },
+  "ctaBanner": {
+    "title": "¡Obtén tu oferta inmediata!",
+    "description": "Completa el formulario y recibe una cotización personalizada para tu propiedad en menos de 24 horas. Sin compromisos, sin costos ocultos.",
+    "benefits": [
+      "Evaluación profesional gratuita",
+      "Respuesta en 24 horas o menos",
+      "Sin obligación de vender"
+    ],
+    "tip": "Consejo: ¡Podemos cerrar en tan solo 7 días!"
+  },
+  "contact": {
+    "title": "Obtén Tu Oferta Sin Compromiso",
+    "description": "¿Tienes preguntas? ¿Listo para vender? Llena el formulario abajo o contáctanos directamente. Estamos aquí para ayudar.",
+    "info": {
+      "title": "Información de Contacto",
+      "subtitle": "Contáctanos a través de cualquiera de estos canales.",
+      "phone": {
+        "label": "Llámanos",
+        "sub": "Lun-Vie 9am-6pm PST"
+      },
+      "email": {
+        "label": "Envíanos un correo"
+      },
+      "office": {
+        "label": "Oficina"
+      },
+      "trust": {
+        "title": "Confiable y Verificado",
+        "desc": "Profesionales Inmobiliarios Licenciados"
+      }
+    },
+    "form": {
+      "labels": {
+        "name": "Nombre Completo",
+        "phone": "Número de Teléfono",
+        "email": "Correo Electrónico",
+        "address": "Dirección de la Propiedad",
+        "message": "Mensaje (Opcional)"
+      },
+      "placeholders": {
+        "name": "Juan Pérez",
+        "phone": "(555) 123-4567",
+        "email": "juan@ejemplo.com",
+        "address": "123 Calle Principal, Ciudad",
+        "message": "Cuéntanos sobre tu propiedad y situación..."
+      },
+      "button": {
+        "loading": "Enviando Solicitud...",
+        "submit": "Obtener Mi Oferta Justa en Efectivo"
+      },
+      "disclaimer": "Al enviar este formulario, aceptas nuestra Política de Privacidad y Términos de Servicio."
+    },
+    "success": {
+      "title": "¡Solicitud de Oferta Recibida!",
+      "description": "Nos pondremos en contacto contigo sobre tu propiedad en breve."
+    },
+    "error": {
+      "title": "Error",
+      "description": "Hubo un problema al enviar tu solicitud. Por favor intenta de nuevo."
+    }
+  },
+  "footer": {
+    "about": {
+      "description": "Ofrecemos a los propietarios una forma rápida, justa y sin complicaciones de vender su propiedad. Sin comisiones, sin reparaciones, solo resultados."
+    },
+    "links": {
+      "title": "Enlaces Rápidos",
+      "items": [
+        { "title": "Nosotros" },
+        { "title": "Cómo Funciona" },
+        { "title": "Comparar" },
+        { "title": "Testimonios" },
+        { "title": "Contacto" }
+      ]
+    },
+    "newsletter": {
+      "title": "Mantente Actualizado",
+      "description": "Suscríbete a nuestro boletín para las últimas actualizaciones del mercado inmobiliario.",
+      "placeholder": "Ingresa tu correo",
+      "button": "Suscribirse"
+    },
+    "copyright": "Todos los derechos reservados."
+  },
+  "quoteForm": {
+    "title": "Obtén Tu Oferta en Efectivo",
+    "subtitle": "Sin reparaciones, sin tarifas, sin compromiso.",
+    "fields": {
+      "address": "Dirección de la propiedad * (selecciona de las sugerencias)",
+      "name": "Nombre completo *",
+      "phone": "Teléfono *",
+      "email": "Correo electrónico *",
+      "notes": "Cuéntanos sobre tu situación (Opcional)"
+    },
+    "security": "Tu información es 100% segura y confidencial",
+    "button": {
+      "submit": "Obtener Mi Oferta Justa en Efectivo",
+      "loading": "Enviando cotización..."
+    },
+    "errors": {
+      "incomplete": "Campos incompletos",
+      "recaptcha": "Por favor, resuelve el reCAPTCHA para continuar.",
+      "recaptchaExpired": "El reto reCAPTCHA expiró. Intenta de nuevo.",
+      "humanVerification": "No pudimos verificar que eres humano. Intenta de nuevo.",
+      "submission": "Error al enviar la cotización. Inténtalo de nuevo.",
+      "googleMapsBilling": "Google Maps requiere facturación habilitada",
+      "placesApiBilling": "Places API requiere facturación habilitada",
+      "addressPrecision": "Por favor, selecciona una dirección de las sugerencias para mayor precisión",
+      "autocompleteUnavailable": "Autocompletado no disponible"
+    },
+    "success": "¡Gracias! Hemos recibido tu solicitud de cotización."
+  }
+}

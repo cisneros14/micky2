@@ -1,106 +1,146 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
-import {
-  DribbbleIcon,
-  GithubIcon,
-  TwitchIcon,
-  TwitterIcon,
-} from "lucide-react";
+"use client";
+
 import Link from "next/link";
-import { Logo } from "./logo";
+import { Facebook, Instagram, Linkedin, Twitter, Home } from "lucide-react";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { useTranslation } from "@/components/TranslationsProvider";
 
-const footerLinks = [
-  {
-    title: "Overview",
-    href: "#",
-  },
-  {
-    title: "Features",
-    href: "#",
-  },
-  {
-    title: "Pricing",
-    href: "#",
-  },
-  {
-    title: "Careers",
-    href: "#",
-  },
-  {
-    title: "Help",
-    href: "#",
-  },
-  {
-    title: "Privacy",
-    href: "#",
-  },
-];
+export default function Footer() {
+  const { t } = useTranslation();
 
-const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  const links = [
+    {
+      title: t("footer.links.items.0.title", "About Us"),
+      href: "/about",
+    },
+    {
+      title: t("footer.links.items.1.title", "How It Works"),
+      href: "/how-it-works",
+    },
+    {
+      title: t("footer.links.items.2.title", "Compare"),
+      href: "/compare",
+    },
+    {
+      title: t("footer.links.items.3.title", "Testimonials"),
+      href: "/testimonials",
+    },
+    {
+      title: t("footer.links.items.4.title", "Contact"),
+      href: "/contact",
+    },
+  ];
+
   return (
-    <div className="flex flex-col">
-      <div className="grow bg-muted" />
-      <footer className="border-t">
-        <div className="max-w-(--breakpoint-xl) mx-auto">
-          <div className="py-12 flex flex-col sm:flex-row items-start justify-between gap-x-8 gap-y-10 px-6 xl:px-0">
-            <div>
-              {/* Logo */}
-              <Logo className="bg-white p-3 rounded-xl"/>
-
-              <ul className="mt-6 flex items-center gap-4 flex-wrap">
-                {footerLinks.map(({ title, href }) => (
-                  <li key={title}>
-                    <Link
-                      href={href}
-                      className="text-muted-foreground hover:text-foreground"
-                    >
-                      {title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Subscribe Newsletter */}
-            <div className="max-w-xs w-full">
-              <h6 className="font-medium">Stay up to date</h6>
-              <form className="mt-6 flex items-center gap-2">
-                <Input type="email" placeholder="Enter your email" />
-                <Button>Subscribe</Button>
-              </form>
+    <footer className="bg-primary text-primary-foreground pt-16 pb-8 border-t border-primary/10">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          {/* Brand Column */}
+          <div className="space-y-4">
+            <Link href="/" className="flex items-center gap-2">
+              <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center">
+                <Home className="w-6 h-6 text-primary" />
+              </div>
+              <span className="text-xl font-bold text-white">Easy Closers</span>
+            </Link>
+            <p className="text-primary-foreground/80 leading-relaxed">
+              {t(
+                "footer.about.description",
+                "We provide homeowners with a fast, fair, and hassle-free way to sell their property. No commissions, no repairs, just results.",
+              )}
+            </p>
+            <div className="flex gap-4 pt-2">
+              <Link
+                href="#"
+                className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-secondary-foreground transition-all duration-300"
+              >
+                <Facebook className="w-5 h-5" />
+              </Link>
+              <Link
+                href="#"
+                className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-secondary-foreground transition-all duration-300"
+              >
+                <Instagram className="w-5 h-5" />
+              </Link>
+              <Link
+                href="#"
+                className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-secondary-foreground transition-all duration-300"
+              >
+                <Twitter className="w-5 h-5" />
+              </Link>
+              <Link
+                href="#"
+                className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-secondary-foreground transition-all duration-300"
+              >
+                <Linkedin className="w-5 h-5" />
+              </Link>
             </div>
           </div>
-          <Separator />
-          <div className="py-8 flex flex-col-reverse sm:flex-row items-center justify-between gap-x-2 gap-y-5 px-6 xl:px-0">
-            {/* Copyright */}
-            <span className="text-muted-foreground">
-              &copy; {new Date().getFullYear()}{" "}
-              <Link href="/" target="_blank">
-                Shadcn UI Blocks
-              </Link>
-              . All rights reserved.
-            </span>
 
-            <div className="flex items-center gap-5 text-muted-foreground">
-              <Link href="#" target="_blank">
-                <TwitterIcon className="h-5 w-5" />
-              </Link>
-              <Link href="#" target="_blank">
-                <DribbbleIcon className="h-5 w-5" />
-              </Link>
-              <Link href="#" target="_blank">
-                <TwitchIcon className="h-5 w-5" />
-              </Link>
-              <Link href="#" target="_blank">
-                <GithubIcon className="h-5 w-5" />
-              </Link>
-            </div>
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-lg font-bold mb-6 text-white">
+              {t("footer.links.title", "Quick Links")}
+            </h3>
+            <ul className="space-y-4">
+              {links.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-primary-foreground/80 hover:text-secondary transition-colors inline-block"
+                  >
+                    {link.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Newsletter */}
+          <div className="lg:col-span-2">
+            <h3 className="text-lg font-bold mb-6 text-white">
+              {t("footer.newsletter.title", "Stay Updated")}
+            </h3>
+            <p className="text-primary-foreground/80 mb-6">
+              {t(
+                "footer.newsletter.description",
+                "Subscribe to our newsletter for the latest real estate market updates.",
+              )}
+            </p>
+            <form className="flex gap-2 max-w-md">
+              <Input
+                type="email"
+                placeholder={t(
+                  "footer.newsletter.placeholder",
+                  "Enter your email",
+                )}
+                className="bg-primary-foreground/10 border-primary-foreground/20 text-white placeholder:text-primary-foreground/50 focus-visible:ring-secondary"
+              />
+              <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold">
+                {t("footer.newsletter.button", "Subscribe")}
+              </Button>
+            </form>
           </div>
         </div>
-      </footer>
-    </div>
-  );
-};
 
-export default Footer;
+        <div className="pt-8 border-t border-primary-foreground/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-primary-foreground/60">
+          <p>
+            &copy; {currentYear} Easy Closers.{" "}
+            {t("footer.copyright", "All rights reserved.")}
+          </p>
+          <div className="flex gap-8">
+            <Link href="#" className="hover:text-white transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="#" className="hover:text-white transition-colors">
+              Terms of Service
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
