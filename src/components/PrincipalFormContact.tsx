@@ -23,6 +23,7 @@ export default function PrincipalFormContact() {
   });
 
   const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const [showRecaptcha, setShowRecaptcha] = useState(false);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -210,6 +211,7 @@ export default function PrincipalFormContact() {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
+                      onFocus={() => setShowRecaptcha(true)}
                       placeholder={t(
                         "contact.form.placeholders.name",
                         "John Doe",
@@ -227,6 +229,7 @@ export default function PrincipalFormContact() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
+                      onFocus={() => setShowRecaptcha(true)}
                       placeholder={t(
                         "contact.form.placeholders.phone",
                         "(555) 123-4567",
@@ -247,6 +250,7 @@ export default function PrincipalFormContact() {
                     type="email"
                     value={formData.email}
                     onChange={handleChange}
+                    onFocus={() => setShowRecaptcha(true)}
                     placeholder={t(
                       "contact.form.placeholders.email",
                       "john@example.com",
@@ -265,6 +269,7 @@ export default function PrincipalFormContact() {
                     name="address"
                     value={formData.address}
                     onChange={handleChange}
+                    onFocus={() => setShowRecaptcha(true)}
                     placeholder={t(
                       "contact.form.placeholders.address",
                       "123 Main St, Riverside, CA",
@@ -283,6 +288,7 @@ export default function PrincipalFormContact() {
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
+                    onFocus={() => setShowRecaptcha(true)}
                     placeholder={t(
                       "contact.form.placeholders.message",
                       "Tell us about your property and situation...",
@@ -291,12 +297,14 @@ export default function PrincipalFormContact() {
                   />
                 </div>
 
-                <div className="flex justify-center">
-                  <ReCAPTCHA
-                    ref={recaptchaRef}
-                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
-                    theme="light"
-                  />
+                <div className="flex justify-center min-h-[78px]">
+                  {showRecaptcha && (
+                    <ReCAPTCHA
+                      ref={recaptchaRef}
+                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                      theme="light"
+                    />
+                  )}
                 </div>
 
                 <Button
