@@ -5,32 +5,31 @@ import { Facebook, Instagram, Linkedin, Twitter, Home } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { useTranslation } from "@/components/TranslationsProvider";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
   const { t } = useTranslation();
+  const pathname = usePathname();
+  const locale = pathname.split("/")[1] || "en";
 
   const currentYear = new Date().getFullYear();
 
   const links = [
     {
-      title: t("footer.links.items.0.title", "About Us"),
-      href: "/about",
+      title: t("nav.home", "Home"),
+      href: `/${locale}`,
     },
     {
-      title: t("footer.links.items.1.title", "How It Works"),
-      href: "/how-it-works",
+      title: t("nav.process", "Process"),
+      href: `/${locale}/process`,
     },
     {
-      title: t("footer.links.items.2.title", "Compare"),
-      href: "/compare",
+      title: t("nav.about", "About"),
+      href: `/${locale}/about`,
     },
     {
-      title: t("footer.links.items.3.title", "Testimonials"),
-      href: "/testimonials",
-    },
-    {
-      title: t("footer.links.items.4.title", "Contact"),
-      href: "/contact",
+      title: t("nav.contact", "Contact Us"),
+      href: `/${locale}/contact`,
     },
   ];
 

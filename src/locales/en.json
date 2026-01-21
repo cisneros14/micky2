@@ -60,7 +60,7 @@
   },
   "nav": {
     "home": "Home",
-    "blog": "Blog",
+    "process": "Process",
     "about": "About",
     "contact": "Contact Us"
   },
@@ -345,7 +345,7 @@
       "title": "Quick Links",
       "items": [
         { "title": "About Us" },
-        { "title": "How It Works" },
+        { "title": "Process" },
         { "title": "Compare" },
         { "title": "Testimonials" },
         { "title": "Contact" }

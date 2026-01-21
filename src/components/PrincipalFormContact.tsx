@@ -291,13 +291,13 @@ export default function PrincipalFormContact() {
                   />
                 </div>
 
-                {/* <div className="flex justify-center">
+                <div className="flex justify-center">
                   <ReCAPTCHA
                     ref={recaptchaRef}
                     sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
                     theme="light"
                   />
-                </div> */}
+                </div>
 
                 <Button
                   type="submit"

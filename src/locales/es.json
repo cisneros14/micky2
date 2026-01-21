@@ -60,7 +60,7 @@
   },
   "nav": {
     "home": "Inicio",
-    "blog": "Blog",
+    "process": "Proceso",
     "about": "Nosotros",
     "contact": "Contacto"
   },
@@ -345,7 +345,7 @@
       "title": "Enlaces Rápidos",
       "items": [
         { "title": "Nosotros" },
-        { "title": "Cómo Funciona" },
+        { "title": "Proceso" },
         { "title": "Comparar" },
         { "title": "Testimonios" },
         { "title": "Contacto" }

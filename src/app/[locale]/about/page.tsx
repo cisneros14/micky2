@@ -7,6 +7,7 @@ import Footer from "@/components/footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { Metadata } from "next";
 import CallToActionBanner from "@/components/CallToActionBanner";
+import Testimonials from "@/components/testimonials";
 
 export async function generateMetadata({
   params,
@@ -70,6 +71,7 @@ export default function AboutPage() {
         <HeroAbout />
         <HeroAbout2 />
         <StatsSection />
+        <Testimonials />
         <CallToActionBanner />
       </main>
     </div>

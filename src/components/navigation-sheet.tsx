@@ -21,7 +21,7 @@ export const NavigationSheet = () => {
 
   const links = [
     { href: `/${locale}`, label: t("nav.home", "Home") },
-    { href: `/${locale}/blog`, label: t("nav.blog", "Blog") },
+    { href: `/${locale}/process`, label: t("nav.process", "Process") },
     { href: `/${locale}/about`, label: t("nav.about", "About") },
     { href: `/${locale}/contact`, label: t("nav.contact", "Contact Us") },
   ];

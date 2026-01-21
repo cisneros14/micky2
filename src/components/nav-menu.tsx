@@ -40,10 +40,12 @@ export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => {
           <NavigationMenuLink
             asChild
             className={` !rounded-full ${navigationMenuTriggerStyle()} ${
-              isActive(`/${locale}/blog`) ? activeClasses : ""
+              isActive(`/${locale}/process`) ? activeClasses : ""
             }`}
           >
-            <Link href={`/${locale}/blog`}>{t("nav.blog", "Blog")}</Link>
+            <Link href={`/${locale}/process`}>
+              {t("nav.process", "Process")}
+            </Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
