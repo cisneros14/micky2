@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import type React from "react";
 
 import { Textarea } from "@/components/ui/textarea";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -50,17 +50,22 @@ declare global {
   }
 }
 
-// Hook personalizado para cargar Google Maps
+// Hook personalizado para cargar Google Maps - LAZY LOAD
 function useGoogleMaps() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    // Si ya está cargado
+  const loadMaps = useCallback(() => {
+    if (isLoaded || isLoading) return;
+
+    // Si ya está cargado globalmente
     if (window.google && window.google.maps && window.google.maps.places) {
       setIsLoaded(true);
       return;
     }
+
+    setIsLoading(true);
 
     // Si ya hay un script cargándose
     const existingScript = document.querySelector(
@@ -70,6 +75,7 @@ function useGoogleMaps() {
       const checkGoogleMaps = () => {
         if (window.google && window.google.maps && window.google.maps.places) {
           setIsLoaded(true);
+          setIsLoading(false);
         } else {
           setTimeout(checkGoogleMaps, 100);
         }
@@ -93,6 +99,7 @@ function useGoogleMaps() {
       }
 
       setIsLoaded(true);
+      setIsLoading(false);
       delete window.initMap; // Limpiar callback
     };
 
@@ -100,10 +107,13 @@ function useGoogleMaps() {
       setError(
         "Google Maps requiere facturación habilitada en Google Cloud Console",
       );
+      setIsLoading(false);
     };
 
     document.head.appendChild(script);
+  }, [isLoaded, isLoading]);
 
+  useEffect(() => {
     return () => {
       // Cleanup si el componente se desmonta
       if (window.initMap) {
@@ -112,7 +122,7 @@ function useGoogleMaps() {
     };
   }, []);
 
-  return { isLoaded, error };
+  return { isLoaded, error, loadMaps };
 }
 
 interface FormData {
@@ -136,6 +146,7 @@ interface AddressAutocompleteProps {
   onChange: (address: string) => void;
   placeholder?: string;
   className?: string;
+  onFocusTrigger?: () => void;
 }
 
 function AddressAutocomplete({
@@ -143,11 +154,12 @@ function AddressAutocomplete({
   onChange,
   placeholder,
   className,
+  onFocusTrigger,
 }: AddressAutocompleteProps) {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isValidAddress, setIsValidAddress] = useState(false);
   const [displayValue, setDisplayValue] = useState(value);
-  const { isLoaded, error } = useGoogleMaps();
+  const { isLoaded, error, loadMaps } = useGoogleMaps();
   const { t } = useTranslation();
 
   const {
@@ -166,7 +178,7 @@ function AddressAutocomplete({
     initOnMount: false, // No inicializar hasta que Google Maps esté listo
   });
 
-  // Inicializar manualmente cuando Google Maps esté listo
+  // Inicializar automáticamente cuando Google Maps esté listo
   useEffect(() => {
     if (
       isLoaded &&
@@ -191,6 +203,12 @@ function AddressAutocomplete({
     }
   }, [value]);
 
+  const handleInputFocus = () => {
+    onFocusTrigger?.(); // Notificar al padre para cargar recaptcha si es necesario
+    loadMaps(); // Cargar Maps solo al hacer focus
+    setShowSuggestions(displayValue.length > 2 && ready && isLoaded);
+  };
+
   // Mostrar error si hay problemas cargando Google Maps
   if (error) {
     return (
@@ -200,6 +218,7 @@ function AddressAutocomplete({
           onChange={(e) => onChange(e.target.value)}
           placeholder={`${placeholder} (${t("quoteForm.errors.autocompleteUnavailable", "Autocompletado no disponible")})`}
           className={className}
+          onFocus={onFocusTrigger}
         />
         <div
           className="absolute right-3 top-1/2 transform -translate-y-1/2 text-red-400"
@@ -268,21 +287,14 @@ function AddressAutocomplete({
                 ? "border-green-300 focus:border-green-500 focus:ring-green-500"
                 : "",
           )}
-          onFocus={() =>
-            setShowSuggestions(displayValue.length > 2 && ready && isLoaded)
-          }
+          onFocus={handleInputFocus}
           onBlur={() => {
             // Delay para permitir click en sugerencias
             setTimeout(() => setShowSuggestions(false), 200);
           }}
         />
         <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-1">
-          {!isLoaded ? (
-            <div
-              className="animate-spin h-3 w-3 border border-gray-300 border-t-blue-500 rounded-full"
-              title="Cargando Google Maps..."
-            ></div>
-          ) : !ready ? (
+          {!isLoaded ? null : !ready ? ( // No mostrar loader hasta que el usuario intente interactuar
             <div
               className="animate-pulse h-3 w-3 bg-yellow-400 rounded-full"
               title="Inicializando autocompletado..."
@@ -358,42 +370,17 @@ export function PropertyQuoteForm({
   });
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const [recaptchaError, setRecaptchaError] = useState<string | null>(null);
+  const [isRecaptchaLoaded, setIsRecaptchaLoaded] = useState(false);
+  const [isRecaptchaLoading, setIsRecaptchaLoading] = useState(false);
+
   const recaptchaRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<number | null>(null);
 
-  // Cargar el script de reCAPTCHA y renderizar el widget
-  useEffect(() => {
-    // Definir callbacks globales
-    window.onRecaptchaForm = function (token: string) {
-      setRecaptchaToken(token);
-      setRecaptchaError(null);
-    };
-    window.onRecaptchaExpired = function () {
-      setRecaptchaToken(null);
-      setRecaptchaError(
-        t(
-          "quoteForm.errors.recaptchaExpired",
-          "El reto reCAPTCHA expiró. Intenta de nuevo.",
-        ),
-      );
-    };
+  // Función para cargar ReCAPTCHA on demand
+  const loadRecaptcha = useCallback(() => {
+    if (isRecaptchaLoaded || isRecaptchaLoading) return;
 
-    const loadRecaptcha = () => {
-      if (
-        typeof window !== "undefined" &&
-        !document.getElementById("recaptcha-script-form")
-      ) {
-        const script = document.createElement("script");
-        script.id = "recaptcha-script-form";
-        script.src =
-          "https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoadForm&render=explicit";
-        script.async = true;
-        script.defer = true;
-        document.body.appendChild(script);
-      } else if (window.grecaptcha && window.grecaptcha.render) {
-        renderWidget();
-      }
-    };
+    setIsRecaptchaLoading(true);
 
     const renderWidget = () => {
       if (
@@ -412,17 +399,49 @@ export function PropertyQuoteForm({
             callback: "onRecaptchaForm",
             "expired-callback": "onRecaptchaExpired",
           });
+          setIsRecaptchaLoaded(true);
+          setIsRecaptchaLoading(false);
         } catch (error) {
           console.error("Error rendering reCAPTCHA:", error);
+          setIsRecaptchaLoading(false);
         }
       }
     };
 
+    // Definir callbacks globales
+    window.onRecaptchaForm = function (token: string) {
+      setRecaptchaToken(token);
+      setRecaptchaError(null);
+    };
+    window.onRecaptchaExpired = function () {
+      setRecaptchaToken(null);
+      setRecaptchaError(
+        t(
+          "quoteForm.errors.recaptchaExpired",
+          "El reto reCAPTCHA expiró. Intenta de nuevo.",
+        ),
+      );
+    };
     // Callback global para cuando se carga el script
     (window as any).onRecaptchaLoadForm = renderWidget;
 
-    loadRecaptcha();
+    if (
+      typeof window !== "undefined" &&
+      !document.getElementById("recaptcha-script-form")
+    ) {
+      const script = document.createElement("script");
+      script.id = "recaptcha-script-form";
+      script.src =
+        "https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoadForm&render=explicit";
+      script.async = true;
+      script.defer = true;
+      document.body.appendChild(script);
+    } else if (window.grecaptcha && window.grecaptcha.render) {
+      renderWidget();
+    }
+  }, [isRecaptchaLoaded, isRecaptchaLoading, t]);
 
+  useEffect(() => {
     return () => {
       // Cleanup: resetear widget al desmontar
       if (
@@ -439,7 +458,12 @@ export function PropertyQuoteForm({
     };
   }, []);
 
+  const handleInteraction = () => {
+    loadRecaptcha();
+  };
+
   const handleInputChange = (field: keyof FormData, value: string) => {
+    handleInteraction(); // Cargar scripts al escribir
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
@@ -454,6 +478,18 @@ export function PropertyQuoteForm({
     e.preventDefault();
     setError(null);
     setRecaptchaError(null);
+
+    // Si el usuario envía rápido antes de que cargue el recaptcha
+    if (!isRecaptchaLoaded) {
+      loadRecaptcha();
+      setRecaptchaError(
+        t(
+          "quoteForm.errors.recaptchaLoading",
+          "Verificando seguridad, por favor espera un momento...",
+        ),
+      );
+      return;
+    }
 
     if (!recaptchaToken) {
       setRecaptchaError(
@@ -554,7 +590,6 @@ export function PropertyQuoteForm({
     <div className="">
       <div className="space-y-6">
         <div className="space-y-2 text-center mb-3">
-          
           <p className="text-muted-foreground">
             {t("quoteForm.subtitle", "No repairs, no fees, no obligation.")}
           </p>
@@ -571,6 +606,7 @@ export function PropertyQuoteForm({
                     "Property address * (select from suggestions)",
                   )}
                   className="mt-1 bg-gray-50"
+                  onFocusTrigger={handleInteraction}
                 />
               </div>
             </div>
@@ -584,6 +620,7 @@ export function PropertyQuoteForm({
                   onChange={(e) => handleInputChange("name", e.target.value)}
                   className="mt-1 bg-gray-50 pl-10 h-13"
                   required
+                  onFocus={handleInteraction}
                 />
               </div>
             </div>
@@ -599,6 +636,7 @@ export function PropertyQuoteForm({
                     onChange={(e) => handleInputChange("phone", e.target.value)}
                     className="pl-10 h-13 bg-gray-50"
                     required
+                    onFocus={handleInteraction}
                   />
                 </div>
               </div>
@@ -615,6 +653,7 @@ export function PropertyQuoteForm({
                   onChange={(e) => handleInputChange("email", e.target.value)}
                   className="pl-10 h-13 bg-gray-50"
                   required
+                  onFocus={handleInteraction}
                 />
               </div>
             </div>
@@ -630,6 +669,7 @@ export function PropertyQuoteForm({
                 onChange={(e) => handleInputChange("notes", e.target.value)}
                 className="mt-1 bg-gray-50 resize-none pl-10"
                 rows={3}
+                onFocus={handleInteraction}
               />
               <p className="text-sm text-center mt-5 text-muted-foreground">
                 {t(
@@ -660,6 +700,7 @@ export function PropertyQuoteForm({
               variant="secondary"
               className="w-full disabled:opacity-50 md:py-6"
               disabled={isSubmitting}
+              onMouseEnter={handleInteraction}
             >
               {isSubmitting ? (
                 <div className="flex items-center gap-2">
