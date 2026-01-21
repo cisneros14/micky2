@@ -13,7 +13,7 @@ import Testimonials from "@/components/testimonials";
 
 export default function Home() {
   return (
-    <div className="bg-[#f1f1f1]">
+    <main className="bg-[#f1f1f1]">
       <Hero />
       <ProcessSection />
       <ComparisonTable />
@@ -22,7 +22,6 @@ export default function Home() {
       <Testimonials />
       <CTASection />
       <PrincipalFormContact />
-
-    </div>
+    </main>
   );
 }

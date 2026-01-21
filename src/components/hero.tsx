@@ -40,9 +40,9 @@ export default function Hero() {
                   <DollarSign className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg">
+                  <p className="font-semibold text-lg">
                     {t("hero.features.commissions.title", "$0 Commissions")}
-                  </h3>
+                  </p>
                   <p className="text-sm text-primary-foreground/80">
                     {t(
                       "hero.features.commissions.desc",
@@ -57,9 +57,9 @@ export default function Hero() {
                   <Calendar className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg">
+                  <p className="font-semibold text-lg">
                     {t("hero.features.timeline.title", "Close in 7 Days")}
-                  </h3>
+                  </p>
                   <p className="text-sm text-primary-foreground/80">
                     {t(
                       "hero.features.timeline.desc",
@@ -74,9 +74,9 @@ export default function Hero() {
                   <Home className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg">
+                  <p className="font-semibold text-lg">
                     {t("hero.features.asis.title", "Sell As-Is")}
-                  </h3>
+                  </p>
                   <p className="text-sm text-primary-foreground/80">
                     {t(
                       "hero.features.asis.desc",
@@ -91,9 +91,9 @@ export default function Hero() {
                   <Package className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg">
+                  <p className="font-semibold text-lg">
                     {t("hero.features.leave.title", "Leave Everything")}
-                  </h3>
+                  </p>
                   <p className="text-sm text-primary-foreground/80">
                     {t(
                       "hero.features.leave.desc",
