@@ -13,10 +13,12 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { useState } from "react";
 
 export const NavigationSheet = () => {
   const { t } = useTranslation();
   const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
   const locale = pathname.split("/")[1] || "en";
 
   const links = [
@@ -27,7 +29,7 @@ export const NavigationSheet = () => {
   ];
 
   return (
-    <Sheet>
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <VisuallyHidden>
         <SheetTitle>Navigation Menu</SheetTitle>
       </VisuallyHidden>
@@ -49,6 +51,7 @@ export const NavigationSheet = () => {
               <Link
                 key={link.href}
                 href={link.href}
+                onClick={() => setIsOpen(false)}
                 className={`font-medium transition-colors flex items-center justify-between group px-4 py-2 !rounded-full ${
                   isActive
                     ? "bg-[var(--primary)] text-white focus:bg-[var(--primary)] focus:text-white"

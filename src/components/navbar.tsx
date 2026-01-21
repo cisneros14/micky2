@@ -16,8 +16,8 @@ const Navbar = () => {
   return (
     <nav className="fixed z-50 w-full top-3 px-3">
       <div className="flex items-center bg-background/80 backdrop-blur-sm border rounded-full justify-between container mx-auto p-2">
-        <div className="bg-background border rounded-full p-1 px-4">
-          <Logo className="w-16 md:w-28" />
+        <div className="bg-background border rounded-full p-1 px-3 md:px-4">
+          <Logo className="w-24 md:w-28" />
         </div>
 
         {/* Desktop Menu */}
