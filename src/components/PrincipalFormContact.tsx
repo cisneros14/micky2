@@ -242,7 +242,6 @@ export default function PrincipalFormContact() {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      onFocus={() => setShowRecaptcha(true)}
                       placeholder={t(
                         "contact.form.placeholders.name",
                         "John Doe",
@@ -260,7 +259,6 @@ export default function PrincipalFormContact() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      onFocus={() => setShowRecaptcha(true)}
                       placeholder={t(
                         "contact.form.placeholders.phone",
                         "(555) 123-4567",
@@ -281,7 +279,6 @@ export default function PrincipalFormContact() {
                     type="email"
                     value={formData.email}
                     onChange={handleChange}
-                    onFocus={() => setShowRecaptcha(true)}
                     placeholder={t(
                       "contact.form.placeholders.email",
                       "john@example.com",
@@ -300,7 +297,6 @@ export default function PrincipalFormContact() {
                     name="address"
                     value={formData.address}
                     onChange={handleChange}
-                    onFocus={() => setShowRecaptcha(true)}
                     placeholder={t(
                       "contact.form.placeholders.address",
                       "123 Main St, Riverside, CA",
