@@ -30,10 +30,7 @@ export default function WhyChooseSection() {
   ];
 
   const trustBadges = [
-    {
-      title: t("whyChoose.badges.0.title", "Fully Licensed & Insured"),
-      description: t("whyChoose.badges.0.description", "DRE License #02045945"),
-    },
+
     {
       title: t("whyChoose.badges.1.title", "Local So-Cal Company"),
       description: t(

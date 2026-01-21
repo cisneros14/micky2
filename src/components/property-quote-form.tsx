@@ -442,6 +442,7 @@ export function PropertyQuoteForm({
   }, [isRecaptchaLoaded, isRecaptchaLoading, t]);
 
   useEffect(() => {
+    loadRecaptcha(); // Cargar inmediatamente por petición del usuario
     return () => {
       // Cleanup: resetear widget al desmontar
       if (
@@ -456,7 +457,7 @@ export function PropertyQuoteForm({
         }
       }
     };
-  }, []);
+  }, [loadRecaptcha]);
 
   const handleInteraction = () => {
     loadRecaptcha();

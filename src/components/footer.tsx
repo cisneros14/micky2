@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { useTranslation } from "@/components/TranslationsProvider";
 import { usePathname } from "next/navigation";
+import { Logo } from "./logo";
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -39,12 +40,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand Column */}
           <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center">
-                <Home className="w-6 h-6 text-primary" />
-              </div>
-              <span className="text-xl font-bold text-white">Easy Closers</span>
-            </Link>
+            <Logo className="bg-white p-2 rounded-xl" />
             <p className="text-primary-foreground/80 leading-relaxed">
               {t(
                 "footer.about.description",
@@ -53,29 +49,24 @@ export default function Footer() {
             </p>
             <div className="flex gap-4 pt-2">
               <Link
-                href="#"
+                href="https://facebook.com/profile.php?id=61577957411678"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
                 className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-secondary-foreground transition-all duration-300"
               >
                 <Facebook className="w-5 h-5" />
               </Link>
               <Link
-                href="#"
+                href="https://instagram.com/easyclosers"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
                 className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-secondary-foreground transition-all duration-300"
               >
                 <Instagram className="w-5 h-5" />
-              </Link>
-              <Link
-                href="#"
-                className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-secondary-foreground transition-all duration-300"
-              >
-                <Twitter className="w-5 h-5" />
-              </Link>
-              <Link
-                href="#"
-                className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary hover:text-secondary-foreground transition-all duration-300"
-              >
-                <Linkedin className="w-5 h-5" />
-              </Link>
+              </Link> 
+
             </div>
           </div>
 

@@ -302,6 +302,10 @@
       "office": {
         "label": "Oficina"
       },
+      "social": {
+        "title": "Conecta con Nosotros",
+        "subtitle": "Sigue nuestras últimas actualizaciones"
+      },
       "trust": {
         "title": "Confiable y Verificado",
         "desc": "Profesionales Inmobiliarios Licenciados"

@@ -9,7 +9,16 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useTranslation } from "@/components/TranslationsProvider";
 import ReCAPTCHA from "react-google-recaptcha";
 import { toast } from "sonner";
-import { Mail, MapPin, Phone, Send, Loader2, CheckCircle2 } from "lucide-react";
+import {
+  Mail,
+  MapPin,
+  Phone,
+  Send,
+  Loader2,
+  Facebook,
+  Instagram,
+} from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function PrincipalFormContact() {
   const { t } = useTranslation();
@@ -23,7 +32,6 @@ export default function PrincipalFormContact() {
   });
 
   const recaptchaRef = useRef<ReCAPTCHA>(null);
-  const [showRecaptcha, setShowRecaptcha] = useState(false);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -177,21 +185,44 @@ export default function PrincipalFormContact() {
               </CardContent>
             </Card>
 
-            <Card className="shadow-md border-border w-full">
-              <CardContent className="p-5 sm:p-6 flex items-center gap-3 sm:gap-4">
-                <div className="p-2 sm:p-3 bg-green-100 text-green-600 rounded-full shrink-0">
-                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6" />
+            <Card className="shadow-md border-border w-full bg-background">
+              <CardContent className="p-6 flex flex-col items-center justify-center text-center gap-4">
+                <div>
+                  <h3 className="font-bold text-lg text-primary">
+                    {t("contact.social.title", "Connect With Us")}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {t("contact.social.subtitle", "Follow our latest updates")}
+                  </p>
                 </div>
-                <div className="min-w-0 flex-1">
-                  <p className="font-bold text-foreground text-sm sm:text-base break-words">
-                    {t("contact.info.trust.title", "Trusted & Verified")}
-                  </p>
-                  <p className="text-xs sm:text-sm text-muted-foreground break-words">
-                    {t(
-                      "contact.info.trust.desc",
-                      "Licensed Real Estate Professionals",
-                    )}
-                  </p>
+                <div className="flex items-center justify-center gap-4">
+                  <a
+                    href="https://instagram.com/easyclosers"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-secondary/10 text-secondary rounded-full hover:bg-pink-100 hover:text-pink-600 transition-all duration-300 hover:scale-110"
+                    aria-label="Instagram"
+                  >
+                    <Instagram className="w-6 h-6" />
+                  </a>
+                  <a
+                    href="https://facebook.com/profile.php?id=61577957411678"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-secondary/10 text-secondary rounded-full hover:bg-blue-100 hover:text-blue-600 transition-all duration-300 hover:scale-110"
+                    aria-label="Facebook"
+                  >
+                    <Facebook className="w-6 h-6" />
+                  </a>
+                  <a
+                    href="https://wa.me/18887884828"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-secondary/10 text-secondary rounded-full hover:bg-green-100 hover:text-green-600 transition-all duration-300 hover:scale-110"
+                    aria-label="Whatsapp"
+                  >
+                    <FaWhatsapp className="w-6 h-6" />
+                  </a>
                 </div>
               </CardContent>
             </Card>
@@ -288,7 +319,6 @@ export default function PrincipalFormContact() {
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    onFocus={() => setShowRecaptcha(true)}
                     placeholder={t(
                       "contact.form.placeholders.message",
                       "Tell us about your property and situation...",
@@ -298,13 +328,11 @@ export default function PrincipalFormContact() {
                 </div>
 
                 <div className="flex justify-center min-h-[78px]">
-                  {showRecaptcha && (
-                    <ReCAPTCHA
-                      ref={recaptchaRef}
-                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
-                      theme="light"
-                    />
-                  )}
+                  <ReCAPTCHA
+                    ref={recaptchaRef}
+                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                    theme="light"
+                  />
                 </div>
 
                 <Button

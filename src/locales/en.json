@@ -215,10 +215,6 @@
     ],
     "badges": [
       {
-        "title": "Fully Licensed & Insured",
-        "description": "DRE License #02045945"
-      },
-      {
         "title": "Local So-Cal Company",
         "description": "We know the area and care about our community"
       },
@@ -302,9 +298,9 @@
       "office": {
         "label": "Office"
       },
-      "trust": {
-        "title": "Trusted & Verified",
-        "desc": "Licensed Real Estate Professionals"
+      "social": {
+        "title": "Connect With Us",
+        "subtitle": "Follow our latest updates"
       }
     },
     "form": {

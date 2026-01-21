@@ -20,35 +20,87 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-// Structured Data para SEO
+// Structured Data para SEO Local
 const jsonLdData = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "RealEstateAgent",
   name: "Easy Closers",
   url: "https://easyclosers.com",
-  logo: "https://easyclosers.com/logo.png", // Asegúrate de tener un logo.png en public
+  logo: "https://easyclosers.com/logo.png",
+  image: "https://easyclosers.com/banner6.jpg",
+  description:
+    "We buy houses for cash in California. Sell your house fast in Cerritos, Los Angeles, and Orange County without repairs or commissions.",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "18000 Studebaker Rd #700",
+    addressLocality: "Cerritos",
+    addressRegion: "CA",
+    postalCode: "90703",
+    addressCountry: "US",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: "33.8644",
+    longitude: "-118.0956",
+  },
+  areaServed: [
+    {
+      "@type": "State",
+      name: "California",
+    },
+    {
+      "@type": "City",
+      name: "Cerritos",
+    },
+    {
+      "@type": "City",
+      name: "Los Angeles",
+    },
+    {
+      "@type": "AdministrativeArea",
+      name: "Orange County",
+    },
+    {
+      "@type": "AdministrativeArea",
+      name: "Riverside County",
+    },
+    {
+      "@type": "AdministrativeArea",
+      name: "San Bernardino County",
+    },
+  ],
+  priceRange: "$$$",
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "18:00",
+    },
+  ],
   sameAs: [
-    "https://facebook.com/easyclosers",
-    "https://twitter.com/easyclosers",
+    "https://facebook.com/profile.php?id=61577957411678",
     "https://instagram.com/easyclosers",
   ],
   contactPoint: {
     "@type": "ContactPoint",
-    telephone: "+1-800-555-5555", // Reemplazar con el teléfono real
+    telephone: "+1-888-788-4828",
     contactType: "customer service",
+    areaServed: "CA",
+    availableLanguage: ["English", "Spanish"],
   },
 };
 
 export const metadata: Metadata = {
   title: {
     default:
-      "Easy Closers - We Buy Houses For Cash | No Repairs, No Commissions",
-    template: "%s | Easy Closers",
+      "Sell Your House Fast in California | We Buy Houses Cash | Easy Closers",
+    template: "%s | Easy Closers California",
   },
   description:
-    "Sell your house fast for cash. No repairs, no cleaning, no showings required. Get a fair offer in 24-48 hours. Over 25 years of experience buying homes as-is.",
+    "Sell your house fast for cash in California. No repairs, no cleaning, no fees. We buy houses in Cerritos, Los Angeles, Orange County & Riverside. Get a fair cash offer today.",
   keywords:
-    "sell house fast, cash home buyers, we buy houses, no repairs, no commissions, sell house as-is, quick home sale, cash offer, real estate investors",
+    "sell house fast california, we buy houses cash california, vender casa rapido california, sell my house fast cerritos, cash home buyers los angeles, real estate investors southern california, sell as-is california",
   authors: [{ name: "Easy Closers" }],
   creator: "Easy Closers",
   publisher: "Easy Closers",
@@ -66,9 +118,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Easy Closers - We Buy Houses For Cash | No Repairs, No Commissions",
+    title: "Sell Your House Fast in California | No Repairs | Easy Closers",
     description:
-      "Sell your house fast for cash. No repairs, no cleaning, no showings required. Get a fair offer in 24-48 hours. Over 25 years of experience buying homes as-is.",
+      "We buy houses for cash across Southern California. Sell your home in Cerritos, LA, or Orange County in as little as 7 days. No commissions, no repairs.",
     url: "https://easyclosers.com",
     siteName: "Easy Closers",
     images: [
@@ -76,7 +128,7 @@ export const metadata: Metadata = {
         url: "/banner6.jpg",
         width: 1200,
         height: 630,
-        alt: "Easy Closers - We Buy Houses For Cash",
+        alt: "Easy Closers - We Buy Houses For Cash in California",
       },
     ],
     locale: "en_US",
@@ -84,9 +136,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Easy Closers - We Buy Houses For Cash | No Repairs, No Commissions",
+    title: "Sell Your House Fast in California | Easy Closers",
     description:
-      "Sell your house fast for cash. No repairs, no cleaning, no showings required. Get a fair offer in 24-48 hours. Over 25 years of experience buying homes as-is.",
+      "We buy houses for cash in Cerritos, LA, and Orange County. No repairs needed. Get your fair cash offer today.",
     images: ["/banner6.jpg"],
   },
   robots: {
@@ -102,8 +154,8 @@ export const metadata: Metadata = {
   },
   verification: {
     google: "your-google-verification-code",
-    yandex: "your-yandex-verification-code",
-    yahoo: "your-yahoo-verification-code",
+    // yandex: "your-yandex-verification-code",
+    // yahoo: "your-yahoo-verification-code",
   },
   category: "Real Estate",
   classification: "Business",

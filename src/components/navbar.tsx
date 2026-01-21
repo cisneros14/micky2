@@ -29,8 +29,22 @@ const Navbar = () => {
           </div>
           <div className="flex items-center gap-3 md:bg-background md:p-2 border rounded-full md:pl-4">
             <div className="items-center gap-2 text-muted-foreground/80 hidden md:flex">
-              <Instagram className="size-5" />
-              <Facebook className="size-5" />
+              <a
+                href="https://instagram.com/easyclosers"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
+                <Instagram className="size-5 hover:text-primary transition-colors" />
+              </a>
+              <a
+                href="https://facebook.com/profile.php?id=61577957411678"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+              >
+                <Facebook className="size-5 hover:text-primary transition-colors" />
+              </a>
             </div>
 
             <div className="hidden md:block">

@@ -63,7 +63,7 @@ export function ProcessSection() {
   ];
 
   return (
-    <section className="py-24 px-4 bg-muted/50">
+    <section className="py-14 md:py-24 px-4 bg-muted/50">
       <div className="container mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
