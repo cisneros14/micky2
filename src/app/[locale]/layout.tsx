@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import JsonLd from "@/components/JsonLd";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,9 +19,30 @@ const geistMono = Geist_Mono({
 });
 
 // Structured Data para SEO
+const jsonLdData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Easy Closers",
+  url: "https://easyclosers.com",
+  logo: "https://easyclosers.com/logo.png", // Asegúrate de tener un logo.png en public
+  sameAs: [
+    "https://facebook.com/easyclosers",
+    "https://twitter.com/easyclosers",
+    "https://instagram.com/easyclosers",
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+1-800-555-5555", // Reemplazar con el teléfono real
+    contactType: "customer service",
+  },
+};
 
 export const metadata: Metadata = {
-  title: "Easy Closers - We Buy Houses For Cash | No Repairs, No Commissions",
+  title: {
+    default:
+      "Easy Closers - We Buy Houses For Cash | No Repairs, No Commissions",
+    template: "%s | Easy Closers",
+  },
   description:
     "Sell your house fast for cash. No repairs, no cleaning, no showings required. Get a fair offer in 24-48 hours. Over 25 years of experience buying homes as-is.",
   keywords:
@@ -36,6 +58,10 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://easyclosers.com"),
   alternates: {
     canonical: "/",
+    languages: {
+      "en-US": "/en",
+      "es-ES": "/es",
+    },
   },
   openGraph: {
     title: "Easy Closers - We Buy Houses For Cash | No Repairs, No Commissions",
@@ -51,7 +77,7 @@ export const metadata: Metadata = {
         alt: "Easy Closers - We Buy Houses For Cash",
       },
     ],
-    locale: "en",
+    locale: "en_US",
     type: "website",
   },
   twitter: {
@@ -144,6 +170,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <TranslationsProvider messages={messages}>
+          <JsonLd data={jsonLdData} />
           <Navbar />
           {children}
           <Footer />

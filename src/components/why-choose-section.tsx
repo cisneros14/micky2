@@ -58,7 +58,7 @@ export default function WhyChooseSection() {
           <div className="relative order-2 lg:order-1">
             <div className="relative rounded-lg overflow-hidden shadow-2xl">
               <Image
-                src="/casa.jpeg"
+                src="/casa.webp"
                 alt="Cash transaction for home purchase"
                 width={600}
                 height={400}

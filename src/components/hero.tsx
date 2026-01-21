@@ -17,7 +17,10 @@ export default function Hero() {
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 md:pt-12">
           {/* Left Content */}
           <div className="flex flex-col justify-start pt-8 md:pt-20 space-y-8 text-primary-foreground">
-            <Logo className="w-50 bg-white rounded-3xl p-5 hidden md:block" />
+            <Logo
+              className="w-50 bg-white rounded-3xl p-5 hidden md:block"
+              priority
+            />
 
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-primary-foreground text-balance">
@@ -171,7 +174,9 @@ export default function Hero() {
               </div>
             </Card> */}
             <Card className="w-full shadow-xl rounded-3xl bg-card text-card-foreground p-4 md:p-14">
-              <h2 className="subtitle text-center">{t("quoteForm.title", "Get Your Cash Offer")}</h2>
+              <h2 className="subtitle text-center">
+                {t("quoteForm.title", "Get Your Cash Offer")}
+              </h2>
               <PropertyQuoteForm />
             </Card>
           </div>
