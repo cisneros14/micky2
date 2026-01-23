@@ -14,7 +14,7 @@ export async function POST(request: Request) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        source: source || process.env.NEXT_PUBLIC_SITE_NAME || 'Easy Closers',
+        source: source || process.env.NEXT_PUBLIC_SITE_NAME || 'Easy Closers Web',
         system: 'Web Form',
         type: type || 'Registration',
         message: message || '',

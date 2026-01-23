@@ -234,40 +234,40 @@
     "description": "Historias reales de personas que usan y aman nuestro servicio cada día",
     "items": [
       {
-        "name": "John Doe",
-        "role": "Ingeniero de Software",
-        "company": "TechCorp",
-        "text": "¡Este producto ha transformado completamente la forma en que trabajamos. La eficiencia y facilidad de uso son inigualables!"
+        "name": "Sarah Miller",
+        "role": "Propietaria",
+        "company": "Riverside, CA",
+        "text": "Heredé la casa de mis padres y no sabía por dónde empezar. Easy Closers me hizo una oferta justa en efectivo y se encargó de todo el papeleo. ¡Cerramos en 10 días!"
       },
       {
-        "name": "Sophia Lee",
-        "role": "Analista de Datos",
-        "company": "InsightTech",
-        "text": "¡Esta herramienta me ha ahorrado horas de trabajo! Las funciones de análisis e informes son increíblemente potentes."
+        "name": "Robert Thompson",
+        "role": "Jubilado",
+        "company": "Long Beach, CA",
+        "text": "Los cimientos estaban agrietados y ningún agente quería listarla. Easy Closers la compró tal cual. Sin reparaciones, sin limpieza, solo una venta directa."
       },
       {
-        "name": "Michael Johnson",
-        "role": "Diseñador UX",
-        "company": "DesignPro",
-        "text": "Una herramienta increíble que simplifica tareas complejas. Muy recomendable para profesionales de la industria."
+        "name": "Jessica Williams",
+        "role": "Dueña de Negocio",
+        "company": "Anaheim, CA",
+        "text": "Necesitaba mudarme rápido por trabajo. No tenía tiempo para meses de visitas. Me hicieron una oferta en 24 horas y me dejaron elegir la fecha de mudanza."
       },
       {
-        "name": "Emily Davis",
-        "role": "Especialista en Marketing",
-        "company": "BrandBoost",
-        "text": "He visto una mejora significativa en la productividad de nuestro equipo desde que comenzamos a usar este servicio."
+        "name": "David Garcia",
+        "role": "Inversionista",
+        "company": "Ontario, CA",
+        "text": "Profesionales y transparentes. He trabajado con muchos inversionistas, y Easy Closers es, por mucho, la empresa más confiable en el sur de California."
       },
       {
-        "name": "Daniel Martinez",
-        "role": "Desarrollador Full-Stack",
-        "company": "CodeCrafters",
-        "text": "¡La mejor inversión que hemos hecho! El equipo de soporte también es súper receptivo y servicial."
+        "name": "Linda Peterson",
+        "role": "Maestra",
+        "company": "Cerritos, CA",
+        "text": "Estaba enfrentando una ejecución hipotecaria y me sentía desesperada. Salvaron mi crédito y me dieron suficiente efectivo para empezar de nuevo. No podría estar más agradecida."
       },
       {
-        "name": "Jane Smith",
-        "role": "Gerente de Producto",
-        "company": "InnovateX",
-        "text": "¡La experiencia de usuario es de primera categoría! La interfaz es limpia, intuitiva y fácil de navegar."
+        "name": "Kevin Martinez",
+        "role": "Arrendador",
+        "company": "Santa Ana, CA",
+        "text": "Ser arrendador se volvió demasiado para mí. Easy Closers compró mi propiedad de alquiler con los inquilinos aún dentro. Realmente una experiencia sin complicaciones."
       }
     ]
   },

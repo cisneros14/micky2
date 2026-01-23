@@ -58,7 +58,7 @@ export default function PrincipalFormContact() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          source: process.env.NEXT_PUBLIC_SITE_NAME || "Easy Closers",
+          source: "Easy Closers Web",
           type: "Inquiry",
           message: `Address: ${formData.address}\n\nMessage: ${formData.message}\n\nRecaptcha: ${recaptchaToken}`,
           person: {
@@ -71,9 +71,8 @@ export default function PrincipalFormContact() {
         }),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
+        const data = await response.json();
         throw new Error(data.error || "Failed to send message");
       }
 
@@ -82,6 +81,7 @@ export default function PrincipalFormContact() {
           "contact.success.description",
           "We'll be in touch regarding your property shortly.",
         ),
+        className: "bg-green-500 text-white font-bold",
       });
 
       setFormData({
@@ -93,7 +93,7 @@ export default function PrincipalFormContact() {
       });
       recaptchaRef.current?.reset();
     } catch (error) {
-      console.error("Error sending email:", error);
+      console.error("Error processing request:", error);
       toast.error(t("contact.error.title", "Error"), {
         description: t(
           "contact.error.description",
@@ -130,10 +130,10 @@ export default function PrincipalFormContact() {
               <div className="absolute -right-10 -top-10 w-32 h-32 bg-secondary/20 rounded-full blur-2xl" />
               <CardContent className="p-5 sm:p-6 md:p-8 space-y-8">
                 <div>
-                  <h3 className="text-xl font-bold mb-2 break-words">
+                  <h3 className="text-xl font-bold mb-2 wrap-break-word">
                     {t("contact.info.title", "Contact Information")}
                   </h3>
-                  <p className="text-primary-foreground/80 break-words">
+                  <p className="text-primary-foreground/80 wrap-break-word">
                     {t(
                       "contact.info.subtitle",
                       "Reach out to us through any of these channels.",
@@ -152,11 +152,11 @@ export default function PrincipalFormContact() {
                       </p>
                       <a
                         href="tel:+18887884828"
-                        className="text-base sm:text-lg font-bold hover:text-secondary transition-colors block break-words"
+                        className="text-base sm:text-lg font-bold hover:text-secondary transition-colors block wrap-break-word"
                       >
                         (888) 788-4828
                       </a>
-                      <p className="text-xs text-primary-foreground/60 mt-1 break-words">
+                      <p className="text-xs text-primary-foreground/60 mt-1 wrap-break-word">
                         {t("contact.info.phone.sub", "Mon-Fri 9am-6pm PST")}
                       </p>
                     </div>
@@ -172,7 +172,7 @@ export default function PrincipalFormContact() {
                       </p>
                       <a
                         href="mailto:info@easyclosers.com"
-                        className="text-base sm:text-lg font-bold hover:text-secondary transition-colors block break-all sm:break-words"
+                        className="text-base sm:text-lg font-bold hover:text-secondary transition-colors block break-all sm:wrap-break-word"
                       >
                         info@easyclosers.com
                       </a>
@@ -187,7 +187,7 @@ export default function PrincipalFormContact() {
                       <p className="font-medium text-sm text-primary-foreground/60 mb-1 truncate">
                         {t("contact.info.office.label", "Office")}
                       </p>
-                      <p className="font-medium text-sm sm:text-base break-words">
+                      <p className="font-medium text-sm sm:text-base wrap-break-word">
                         18000 Studebaker Rd #700
                         <br />
                         Cerritos, CA 90703

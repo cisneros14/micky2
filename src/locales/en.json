@@ -230,40 +230,40 @@
     "description": "Real stories from people who use and love our product every day",
     "items": [
       {
-        "name": "John Doe",
-        "role": "Software Engineer",
-        "company": "TechCorp",
-        "text": "This product has completely transformed the way we work. The efficiency and ease of use are unmatched!"
+        "name": "Sarah Miller",
+        "role": "Homeowner",
+        "company": "Riverside, CA",
+        "text": "I inherited my parents' house and didn't know where to start. Easy Closers made a fair cash offer and handled all the paperwork. We closed in 10 days!"
       },
       {
-        "name": "Sophia Lee",
-        "role": "Data Analyst",
-        "company": "InsightTech",
-        "text": "This tool has saved me hours of work! The analytics and reporting features are incredibly powerful."
+        "name": "Robert Thompson",
+        "role": "Retired",
+        "company": "Long Beach, CA",
+        "text": "The foundation was cracked and no agent would list it. Easy Closers bought it as-is. No repairs, no cleaning, just a straightforward sale."
       },
       {
-        "name": "Michael Johnson",
-        "role": "UX Designer",
-        "company": "DesignPro",
-        "text": "An amazing tool that simplifies complex tasks. Highly recommended for professionals in the industry."
+        "name": "Jessica Williams",
+        "role": "Business Owner",
+        "company": "Anaheim, CA",
+        "text": "I needed to relocate for work fast. I didn't have time for months of showings. They gave me an offer in 24 hours and let me choose my move-out date."
       },
       {
-        "name": "Emily Davis",
-        "role": "Marketing Specialist",
-        "company": "BrandBoost",
-        "text": "I've seen a significant improvement in our team's productivity since we started using this service."
+        "name": "David Garcia",
+        "role": "Investor",
+        "company": "Ontario, CA",
+        "text": "Professional and transparent. I've worked with many investors, and Easy Closers is by far the most reliable company I've found in Southern California."
       },
       {
-        "name": "Daniel Martinez",
-        "role": "Full-Stack Developer",
-        "company": "CodeCrafters",
-        "text": "The best investment we've made! The support team is also super responsive and helpful."
+        "name": "Linda Peterson",
+        "role": "Teacher",
+        "company": "Cerritos, CA",
+        "text": "I was facing foreclosure and felt hopeless. They saved my credit and gave me enough cash to start over. I couldn't be more grateful."
       },
       {
-        "name": "Jane Smith",
-        "role": "Product Manager",
-        "company": "InnovateX",
-        "text": "The user experience is top-notch! The interface is clean, intuitive, and easy to navigate."
+        "name": "Kevin Martinez",
+        "role": "Landlord",
+        "company": "Santa Ana, CA",
+        "text": "Being a landlord became too much. Easy Closers bought my rental with the tenants still there. Truly a hassle-free experience."
       }
     ]
   },

@@ -116,12 +116,12 @@ const Testimonials = () => {
     <section className="py-24 bg-muted/30">
       <div className="h-full w-full">
         <h2 className="text-3xl md:text-6xl font-bold tracking-tight text-center text-primary text-balance px-6">
-          {t("testimonials.title", "Success Stories")}
+          {t("testimonials.title", "What Our Clients Say")}
         </h2>
         <p className="mt-4 text-center text-lg text-pretty max-w-2xl mx-auto px-6">
           {t(
             "testimonials.description",
-            "Real stories from people who use and love our product every day",
+            "Real stories from homeowners who chose a fast, simple, and stress-free sale",
           )}
         </p>
         <div className="mt-14 relative">

@@ -8,41 +8,29 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Card, CardContent } from "@/components/ui/card";
-import {
   Home,
   Phone,
   Mail,
-  CheckCircle,
   AlertCircle,
   MapPin,
-  Building,
   User,
   MessageSquare,
   CircleAlert,
   Check,
-  MapPinHouse,
-  Send,
 } from "lucide-react";
 import { toast } from "sonner";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import usePlacesAutocomplete, {
-  getGeocode,
-  getLatLng,
-} from "use-places-autocomplete";
-import { ActionButton } from "./action-button";
+import usePlacesAutocomplete, { getGeocode } from "use-places-autocomplete";
 import { useTranslation } from "@/components/TranslationsProvider";
 
 declare global {
   interface Window {
     google: any;
-    grecaptcha: any;
+    grecaptcha: {
+      render: (container: HTMLElement | string, parameters: any) => number;
+      reset: (widgetId?: number) => void;
+      getResponse: (widgetId?: number) => string;
+    };
     initMap?: () => void;
     onRecaptchaForm?: (token: string) => void;
     onRecaptchaExpired?: () => void;
@@ -159,7 +147,7 @@ function AddressAutocomplete({
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isValidAddress, setIsValidAddress] = useState(false);
   const [displayValue, setDisplayValue] = useState(value);
-  const { isLoaded, error, loadMaps } = useGoogleMaps();
+  const { isLoaded, loadMaps } = useGoogleMaps();
   const { t } = useTranslation();
 
   const {
@@ -195,13 +183,8 @@ function AddressAutocomplete({
     }
   }, [isLoaded, ready, init]);
 
-  // Sincronizar displayValue con value externo
-  useEffect(() => {
-    if (value !== displayValue) {
-      setDisplayValue(value);
-      setIsValidAddress(false);
-    }
-  }, [value]);
+  // No necesitamos sincronizar displayValue con value mediante useEffect para evitar renders en cascada.
+  // En su lugar, inicializamos displayValue con el valor inicial y confiamos en handleInputChange.
 
   const handleInputFocus = () => {
     onFocusTrigger?.(); // Notificar al padre para cargar recaptcha si es necesario
@@ -209,29 +192,7 @@ function AddressAutocomplete({
     setShowSuggestions(displayValue.length > 2 && ready && isLoaded);
   };
 
-  // Mostrar error si hay problemas cargando Google Maps
-  if (error) {
-    return (
-      <div className="relative">
-        <Input
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder={`${placeholder} (${t("quoteForm.errors.autocompleteUnavailable", "Autocompletado no disponible")})`}
-          className={className}
-          onFocus={onFocusTrigger}
-        />
-        <div
-          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-red-400"
-          title={t(
-            "quoteForm.errors.googleMapsBilling",
-            "Google Maps requiere facturación habilitada",
-          )}
-        >
-          ⚠️
-        </div>
-      </div>
-    );
-  }
+  // No mostrar error si hay problemas cargando Google Maps ya que decidimos simplificar el hook
 
   const handleSelect = async (description: string) => {
     if (ready && isLoaded) {
@@ -245,11 +206,10 @@ function AddressAutocomplete({
 
     try {
       if (ready && isLoaded) {
-        const results = await getGeocode({ address: description });
-        const { lat, lng } = await getLatLng(results[0]);
-        // Coordenadas disponibles para uso futuro
+        await getGeocode({ address: description });
+        // Coordenadas disponibles para uso futuro si se necesitan
       }
-    } catch (error) {
+    } catch {
       // Error silencioso al obtener coordenadas
     }
   };
@@ -468,12 +428,7 @@ export function PropertyQuoteForm({
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const isFormValid =
-    formData.name &&
-    formData.email &&
-    formData.phone &&
-    formData.propertyType &&
-    formData.address;
+  // formData properties used for validation
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -536,7 +491,7 @@ export function PropertyQuoteForm({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          source: process.env.NEXT_PUBLIC_SITE_NAME || "Easy Closers",
+          source: "Easy Closers Web",
           type: "Inquiry",
           message: `Address: ${formData.address}\n\nProperty Number: ${formData.propertyNumber}\n\nProperty Type: ${formData.propertyType}\n\nNotes: ${formData.notes}`,
           person: {
@@ -559,6 +514,9 @@ export function PropertyQuoteForm({
           "quoteForm.success",
           "¡Gracias! Hemos recibido tu solicitud de cotización.",
         ),
+        {
+          className: "bg-green-500 text-white",
+        },
       );
       onFormSubmitSuccess?.();
 
