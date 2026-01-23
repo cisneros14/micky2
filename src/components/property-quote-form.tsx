@@ -549,6 +549,34 @@ export function PropertyQuoteForm({
         throw new Error("Error al enviar la cotización");
       }
 
+      // Enviar a Follow Up Boss
+      try {
+        const nameParts = formData.name.trim().split(/\s+/);
+        const firstName = nameParts[0] || "";
+        const lastName = nameParts.slice(1).join(" ") || "";
+
+        await fetch("/api/fub", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            source: process.env.NEXT_PUBLIC_SITE_NAME || "Easy Closers",
+            type: "Inquiry",
+            message: `Address: ${formData.address}\n\nProperty Number: ${formData.propertyNumber}\n\nProperty Type: ${formData.propertyType}\n\nNotes: ${formData.notes}`,
+            person: {
+              firstName,
+              lastName,
+              emails: [{ value: formData.email, type: "work" }],
+              phones: [{ value: formData.phone, type: "mobile" }],
+              tags: ["Web Lead", "Quote Form"],
+            },
+          }),
+        });
+      } catch (fubError) {
+        console.error("Error sending to FUB:", fubError);
+      }
+
       toast.success(
         t(
           "quoteForm.success",
