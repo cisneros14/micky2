@@ -27,7 +27,7 @@ declare global {
   interface Window {
     google: any;
     grecaptcha: {
-      render: (container: HTMLElement | string, parameters: any) => number;
+      render?: (container: HTMLElement | string, parameters: any) => number;
       reset: (widgetId?: number) => void;
       getResponse: (widgetId?: number) => string;
     };
