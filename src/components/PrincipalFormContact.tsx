@@ -47,14 +47,27 @@ export default function PrincipalFormContact() {
     try {
       const recaptchaToken = recaptchaRef.current?.getValue();
 
-      const response = await fetch("/api/send-email", {
+      // Enviar directamente a Follow Up Boss
+      const nameParts = formData.name.trim().split(/\s+/);
+      const firstName = nameParts[0] || "";
+      const lastName = nameParts.slice(1).join(" ") || "";
+
+      const response = await fetch("/api/fub", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          ...formData,
-          recaptcha: recaptchaToken,
+          source: process.env.NEXT_PUBLIC_SITE_NAME || "Easy Closers",
+          type: "Inquiry",
+          message: `Address: ${formData.address}\n\nMessage: ${formData.message}\n\nRecaptcha: ${recaptchaToken}`,
+          person: {
+            firstName,
+            lastName,
+            emails: [{ value: formData.email, type: "work" }],
+            phones: [{ value: formData.phone, type: "mobile" }],
+            tags: ["Web Lead", "Contact Form"],
+          },
         }),
       });
 
@@ -62,35 +75,6 @@ export default function PrincipalFormContact() {
 
       if (!response.ok) {
         throw new Error(data.error || "Failed to send message");
-      }
-
-      // Enviar a Follow Up Boss
-      try {
-        const nameParts = formData.name.trim().split(/\s+/);
-        const firstName = nameParts[0] || "";
-        const lastName = nameParts.slice(1).join(" ") || "";
-
-        await fetch("/api/fub", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            source: process.env.NEXT_PUBLIC_SITE_NAME || "Easy Closers",
-            type: "Inquiry",
-            message: `Address: ${formData.address}\n\nMessage: ${formData.message}`,
-            person: {
-              firstName,
-              lastName,
-              emails: [{ value: formData.email, type: "work" }],
-              phones: [{ value: formData.phone, type: "mobile" }],
-              tags: ["Web Lead", "Contact Form"],
-            },
-          }),
-        });
-      } catch (fubError) {
-        // No bloqueamos el éxito del formulario si falla FUB, pero lo logueamos
-        console.error("Error sending to FUB:", fubError);
       }
 
       toast.success(t("contact.success.title", "Quote Request Received!"), {

@@ -525,56 +525,33 @@ export function PropertyQuoteForm({
     setIsSubmitting(true);
 
     try {
-      // Preparar datos para la API
-      const cotizacionData = {
-        cliente_nombre: formData.name,
-        cliente_correo: formData.email,
-        cliente_telefono: formData.phone,
-        tipo_propiedad: formData.propertyType,
-        ubicacion: formData.address,
-        numero_propiedad: formData.propertyNumber,
-        notas: formData.notes || null,
-      };
+      // Enviar directamente a Follow Up Boss
+      const nameParts = formData.name.trim().split(/\s+/);
+      const firstName = nameParts[0] || "";
+      const lastName = nameParts.slice(1).join(" ") || "";
 
-      // Enviar a la API pública
-      const response = await fetch("/api/public/cotizaciones", {
+      const response = await fetch("/api/fub", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(cotizacionData),
+        body: JSON.stringify({
+          source: process.env.NEXT_PUBLIC_SITE_NAME || "Easy Closers",
+          type: "Inquiry",
+          message: `Address: ${formData.address}\n\nProperty Number: ${formData.propertyNumber}\n\nProperty Type: ${formData.propertyType}\n\nNotes: ${formData.notes}`,
+          person: {
+            firstName,
+            lastName,
+            emails: [{ value: formData.email, type: "work" }],
+            phones: [{ value: formData.phone, type: "mobile" }],
+            tags: ["Web Lead", "Quote Form"],
+          },
+        }),
       });
 
       if (!response.ok) {
-        throw new Error("Error al enviar la cotización");
-      }
-
-      // Enviar a Follow Up Boss
-      try {
-        const nameParts = formData.name.trim().split(/\s+/);
-        const firstName = nameParts[0] || "";
-        const lastName = nameParts.slice(1).join(" ") || "";
-
-        await fetch("/api/fub", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            source: process.env.NEXT_PUBLIC_SITE_NAME || "Easy Closers",
-            type: "Inquiry",
-            message: `Address: ${formData.address}\n\nProperty Number: ${formData.propertyNumber}\n\nProperty Type: ${formData.propertyType}\n\nNotes: ${formData.notes}`,
-            person: {
-              firstName,
-              lastName,
-              emails: [{ value: formData.email, type: "work" }],
-              phones: [{ value: formData.phone, type: "mobile" }],
-              tags: ["Web Lead", "Quote Form"],
-            },
-          }),
-        });
-      } catch (fubError) {
-        console.error("Error sending to FUB:", fubError);
+        const data = await response.json();
+        throw new Error(data.error || "Error al enviar la cotización");
       }
 
       toast.success(
