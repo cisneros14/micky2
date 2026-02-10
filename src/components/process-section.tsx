@@ -13,6 +13,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ActionButton } from "./action-button";
 import { PropertyQuoteModal } from "./property-quote-modal";
 import { useTranslation } from "@/components/TranslationsProvider";
+import { motion } from "framer-motion";
 
 export function ProcessSection() {
   const { t } = useTranslation();
@@ -66,7 +67,13 @@ export function ProcessSection() {
     <section className="py-14 md:py-24 px-4 bg-muted/50">
       <div className="container mx-auto">
         {/* Header */}
-        <div className="text-center mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
           <h2 className="text-3xl md:text-6xl font-bold tracking-tight text-primary mb-4 text-balance">
             {t("process.title", 'The "Easy" 3-Step Process')}
           </h2>
@@ -76,16 +83,35 @@ export function ProcessSection() {
               "Selling your home doesn't have to be complicated. We've streamlined the process into 3 simple steps.",
             )}
           </p>
-        </div>
+        </motion.div>
 
         {/* Steps */}
-        <div className="grid md:grid-cols-3 gap-6 md:gap-12 mb-12 relative">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.2,
+              },
+            },
+          }}
+          className="grid md:grid-cols-3 gap-6 md:gap-12 mb-12 relative"
+        >
           {steps.map((step, index) => {
             const IconComponent = step.icon;
             const BadgeIcon = step.badge.icon;
 
             return (
-              <div key={step.number} className="relative">
+              <motion.div
+                key={step.number}
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                className="relative"
+              >
                 <Card className="bg-card border-border h-full">
                   <CardContent className="p-8 flex flex-col h-full">
                     {/* Icon */}
@@ -133,10 +159,10 @@ export function ProcessSection() {
                     />
                   </div>
                 )}
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* CTA Button */}
         <div className="text-center">

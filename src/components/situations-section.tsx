@@ -14,6 +14,7 @@ import {
 import { ActionButton } from "./action-button";
 import { PropertyQuoteModal } from "./property-quote-modal";
 import { useTranslation } from "@/components/TranslationsProvider";
+import { motion } from "framer-motion";
 
 export default function SituationsSection() {
   const { t } = useTranslation();
@@ -97,7 +98,13 @@ export default function SituationsSection() {
     <section className="relative py-24 px-4 overflow-hidden bg-primary text-primary-foreground">
       <div className="container">
         {/* Header */}
-        <div className="text-center mb-16 space-y-4">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16 space-y-4"
+        >
           <h2 className="text-3xl md:text-6xl font-bold tracking-tight text-primary-foreground text-balance">
             {t("situations.title", "We Help Homeowners in Any Situation")}
           </h2>
@@ -107,36 +114,56 @@ export default function SituationsSection() {
               "No matter why you need to sell, we can provide a solution that works for you.",
             )}
           </p>
-        </div>
+        </motion.div>
 
         {/* Situations Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-5 gap-4 mb-12">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.1,
+              },
+            },
+          }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-5 gap-4 mb-12"
+        >
           {situations.map((situation, index) => {
             const Icon = situation.icon;
             return (
-              <Card key={index} className="">
-                <CardContent className="p-3 md:p-6 space-y-4">
-                  {/* Icon */}
-                  <div
-                    className={`w-12 h-12 rounded-full bg-${situation.color}/20 border-${situation.color}/70 border flex items-center justify-center`}
-                  >
-                    <Icon className={`w-7 h-7 text-${situation.color}/70`} />
-                  </div>
+              <motion.div
+                key={index}
+                variants={{
+                  hidden: { opacity: 0, scale: 0.9 },
+                  visible: { opacity: 1, scale: 1 },
+                }}
+              >
+                <Card className="">
+                  <CardContent className="p-3 md:p-6 space-y-4">
+                    {/* Icon */}
+                    <div
+                      className={`w-12 h-12 rounded-full bg-${situation.color}/20 border-${situation.color}/70 border flex items-center justify-center`}
+                    >
+                      <Icon className={`w-7 h-7 text-${situation.color}/70`} />
+                    </div>
 
-                  {/* Title */}
-                  <h3 className="text-xl font-semibold mb-2 text-primary">
-                    {situation.title}
-                  </h3>
+                    {/* Title */}
+                    <h3 className="text-xl font-semibold mb-2 text-primary">
+                      {situation.title}
+                    </h3>
 
-                  {/* Description */}
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {situation.description}
-                  </p>
-                </CardContent>
-              </Card>
+                    {/* Description */}
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      {situation.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* CTA Section */}
         <div className="flex flex-col items-center gap-4">

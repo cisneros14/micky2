@@ -155,7 +155,7 @@
   @apply max-w-7xl mx-auto;
 }
 section {
-  @apply py-24;
+  @apply py-20 md:py-32;
 }
 
 

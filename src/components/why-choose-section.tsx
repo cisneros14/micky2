@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ActionButton } from "./action-button";
 import { PropertyQuoteModal } from "./property-quote-modal";
 import { useTranslation } from "@/components/TranslationsProvider";
+import { motion } from "framer-motion";
 
 export default function WhyChooseSection() {
   const { t } = useTranslation();
@@ -30,7 +31,6 @@ export default function WhyChooseSection() {
   ];
 
   const trustBadges = [
-
     {
       title: t("whyChoose.badges.1.title", "Local So-Cal Company"),
       description: t(
@@ -52,7 +52,13 @@ export default function WhyChooseSection() {
       <div className="container mx-auto max-w-7xl">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
           {/* Left side - Image with overlay card */}
-          <div className="relative order-2 lg:order-1">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative order-2 lg:order-1"
+          >
             <div className="relative rounded-lg overflow-hidden shadow-2xl">
               <Image
                 src="/casa.webp"
@@ -64,25 +70,38 @@ export default function WhyChooseSection() {
             </div>
 
             {/* Floating stat card */}
-            <Card className="absolute bottom-4 left-4 md:bottom-8 md:left-8 bg-card p-3 md:p-4 shadow-xl flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center shrink-0">
-                <span className="text-secondary-foreground text-xl md:text-2xl font-bold">
-                  $
-                </span>
-              </div>
-              <div>
-                <div className="text-2xl md:text-3xl font-bold text-primary text-center">
-                  $2M+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+            >
+              <Card className="absolute bottom-4 left-4 md:bottom-8 md:left-8 bg-card p-3 md:p-4 shadow-xl flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center shrink-0">
+                  <span className="text-secondary-foreground text-xl md:text-2xl font-bold">
+                    $
+                  </span>
                 </div>
-                <div className="text-sm text-muted-foreground">
-                  {t("whyChoose.floating", "Paid to Homeowners")}
+                <div>
+                  <div className="text-2xl md:text-3xl font-bold text-primary text-center">
+                    $2M+
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    {t("whyChoose.floating", "Paid to Homeowners")}
+                  </div>
                 </div>
-              </div>
-            </Card>
-          </div>
+              </Card>
+            </motion.div>
+          </motion.div>
 
           {/* Right side - Content */}
-          <div className="order-1 lg:order-2 space-y-8">
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="order-1 lg:order-2 space-y-8"
+          >
             <div className="space-y-4">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-primary text-balance">
                 {t("whyChoose.title", "Why Choose Easy Closers?")}
@@ -96,26 +115,62 @@ export default function WhyChooseSection() {
             </div>
 
             {/* Stats grid */}
-            <div className="grid grid-cols-2 gap-4">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={{
+                visible: {
+                  transition: {
+                    staggerChildren: 0.1,
+                  },
+                },
+              }}
+              className="grid grid-cols-2 gap-4"
+            >
               {stats.map((stat, index) => (
-                <Card
+                <motion.div
                   key={index}
-                  className="bg-muted/50 shadow-none border-border p-4 md:p-6 hover:bg-muted/80 transition-colors"
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
                 >
-                  <div className="text-3xl md:text-3xl font-bold text-primary">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm md:text-base text-muted-foreground">
-                    {stat.label}
-                  </div>
-                </Card>
+                  <Card className="bg-muted/50 shadow-none border-border p-4 md:p-6 hover:bg-muted/80 transition-colors">
+                    <div className="text-3xl md:text-3xl font-bold text-primary">
+                      {stat.value}
+                    </div>
+                    <div className="text-sm md:text-base text-muted-foreground">
+                      {stat.label}
+                    </div>
+                  </Card>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
 
             {/* Trust badges */}
-            <div className="space-y-5">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={{
+                visible: {
+                  transition: {
+                    staggerChildren: 0.1,
+                  },
+                },
+              }}
+              className="space-y-5"
+            >
               {trustBadges.map((badge, index) => (
-                <div key={index} className="flex items-start gap-3">
+                <motion.div
+                  key={index}
+                  variants={{
+                    hidden: { opacity: 0, x: 20 },
+                    visible: { opacity: 1, x: 0 },
+                  }}
+                  className="flex items-start gap-3"
+                >
                   <div className="w-8 h-8 rounded-full bg-secondary/10 border border-secondary/50 flex items-center justify-center shrink-0 mt-0.5">
                     <Check className="w-4 h-4 text-secondary" />
                   </div>
@@ -127,9 +182,9 @@ export default function WhyChooseSection() {
                       {badge.description}
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
 
             {/* CTA Button */}
             <PropertyQuoteModal>
@@ -141,7 +196,7 @@ export default function WhyChooseSection() {
                 {t("whyChoose.cta", "Get my fair cash offer")}
               </ActionButton>
             </PropertyQuoteModal>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

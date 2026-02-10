@@ -2,6 +2,7 @@
 
 import { DollarSign, Calendar, Home, Package } from "lucide-react";
 import { PropertyQuoteForm } from "./property-quote-form";
+import { motion } from "framer-motion";
 
 import { Logo } from "./logo";
 import { Card } from "./ui/card";
@@ -22,7 +23,12 @@ export default function Hero() {
               priority
             />
 
-            <div className="space-y-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="space-y-4"
+            >
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-primary-foreground text-balance">
                 {t("hero.title", "The Easiest Way to Sell Your House")}
               </h1>
@@ -32,154 +38,91 @@ export default function Hero() {
                   "No repairs, no commissions, and no cleaning. Get a fair cash offer today and close on your timeline. Easy, simple and hassle-free",
                 )}
               </p>
-            </div>
+            </motion.div>
 
-            <div className="grid gap-6 sm:grid-cols-2">
-              <div className="flex gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
-                  <DollarSign className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="font-semibold text-lg">
-                    {t("hero.features.commissions.title", "$0 Commissions")}
-                  </p>
-                  <p className="text-sm text-primary-foreground/80">
-                    {t(
-                      "hero.features.commissions.desc",
-                      "Keep more money in your pocket",
-                    )}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
-                  <Calendar className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="font-semibold text-lg">
-                    {t("hero.features.timeline.title", "Close in 7 Days")}
-                  </p>
-                  <p className="text-sm text-primary-foreground/80">
-                    {t(
-                      "hero.features.timeline.desc",
-                      "Or choose your own timeline",
-                    )}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
-                  <Home className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="font-semibold text-lg">
-                    {t("hero.features.asis.title", "Sell As-Is")}
-                  </p>
-                  <p className="text-sm text-primary-foreground/80">
-                    {t(
-                      "hero.features.asis.desc",
-                      "No repairs or renovations needed",
-                    )}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
-                  <Package className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="font-semibold text-lg">
-                    {t("hero.features.leave.title", "Leave Everything")}
-                  </p>
-                  <p className="text-sm text-primary-foreground/80">
-                    {t(
-                      "hero.features.leave.desc",
-                      "Take what you want, leave the rest",
-                    )}
-                  </p>
-                </div>
-              </div>
-            </div>
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={{
+                visible: {
+                  transition: {
+                    staggerChildren: 0.1,
+                    delayChildren: 0.3,
+                  },
+                },
+              }}
+              className="grid gap-6 sm:grid-cols-2"
+            >
+              {[
+                {
+                  icon: DollarSign,
+                  title: t("hero.features.commissions.title", "$0 Commissions"),
+                  desc: t(
+                    "hero.features.commissions.desc",
+                    "Keep more money in your pocket",
+                  ),
+                },
+                {
+                  icon: Calendar,
+                  title: t("hero.features.timeline.title", "Close in 7 Days"),
+                  desc: t(
+                    "hero.features.timeline.desc",
+                    "Or choose your own timeline",
+                  ),
+                },
+                {
+                  icon: Home,
+                  title: t("hero.features.asis.title", "Sell As-Is"),
+                  desc: t(
+                    "hero.features.asis.desc",
+                    "No repairs or renovations needed",
+                  ),
+                },
+                {
+                  icon: Package,
+                  title: t("hero.features.leave.title", "Leave Everything"),
+                  desc: t(
+                    "hero.features.leave.desc",
+                    "Take what you want, leave the rest",
+                  ),
+                },
+              ].map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  variants={{
+                    hidden: { opacity: 0, x: -20 },
+                    visible: { opacity: 1, x: 0 },
+                  }}
+                  className="flex gap-4"
+                >
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
+                    <item.icon className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-lg">{item.title}</p>
+                    <p className="text-sm text-primary-foreground/80">
+                      {item.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
 
           {/* Right Form Card */}
-          <div className="flex items-center">
-            {/* <Card className="w-full p-8 shadow-2xl bg-card text-card-foreground">
-              <div className="space-y-6">
-                <div className="space-y-2 text-center">
-                  <h2 className="text-3xl font-bold text-primary">
-                    Get Your Cash Offer
-                  </h2>
-                  <p className="text-muted-foreground">
-                    Fill out the form below for a no-obligation offer within 24
-                    hours
-                  </p>
-                </div>
-
-                <form className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="address">
-                      Property Address{" "}
-                      <span className="text-destructive">*</span>
-                    </Label>
-                    <Input
-                      id="address"
-                      placeholder="Enter your property address"
-                      required
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="phone">
-                      Phone Number <span className="text-destructive">*</span>
-                    </Label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      placeholder="(555) 123-4567"
-                      required
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="email">
-                      Email Address <span className="text-destructive">*</span>
-                    </Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="your@email.com"
-                      required
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="situation">
-                      Tell us about your situation (Optional)
-                    </Label>
-                    <Textarea
-                      id="situation"
-                      placeholder="e.g., Inherited property, facing foreclosure, need quick sale..."
-                      rows={4}
-                    />
-                  </div>
-
-                  <Button className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground h-12 text-base font-semibold">
-                    ➤ Get My Fair Cash Offer
-                  </Button>
-                </form>
-              </div>
-            </Card> */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex items-center"
+          >
             <Card className="w-full shadow-xl rounded-3xl bg-card text-card-foreground p-4 md:p-14">
               <h2 className="subtitle text-center">
                 {t("quoteForm.title", "Get Your Cash Offer")}
               </h2>
               <PropertyQuoteForm />
             </Card>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -15,6 +15,7 @@ import Image from "next/image";
 import { ActionButton } from "./action-button";
 import { PropertyQuoteModal } from "./property-quote-modal";
 import { useTranslation } from "@/components/TranslationsProvider";
+import { motion } from "framer-motion";
 
 interface ComparisonFeature {
   icon: React.ReactNode;
@@ -126,7 +127,13 @@ export function ComparisonTable() {
     <section className="w-full bg-white py-24 px-4">
       <div className="mx-auto max-w-6xl">
         {/* Header */}
-        <div className="mb-12 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-12 text-center"
+        >
           <h2 className="mb-4 text-3xl md:text-6xl font-bold tracking-tight text-primary text-balance">
             {t("comparison.title", "Compare Your Options")}
           </h2>
@@ -136,10 +143,16 @@ export function ComparisonTable() {
               "See how selling to Easy Closers stacks up against a traditional listing.",
             )}
           </p>
-        </div>
+        </motion.div>
 
         {/* Comparison Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr_1fr] gap-0 overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="grid grid-cols-1 lg:grid-cols-[300px_1fr_1fr] gap-0 overflow-hidden"
+        >
           {/* Header Row */}
           <div className="bg-background hidden lg:block" />
 
@@ -187,7 +200,7 @@ export function ComparisonTable() {
               {/* Easy Closers Column */}
               <div className="bg-blue-500/10 p-6 flex flex-col items-center justify-center text-center border-b border-border  relative">
                 {/* Mobile Label */}
-                <div className="lg:hidden !text-center !mx-auto absolute top-4 left-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                <div className="lg:hidden text-center! mx-auto! absolute top-4 left-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                   {feature.label}
                 </div>
 
@@ -254,7 +267,7 @@ export function ComparisonTable() {
               )}
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

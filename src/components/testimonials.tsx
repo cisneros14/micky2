@@ -6,6 +6,7 @@ import { Marquee } from "@/components/ui/marquee";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { useTranslation } from "@/components/TranslationsProvider";
+import { motion } from "framer-motion";
 
 interface Testimonial {
   id: number;
@@ -115,16 +116,29 @@ const Testimonials = () => {
   return (
     <section className="py-24 bg-muted/30">
       <div className="h-full w-full">
-        <h2 className="text-3xl md:text-6xl font-bold tracking-tight text-center text-primary text-balance px-6">
-          {t("testimonials.title", "What Our Clients Say")}
-        </h2>
-        <p className="mt-4 text-center text-lg text-pretty max-w-2xl mx-auto px-6">
-          {t(
-            "testimonials.description",
-            "Real stories from homeowners who chose a fast, simple, and stress-free sale",
-          )}
-        </p>
-        <div className="mt-14 relative">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-3xl md:text-6xl font-bold tracking-tight text-center text-primary text-balance px-6">
+            {t("testimonials.title", "What Our Clients Say")}
+          </h2>
+          <p className="mt-4 text-center text-lg text-pretty max-w-2xl mx-auto px-6">
+            {t(
+              "testimonials.description",
+              "Real stories from homeowners who chose a fast, simple, and stress-free sale",
+            )}
+          </p>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="mt-14 relative"
+        >
           <div className="z-10 absolute left-0 inset-y-0 w-[15%] bg-linear-to-r from-background to-transparent" />
           <div className="z-10 absolute right-0 inset-y-0 w-[15%] bg-linear-to-l from-background to-transparent" />
           <Marquee pauseOnHover className="[--duration:60s]">
@@ -137,7 +151,7 @@ const Testimonials = () => {
               <TestimonialCard key={testimonial.id} testimonial={testimonial} />
             ))}
           </Marquee>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

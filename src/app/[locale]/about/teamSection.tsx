@@ -13,6 +13,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useTranslation } from "@/components/TranslationsProvider";
+import { motion } from "framer-motion";
 
 const teamMembers = [
   {
@@ -157,7 +158,13 @@ export default function TeamSection() {
 
   return (
     <div className="flex flex-col max-w-5xl justify-center py-8 sm:py-12 px-6 lg:px-8 mx-auto gap-16">
-      <div className="text-center mx-auto">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="text-center mx-auto"
+      >
         <b className="text-center text-muted-foreground text-base font-semibold">
           {t("team.hiring")}
         </b>
@@ -172,11 +179,30 @@ export default function TeamSection() {
             {t("team.buttons.aboutUs")}
           </Button>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 gap-y-6 md:gap-8 md:gap-y-10">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={{
+          visible: {
+            transition: {
+              staggerChildren: 0.1,
+            },
+          },
+        }}
+        className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 gap-y-6 md:gap-8 md:gap-y-10"
+      >
         {teamMembers.map((member) => (
-          <div key={member.name} className="group flex flex-col">
+          <motion.div
+            key={member.name}
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            className="group flex flex-col"
+          >
             <div className="relative">
               <Dialog>
                 <DialogTrigger asChild>
@@ -336,9 +362,9 @@ export default function TeamSection() {
                 </DialogContent>
               </Dialog>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }

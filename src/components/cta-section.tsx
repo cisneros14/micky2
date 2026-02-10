@@ -3,6 +3,7 @@
 import { PropertyQuoteModal } from "./property-quote-modal";
 import { ActionButton } from "./action-button";
 import { useTranslation } from "@/components/TranslationsProvider";
+import { motion } from "framer-motion";
 
 export function CTASection() {
   const { t } = useTranslation();
@@ -10,7 +11,13 @@ export function CTASection() {
   return (
     <section className="py-24 bg-primary text-primary-foreground">
       <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-8 text-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col items-center justify-center space-y-8 text-center"
+        >
           <div className="space-y-4">
             <h2 className="text-3xl md:text-6xl font-bold tracking-tight text-primary-foreground mb-6 text-balance">
               {t("ctaSection.title", "Ready to Sell Your House Fast?")}
@@ -27,7 +34,7 @@ export function CTASection() {
               {t("ctaSection.cta", "Get my fair cash offer")}
             </ActionButton>
           </PropertyQuoteModal>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

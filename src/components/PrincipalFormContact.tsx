@@ -19,6 +19,7 @@ import {
   Instagram,
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 export default function PrincipalFormContact() {
   const { t } = useTranslation();
@@ -111,7 +112,13 @@ export default function PrincipalFormContact() {
       className="py-12 md:py-24 bg-muted/30 relative overflow-hidden"
     >
       <div className="container mx-auto px-4 relative">
-        <div className="text-center mb-10 md:mb-16 space-y-4">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-10 md:mb-16 space-y-4"
+        >
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-primary text-balance">
             {t("contact.title", "Get Your No-Obligation Offer")}
           </h2>
@@ -121,11 +128,17 @@ export default function PrincipalFormContact() {
               "Have questions? Ready to sell? Fill out the form below or contact us directly. We're here to help.",
             )}
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-12 max-w-6xl mx-auto w-full">
           {/* Contact Info Cards */}
-          <div className="space-y-6 lg:col-span-1 w-full">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="space-y-6 lg:col-span-1 w-full"
+          >
             <Card className="border-none shadow-lg bg-primary text-primary-foreground overflow-hidden relative w-full">
               <div className="absolute -right-10 -top-10 w-32 h-32 bg-secondary/20 rounded-full blur-2xl" />
               <CardContent className="p-5 sm:p-6 md:p-8 space-y-8">
@@ -239,140 +252,164 @@ export default function PrincipalFormContact() {
                 </div>
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
 
           {/* Form */}
-          <Card className="lg:col-span-2 shadow-xl border-border w-full">
-            <CardContent className="p-4 sm:p-6 md:p-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-2"
+          >
+            <Card className="shadow-xl border-border w-full">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label htmlFor="name">
+                        {t("contact.form.labels.name", "Full Name")}
+                      </Label>
+                      <Input
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder={t(
+                          "contact.form.placeholders.name",
+                          "John Doe",
+                        )}
+                        className="bg-muted/50"
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="phone">
+                        {t("contact.form.labels.phone", "Phone Number")}
+                      </Label>
+                      <Input
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        placeholder={t(
+                          "contact.form.placeholders.phone",
+                          "(555) 123-4567",
+                        )}
+                        className="bg-muted/50"
+                        required
+                      />
+                    </div>
+                  </div>
+
                   <div className="space-y-2">
-                    <Label htmlFor="name">
-                      {t("contact.form.labels.name", "Full Name")}
+                    <Label htmlFor="email">
+                      {t("contact.form.labels.email", "Email Address")}
                     </Label>
                     <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
                       onChange={handleChange}
                       placeholder={t(
-                        "contact.form.placeholders.name",
-                        "John Doe",
+                        "contact.form.placeholders.email",
+                        "john@example.com",
                       )}
                       className="bg-muted/50"
                       required
                     />
                   </div>
+
                   <div className="space-y-2">
-                    <Label htmlFor="phone">
-                      {t("contact.form.labels.phone", "Phone Number")}
+                    <Label htmlFor="address">
+                      {t("contact.form.labels.address", "Property Address")}
                     </Label>
                     <Input
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
+                      id="address"
+                      name="address"
+                      value={formData.address}
                       onChange={handleChange}
                       placeholder={t(
-                        "contact.form.placeholders.phone",
-                        "(555) 123-4567",
+                        "contact.form.placeholders.address",
+                        "123 Main St, Riverside, CA",
                       )}
                       className="bg-muted/50"
                       required
                     />
                   </div>
-                </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="email">
-                    {t("contact.form.labels.email", "Email Address")}
-                  </Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder={t(
-                      "contact.form.placeholders.email",
-                      "john@example.com",
-                    )}
-                    className="bg-muted/50"
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="address">
-                    {t("contact.form.labels.address", "Property Address")}
-                  </Label>
-                  <Input
-                    id="address"
-                    name="address"
-                    value={formData.address}
-                    onChange={handleChange}
-                    placeholder={t(
-                      "contact.form.placeholders.address",
-                      "123 Main St, Riverside, CA",
-                    )}
-                    className="bg-muted/50"
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="message">
-                    {t("contact.form.labels.message", "Message (Optional)")}
-                  </Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder={t(
-                      "contact.form.placeholders.message",
-                      "Tell us about your property and situation...",
-                    )}
-                    className="min-h-[120px] bg-muted/50 resize-y"
-                  />
-                </div>
-
-                <div className="flex justify-center min-h-[78px]">
-                  <ReCAPTCHA
-                    ref={recaptchaRef}
-                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
-                    theme="light"
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  className="w-full h-12 font-semibold bg-secondary hover:bg-secondary/90 text-secondary-foreground transition-all duration-300 shadow-md hover:shadow-lg"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? (
-                    <>
-                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                      {t("contact.form.button.loading", "Sending Request...")}
-                    </>
-                  ) : (
-                    <>
-                      {t(
-                        "contact.form.button.submit",
-                        "Get My Fair Cash Offer",
+                  <div className="space-y-2">
+                    <Label htmlFor="message">
+                      {t("contact.form.labels.message", "Message (Optional)")}
+                    </Label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder={t(
+                        "contact.form.placeholders.message",
+                        "Tell us about your property and situation...",
                       )}
-                      <Send className="ml-2 h-5 w-5" />
-                    </>
-                  )}
-                </Button>
-                <p className="text-xs text-center text-muted-foreground mt-4">
-                  {t(
-                    "contact.form.disclaimer",
-                    "By submitting this form, you agree to our Privacy Policy and Terms of Service.",
-                  )}
-                </p>
-              </form>
-            </CardContent>
-          </Card>
+                      className="min-h-[120px] bg-muted/50 resize-y"
+                    />
+                  </div>
+
+                  <div className="flex justify-center min-h-[78px]">
+                    <ReCAPTCHA
+                      ref={recaptchaRef}
+                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                      theme="light"
+                    />
+                  </div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.6 }}
+                  >
+                    <Button
+                      type="submit"
+                      className="w-full h-12 font-semibold bg-secondary hover:bg-secondary/90 text-secondary-foreground transition-all duration-300 shadow-md hover:shadow-lg"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                          {t(
+                            "contact.form.button.loading",
+                            "Sending Request...",
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          {t(
+                            "contact.form.button.submit",
+                            "Get My Fair Cash Offer",
+                          )}
+                          <Send className="ml-2 h-5 w-5" />
+                        </>
+                      )}
+                    </Button>
+                  </motion.div>
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.7 }}
+                    className="text-xs text-center text-muted-foreground mt-4"
+                  >
+                    {t(
+                      "contact.form.disclaimer",
+                      "By submitting this form, you agree to our Privacy Policy and Terms of Service.",
+                    )}
+                  </motion.p>
+                </form>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
       </div>
     </section>

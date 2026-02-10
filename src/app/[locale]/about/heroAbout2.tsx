@@ -2,39 +2,73 @@
 
 import { useTranslation } from "@/components/TranslationsProvider";
 import { Card } from "@/components/ui/card";
+import { motion } from "framer-motion";
 
 export default function HeroAbout2() {
   const { t } = useTranslation();
 
   return (
     <div className="container mx-auto max-w-5xl px-6 py-8 sm:py-12 relative">
-      <div className="max-w-5xl mx-auto text-center md:mb-8 mb-4">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="max-w-5xl mx-auto text-center md:mb-8 mb-4"
+      >
         <h1 className="title">{t("about.subtitle")}</h1>
         <div className="decorador mx-auto" />
-      </div>
+      </motion.div>
 
       <div className="flex gap-10 items-center max-md:flex-col">
-        <div className="text-lg text-muted-foreground leading-relaxed flex-1 space-y-4">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-lg text-muted-foreground leading-relaxed flex-1 space-y-4"
+        >
           {(t("about.description", { returnObjects: true }) as string[]).map(
             (paragraph, index) => (
               <p key={index}>{paragraph}</p>
             ),
           )}
-        </div>
+        </motion.div>
 
-        <div className="flex flex-col gap-4 flex-1">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.3,
+              },
+            },
+          }}
+          className="flex flex-col gap-4 flex-1"
+        >
           {(["integrity", "speed", "fairness"] as const).map((value) => (
-            <Card key={value} className="text-center p-8 gap-2 relative">
-              <span className="absolute top-4 right-4 w-2 h-2 bg-[var(--color4)]/40 rounded-full" />
-              <h3 className="text-xl font-semibold">
-                {t(`about.values.${value}`)}
-              </h3>
-              <p className="text-muted-foreground text-sm">
-                {t(`about.values.${value}Desc`)}
-              </p>
-            </Card>
+            <motion.div
+              key={value}
+              variants={{
+                hidden: { opacity: 0, x: 50 },
+                visible: { opacity: 1, x: 0 },
+              }}
+            >
+              <Card className="text-center p-8 gap-2 relative h-full">
+                <span className="absolute top-4 right-4 w-2 h-2 bg-[var(--color4)]/40 rounded-full" />
+                <h3 className="text-xl font-semibold">
+                  {t(`about.values.${value}`)}
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  {t(`about.values.${value}Desc`)}
+                </p>
+              </Card>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );
